@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+:root {
+  --generic-template-background: #fff;
+  --logo-width: 130px;
+  --top-wrapper-space: 0;
+  --primary-template-background: #04194c;
+  --light-template-background: #fff;
+  --accordion-background-active: #2f84ed;
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  image-rendering: -webkit-optimize-contrast;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--generic-template-background) !important;
+}
+
+.template-header {
+  background: var(--generic-template-background);
+  height: 15vh;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  flex-flow: column wrap;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light-template-background);
+  align-self: center;
+  max-width: 120px;
+}
+
+.logo h2 {
+  margin: 0 0 0 11px;
+  font-size: 18px;
+  color: #000;
+}
+
+.logo img {
+  width: var(--logo-width);
+}
+
+.wrapper {
+  max-width: 1120px;
+  width: 100%;
+  padding: var(--top-wrapper-space) 5px 10px;
+  margin: 0 auto;
+  min-height: 75vh;
+}
+
+#accordionExample {
+  background: var(--light-template-background);
+  position: relative;
+  margin: 0 auto 20px;
+  border-radius: 7px;
+  padding: 0;
+  border: var(--bs-accordion-border-width) solid
+    var(--bs-accordion-border-color);
+}
+
+.widget-holder .widget-title {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.widget-holder .widget-title h4 {
+  margin: 0;
+}
+
+.yotpo-display-l .yotpo-base-layout {
+  width: 100% !important;
+}
+
+#star-rating .yotpo-reviews-star-ratings-widget {
+  justify-content: center !important;
+}
+
+#yotpo-vugc-preview-mode-layout,
+.yotpo-reviews-carousel-preview-mode-layout,
+.yotpo-pp-preview-mode-layout {
+  height: auto !important;
+}
+
+#accordionExample .accordion-button:not(.collapsed) {
+  background: var(--accordion-background-active);
+  color: var(--light-template-background);
+}
+
+.footer-template {
+  background: var(--primary-template-background);
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #d9d9df;
+}
+
+.footer-template .footer-logo {
+  color: var(--light-template-background);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.footer-logo img {
+  width: 35px;
+}
+
+.footer-logo h2 {
+  font-size: 18px;
+  margin: 0 0 0 9px;
+}
+
+.cliboard-holder {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  border: 2px dashed var(--primary-template-background);
+  margin: 0 clamp(10px, 4vw, 50px) clamp(10px, 4vw, 50px);
+  padding: 30px 20px 20px;
+  background: #f6f6ff;
+}
+
+.cliboard-holder .clipboard-details {
+  width: clamp(300px, 45%, 600px);
+  margin: 0 10px 20px;
+}
+
+.clipboard-details {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.cliboard-holder h2 {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 23px;
+}
+
+.clipboard-details h3 {
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.clipboard-details p {
+  font-size: 12px;
+}
+
+.clipboard-details textarea {
+  resize: none;
+  height: 100px;
+  padding: 0 10px;
+  font-size: 12px;
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.rating-holder {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.rating-holder section {
+  width: clamp(300px, 45%, 600px);
+  margin: 0 10px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  align-items: center;
+  background-color: var(--secondary-template-background);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.rating-holder section h1 {
+  font-size: 20px;
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.yotpo-widget-clear .yotpo-reviews-tab-layout-preview {
+  height: auto;
+}
+
+.accordion-button,
+.cliboard-holder * {
+  font-family: "Roboto", sans-serif;
+}
+/*# sourceMappingURL=main.css.map */
