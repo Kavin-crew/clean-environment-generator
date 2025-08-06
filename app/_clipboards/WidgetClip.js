@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 
-function WidgetClipBoard(props) {
-  const instanceid = props.instanceid;
+function WidgetClipBoard({ instanceid }) {
   const [value, setValue] = useState(`
     <div class="yotpo-widget-instance" 
       data-yotpo-instance-id="${instanceid}"
@@ -19,13 +17,23 @@ function WidgetClipBoard(props) {
     `);
   const [isCopied, setCopied] = useState(false);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setCopied(false);
-    }, 3000);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Copy failed:", err);
+    }
+  };
 
-    return () => clearTimeout(timeout);
-  }, [isCopied]);
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setCopied(false);
+  //   }, 3000);
+
+  //   return () => clearTimeout(timeout);
+  // }, [isCopied]);
 
   return (
     <>
@@ -41,11 +49,9 @@ function WidgetClipBoard(props) {
           setCopied(false);
         }}
       />
-      <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
-        <button type="button" className="btn btn-primary">
-          {isCopied ? "Copied!" : "Copy Code"}
-        </button>
-      </CopyToClipboard>
+      <button onClick={copy} className="btn btn-primary">
+        {isCopied ? "Copied!" : "Copy Code"}
+      </button>
     </>
   );
 }

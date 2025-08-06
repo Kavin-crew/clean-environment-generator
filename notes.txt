@@ -1,0 +1,19 @@
+//First import useRouter and useState.
+
+import { useRouter } from "next/router";
+import { useState } from "react";
+
+//In function
+
+const share = useRouter();
+    const base = "http://localhost:3000";
+
+    const links = base + share.asPath;
+    const copylink = (e) => {
+        navigator.clipboard.writeText(links)
+    }
+//In Html
+
+<div onClick={copylink} className="shareicon" >
+    <p> Copy to CLipboar </p>
+</div>
