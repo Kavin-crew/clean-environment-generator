@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
-import Label from "./Label";
+import Label from "@/app/_components/Label";
+import InputText from "./InputText";
+import InputTextInstanceId from "./InputTextInstanceId";
 
 export default function Form() {
   const [isReviewsWidgetEnabled, setIsReviewsWidgetEnabled] = useState(false);
@@ -16,21 +18,21 @@ export default function Form() {
   const [isSEOEnabled, setIsSEOEnabled] = useState(false);
 
   // Reference for the input field to clear its value when the checkbox is unchecked
-  const inputRef = useRef(null);
-  const handleCheckboxChange = (setterFunction) => {
+  const inputRef = useRef({});
+  const handleCheckboxChange = (setterFunction, inputKey) => {
     setterFunction((prevChecked) => {
       const newChecked = !prevChecked;
-      if (!newChecked && inputRef.current) {
-        inputRef.current.value = ""; // Clear input when unchecked
+      if (!newChecked && inputRef.current[inputKey]) {
+        inputRef.current[inputKey].value = ""; // Clear input when unchecked
       }
       return newChecked;
     });
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full  bg-white  shadow-lg rounded z-10">
       {/* <!-- Main Form Card --> */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 h-[90vh] overflow-y-scroll">
         {/* <!-- Card Header --> */}
         <div className="p-6 pb-0">
           <h1 className="text-2xl font-semibold text-slate-900 mb-2">
@@ -47,66 +49,58 @@ export default function Form() {
             {/* <!-- Appkey Field --> */}
             <div className="space-y-2">
               <Label htmlFor="appkey">Appkey</Label>
-              <input
-                type="text"
-                id="appkey"
-                name="appkey"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
+              <InputText inputName="appkey" />
             </div>
 
-            {/* <!-- Title Field --> */}
-            <div className="space-y-2">
-              <Label htmlFor="title">Title</Label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
+            <div className="block space-y-2 justify-between gap-x-5 md:flex">
+              {/* <!-- Title Field --> */}
+              <div className="w-full space-y-6">
+                <Label htmlFor="title">Title</Label>
+                <InputText inputName="title" placeholder="Account name - v3" />
+              </div>
 
-            {/* <!-- Language Dropdown --> */}
-            <div className="space-y-2">
-              <Label htmlFor="language">Language</Label>
-              <select
-                id="language"
-                name="language"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="en">English</option>
-                <option value="hr">Croatian</option>
-                <option value="cs">Czech</option>
-                <option value="zh-CN">Chinese (Simplified)</option>
-                <option value="zh-TW">Chinese (Traditional)</option>
-                <option value="da">Danish</option>
-                <option value="nl">Dutch</option>
-                <option value="fr">French</option>
-                <option value="fi">Finnish</option>
-                <option value="de">German</option>
-                <option value="el">Greek</option>
-                <option value="hi">Hindi</option>
-                <option value="hu">Hu</option>
-                <option value="id">Indonesian</option>
-                <option value="it">Italian</option>
-                <option value="ja">Japanese</option>
-                <option value="ko">Korean</option>
-                <option value="lt">Lithuanian</option>
-                <option value="ms">Malay</option>
-                <option value="no">Norwegian</option>
-                <option value="pl">Polish</option>
-                <option value="pt-BR">Portuguese (Brazil)</option>
-                <option value="pt-PT">Portuguese (Portugal)</option>
-                <option value="ro">Romanian</option>
-                <option value="ru">Russian</option>
-                <option value="sk">Slovak</option>
-                <option value="sl">Slovenian</option>
-                <option value="es">Spanish</option>
-                <option value="sv">Swedish</option>
-                <option value="th">Thai</option>
-                <option value="tr">Turkish</option>
-                <option value="vi">Vietnamese</option>
-              </select>
+              {/* <!-- Language Dropdown --> */}
+              <div className="w-full space-y-6">
+                <Label htmlFor="language">Language</Label>
+                <select
+                  id="language"
+                  name="language"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="en">English</option>
+                  <option value="hr">Croatian</option>
+                  <option value="cs">Czech</option>
+                  <option value="zh-CN">Chinese (Simplified)</option>
+                  <option value="zh-TW">Chinese (Traditional)</option>
+                  <option value="da">Danish</option>
+                  <option value="nl">Dutch</option>
+                  <option value="fr">French</option>
+                  <option value="fi">Finnish</option>
+                  <option value="de">German</option>
+                  <option value="el">Greek</option>
+                  <option value="hi">Hindi</option>
+                  <option value="hu">Hu</option>
+                  <option value="id">Indonesian</option>
+                  <option value="it">Italian</option>
+                  <option value="ja">Japanese</option>
+                  <option value="ko">Korean</option>
+                  <option value="lt">Lithuanian</option>
+                  <option value="ms">Malay</option>
+                  <option value="no">Norwegian</option>
+                  <option value="pl">Polish</option>
+                  <option value="pt-BR">Portuguese (Brazil)</option>
+                  <option value="pt-PT">Portuguese (Portugal)</option>
+                  <option value="ro">Romanian</option>
+                  <option value="ru">Russian</option>
+                  <option value="sk">Slovak</option>
+                  <option value="sl">Slovenian</option>
+                  <option value="es">Spanish</option>
+                  <option value="sv">Swedish</option>
+                  <option value="th">Thai</option>
+                  <option value="tr">Turkish</option>
+                  <option value="vi">Vietnamese</option>
+                </select>
+              </div>
             </div>
 
             {/* <!-- Reviews Toggle + Input --> */}
@@ -118,21 +112,22 @@ export default function Form() {
                     id="reviews-toggle"
                     checked={isReviewsWidgetEnabled}
                     onChange={() =>
-                      handleCheckboxChange(setIsReviewsWidgetEnabled)
+                      handleCheckboxChange(
+                        setIsReviewsWidgetEnabled,
+                        "reviewswidget"
+                      )
                     }
                   />
                   <span className="toggle-slider"></span>
                 </label>
                 <Label htmlFor="reviews-toggle">Reviews</Label>
               </div>
-              <input
-                type="text"
-                id="reviews-input"
-                name="reviews"
-                placeholder="Instance Id"
-                disabled={!isReviewsWidgetEnabled}
-                ref={inputRef}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
+              <InputTextInstanceId
+                inputName="reviews"
+                isDisabled={isReviewsWidgetEnabled}
+                targetedInputRef={(el) =>
+                  (inputRef.current["reviewswidget"] = el)
+                }
               />
             </div>
 
@@ -144,20 +139,18 @@ export default function Form() {
                     type="checkbox"
                     id="qa-toggle"
                     checked={isQAWidgetEnabled}
-                    onChange={() => handleCheckboxChange(setIsQAWidgetEnabled)}
+                    onChange={() =>
+                      handleCheckboxChange(setIsQAWidgetEnabled, "qna")
+                    }
                   />
                   <span className="toggle-slider"></span>
                 </label>
                 <Label htmlFor="qa-toggle">Q&A</Label>
               </div>
-              <input
-                type="text"
-                id="qa-input"
-                name="qa"
-                placeholder="Instance Id"
-                disabled={!isQAWidgetEnabled}
-                ref={inputRef}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
+              <InputTextInstanceId
+                inputName="QnA"
+                isDisabled={isQAWidgetEnabled}
+                targetedInputRef={(el) => (inputRef.current["qna"] = el)}
               />
             </div>
 
@@ -170,20 +163,22 @@ export default function Form() {
                     id="star-ratings-toggle"
                     checked={isStarRatingWidgetEnabled}
                     onChange={() =>
-                      setIsStarRatingWidgetEnabled((prev) => !prev)
+                      handleCheckboxChange(
+                        setIsStarRatingWidgetEnabled,
+                        "starratings"
+                      )
                     }
                   />
                   <span className="toggle-slider"></span>
                 </label>
                 <Label htmlFor="star-ratings-toggle">Star Ratings</Label>
               </div>
-              <input
-                type="text"
-                id="star-ratings-input"
-                name="starRatings"
-                placeholder="Instance Id"
-                disabled={!isStarRatingWidgetEnabled}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
+              <InputTextInstanceId
+                inputName="starRatings"
+                isDisabled={isStarRatingWidgetEnabled}
+                targetedInputRef={(el) =>
+                  (inputRef.current["starratings"] = el)
+                }
               />
             </div>
 
@@ -196,7 +191,10 @@ export default function Form() {
                     id="reviews-carousel-toggle"
                     checked={isReviewsCarouselEnabled}
                     onChange={() =>
-                      setIsReviewsCarouselEnabled((prev) => !prev)
+                      handleCheckboxChange(
+                        setIsReviewsCarouselEnabled,
+                        "reviewscarousel"
+                      )
                     }
                   />
                   <span className="toggle-slider"></span>
@@ -205,13 +203,12 @@ export default function Form() {
                   Reviews Carousel
                 </Label>
               </div>
-              <input
-                type="text"
-                id="reviews-carousel-input"
-                name="reviewsCarousel"
-                placeholder="Instance Id"
-                disabled={!isReviewsCarouselEnabled}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
+              <InputTextInstanceId
+                inputName="reviewsCarousel"
+                isDisabled={isReviewsCarouselEnabled}
+                targetedInputRef={(el) =>
+                  (inputRef.current["reviewscarousel"] = el)
+                }
               />
             </div>
 
@@ -223,19 +220,18 @@ export default function Form() {
                     type="checkbox"
                     id="reviews-tab-toggle"
                     checked={isReviewsTabEnabled}
-                    onChange={() => setIsReviewsTabEnabled((prev) => !prev)}
+                    onChange={() =>
+                      handleCheckboxChange(setIsReviewsTabEnabled, "reviewstab")
+                    }
                   />
                   <span className="toggle-slider"></span>
                 </label>
                 <Label htmlFor="reviews-tab-toggle">Reviews Tab</Label>
               </div>
-              <input
-                type="text"
-                id="reviews-tab-input"
-                name="reviewsTab"
-                placeholder="Instance Id"
-                disabled={!isReviewsTabEnabled}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
+              <InputTextInstanceId
+                inputName="reviewsTab"
+                isDisabled={isReviewsTabEnabled}
+                targetedInputRef={(el) => (inputRef.current["reviewstab"] = el)}
               />
             </div>
 
@@ -248,7 +244,10 @@ export default function Form() {
                     id="promoted-products-toggle"
                     checked={isPromotedProductsEnabled}
                     onChange={() =>
-                      setIsPromotedProductsEnabled((prev) => !prev)
+                      handleCheckboxChange(
+                        setIsPromotedProductsEnabled,
+                        "promotedproducts"
+                      )
                     }
                   />
                   <span className="toggle-slider"></span>
@@ -257,13 +256,12 @@ export default function Form() {
                   Promoted Products
                 </Label>
               </div>
-              <input
-                type="text"
-                id="promoted-products-input"
-                name="promotedProducts"
-                placeholder="Instance Id"
-                disabled={!isPromotedProductsEnabled}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
+              <InputTextInstanceId
+                inputName="promotedProducts"
+                isDisabled={isPromotedProductsEnabled}
+                targetedInputRef={(el) =>
+                  (inputRef.current["promotedproducts"] = el)
+                }
               />
             </div>
 
@@ -275,19 +273,19 @@ export default function Form() {
                     type="checkbox"
                     id="seo-toggle"
                     checked={isSEOEnabled}
-                    onChange={() => setIsSEOEnabled((prev) => !prev)}
+                    onChange={() =>
+                      handleCheckboxChange(setIsSEOEnabled, "seo")
+                    }
                   />
                   <span className="toggle-slider"></span>
                 </label>
                 <Label htmlFor="seo-toggle">SEO</Label>
               </div>
-              <input
-                type="text"
-                id="seo-input"
-                name="seo"
-                placeholder="Instance Id"
-                disabled={!isSEOEnabled}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
+
+              <InputTextInstanceId
+                inputName="seo"
+                isDisabled={isSEOEnabled}
+                targetedInputRef={(el) => (inputRef.current["seo"] = el)}
               />
             </div>
 
