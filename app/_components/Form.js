@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import Label from "@/app/_components/Label";
 import InputText from "./InputText";
 import InputTextInstanceId from "./InputTextInstanceId";
+import Row from "./Row";
 
 export default function Form() {
   const [isReviewsWidgetEnabled, setIsReviewsWidgetEnabled] = useState(false);
@@ -15,7 +16,10 @@ export default function Form() {
   const [isReviewsTabEnabled, setIsReviewsTabEnabled] = useState(false);
   const [isPromotedProductsEnabled, setIsPromotedProductsEnabled] =
     useState(false);
-  const [isSEOEnabled, setIsSEOEnabled] = useState(false);
+  const [isSEOnabled, setIsSEOnabled] = useState(false);
+  const [isGalleryEnabled, setIsGalleryEnabled] = useState(false);
+
+  const [isFormVisible, setIsFormVisible] = useState(true);
 
   // Reference for the input field to clear its value when the checkbox is unchecked
   const inputRef = useRef({});
@@ -30,280 +34,328 @@ export default function Form() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full  bg-white  shadow-lg rounded z-10">
-      {/* <!-- Main Form Card --> */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 h-[90vh] overflow-y-scroll">
-        {/* <!-- Card Header --> */}
-        <div className="p-6 pb-0">
-          <h1 className="text-2xl font-semibold text-slate-900 mb-2">
-            Configuration Form
-          </h1>
-          <p className="text-sm text-slate-500 mb-6">
-            Configure your widget settings and features
-          </p>
-        </div>
+    <>
+      <button
+        className="fixed z-2 top-4 right-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        onClick={() => setIsFormVisible((prev) => !prev)}
+      >
+        View form
+      </button>
+      <div
+        className={`max-w-2xl mx-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full  bg-white  shadow-lg rounded z-1 ${
+          isFormVisible ? "block" : "hidden"
+        }`}
+      >
+        <button
+          className="fixed z-2 top-4 right-4 bg-stone-600 hover:bg-stone-900 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2"
+          onClick={() => setIsFormVisible((prev) => !prev)}
+        >
+          X
+        </button>
+        {/* <!-- Main Form Card --> */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 h-[90dvh] overflow-y-auto">
+          {/* <!-- Card Header --> */}
+          <div className="p-6 pb-0">
+            <h1 className="text-2xl font-semibold text-slate-900 mb-2">
+              Configuration Form
+            </h1>
+            <p className="text-sm text-slate-500 mb-6">
+              Configure your widget settings and features
+            </p>
+          </div>
 
-        {/* <!-- Card Content --> */}
-        <div className="p-6 pt-0">
-          <form id="confightmlForm" className="space-y-6">
-            {/* <!-- Appkey Field --> */}
-            <div className="space-y-2">
-              <Label htmlFor="appkey">Appkey</Label>
-              <InputText inputName="appkey" />
-            </div>
-
-            <div className="block space-y-2 justify-between gap-x-5 md:flex">
-              {/* <!-- Title Field --> */}
-              <div className="w-full space-y-6">
-                <Label htmlFor="title">Title</Label>
-                <InputText inputName="title" placeholder="Account name - v3" />
+          {/* <!-- Card Content --> */}
+          <div className="p-6 pt-0">
+            <form id="configForm" name="configForm" className="space-y-6">
+              {/* <!-- Appkey Field --> */}
+              <div className="space-y-2">
+                <Label htmlFor="appkey">Appkey</Label>
+                <InputText inputName="appkey" />
               </div>
 
-              {/* <!-- Language Dropdown --> */}
-              <div className="w-full space-y-6">
-                <Label htmlFor="language">Language</Label>
-                <select
-                  id="language"
-                  name="language"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              <Row>
+                <div className="w-full space-y-6">
+                  <Label htmlFor="title">Title</Label>
+                  <InputText
+                    inputName="title"
+                    placeholder="Account name - v3"
+                  />
+                </div>
+
+                <div className="w-full space-y-6">
+                  <Label htmlFor="language">Language</Label>
+                  <select
+                    id="language"
+                    name="language"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="en">English</option>
+                    <option value="hr">Croatian</option>
+                    <option value="cs">Czech</option>
+                    <option value="zh-CN">Chinese (Simplified)</option>
+                    <option value="zh-TW">Chinese (Traditional)</option>
+                    <option value="da">Danish</option>
+                    <option value="nl">Dutch</option>
+                    <option value="fr">French</option>
+                    <option value="fi">Finnish</option>
+                    <option value="de">German</option>
+                    <option value="el">Greek</option>
+                    <option value="hi">Hindi</option>
+                    <option value="hu">Hu</option>
+                    <option value="id">Indonesian</option>
+                    <option value="it">Italian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="ko">Korean</option>
+                    <option value="lt">Lithuanian</option>
+                    <option value="ms">Malay</option>
+                    <option value="no">Norwegian</option>
+                    <option value="pl">Polish</option>
+                    <option value="pt-BR">Portuguese (Brazil)</option>
+                    <option value="pt-PT">Portuguese (Portugal)</option>
+                    <option value="ro">Romanian</option>
+                    <option value="ru">Russian</option>
+                    <option value="sk">Slovak</option>
+                    <option value="sl">Slovenian</option>
+                    <option value="es">Spanish</option>
+                    <option value="sv">Swedish</option>
+                    <option value="th">Thai</option>
+                    <option value="tr">Turkish</option>
+                    <option value="vi">Vietnamese</option>
+                  </select>
+                </div>
+              </Row>
+
+              <Row>
+                <div className="w-full space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <label className="toggle-switch">
+                      <input
+                        type="checkbox"
+                        id="reviews-toggle"
+                        checked={isReviewsWidgetEnabled}
+                        onChange={() =>
+                          handleCheckboxChange(
+                            setIsReviewsWidgetEnabled,
+                            "reviewswidget"
+                          )
+                        }
+                      />
+                      <span className="toggle-slider"></span>
+                    </label>
+                    <Label htmlFor="reviews-toggle">Reviews</Label>
+                  </div>
+                  <InputTextInstanceId
+                    inputName="reviews"
+                    isDisabled={isReviewsWidgetEnabled}
+                    targetedInputRef={(el) =>
+                      (inputRef.current["reviewswidget"] = el)
+                    }
+                  />
+                </div>
+
+                <div className="w-full space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <label className="toggle-switch">
+                      <input
+                        type="checkbox"
+                        id="qa-toggle"
+                        checked={isQAWidgetEnabled}
+                        onChange={() =>
+                          handleCheckboxChange(setIsQAWidgetEnabled, "qna")
+                        }
+                      />
+                      <span className="toggle-slider"></span>
+                    </label>
+                    <Label htmlFor="qa-toggle">Q&A</Label>
+                  </div>
+                  <InputTextInstanceId
+                    inputName="QnA"
+                    isDisabled={isQAWidgetEnabled}
+                    targetedInputRef={(el) => (inputRef.current["qna"] = el)}
+                  />
+                </div>
+              </Row>
+
+              <Row>
+                <div className="w-full space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <label className="toggle-switch">
+                      <input
+                        type="checkbox"
+                        id="star-ratings-toggle"
+                        checked={isStarRatingWidgetEnabled}
+                        onChange={() =>
+                          handleCheckboxChange(
+                            setIsStarRatingWidgetEnabled,
+                            "starratings"
+                          )
+                        }
+                      />
+                      <span className="toggle-slider"></span>
+                    </label>
+                    <Label htmlFor="star-ratings-toggle">Star Ratings</Label>
+                  </div>
+                  <InputTextInstanceId
+                    inputName="starRatings"
+                    isDisabled={isStarRatingWidgetEnabled}
+                    targetedInputRef={(el) =>
+                      (inputRef.current["starratings"] = el)
+                    }
+                  />
+                </div>
+
+                <div className="w-full space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <label className="toggle-switch">
+                      <input
+                        type="checkbox"
+                        id="reviews-carousel-toggle"
+                        checked={isReviewsCarouselEnabled}
+                        onChange={() =>
+                          handleCheckboxChange(
+                            setIsReviewsCarouselEnabled,
+                            "reviewscarousel"
+                          )
+                        }
+                      />
+                      <span className="toggle-slider"></span>
+                    </label>
+                    <Label htmlFor="reviews-carousel-toggle">
+                      Reviews Carousel
+                    </Label>
+                  </div>
+                  <InputTextInstanceId
+                    inputName="reviewsCarousel"
+                    isDisabled={isReviewsCarouselEnabled}
+                    targetedInputRef={(el) =>
+                      (inputRef.current["reviewscarousel"] = el)
+                    }
+                  />
+                </div>
+              </Row>
+
+              <Row>
+                <div className="w-full space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <label className="toggle-switch">
+                      <input
+                        type="checkbox"
+                        id="reviews-tab-toggle"
+                        checked={isReviewsTabEnabled}
+                        onChange={() =>
+                          handleCheckboxChange(
+                            setIsReviewsTabEnabled,
+                            "reviewstab"
+                          )
+                        }
+                      />
+                      <span className="toggle-slider"></span>
+                    </label>
+                    <Label htmlFor="reviews-tab-toggle">Reviews Tab</Label>
+                  </div>
+                  <InputTextInstanceId
+                    inputName="reviewsTab"
+                    isDisabled={isReviewsTabEnabled}
+                    targetedInputRef={(el) =>
+                      (inputRef.current["reviewstab"] = el)
+                    }
+                  />
+                </div>
+
+                <div className="w-full space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <label className="toggle-switch">
+                      <input
+                        type="checkbox"
+                        id="promoted-products-toggle"
+                        checked={isPromotedProductsEnabled}
+                        onChange={() =>
+                          handleCheckboxChange(
+                            setIsPromotedProductsEnabled,
+                            "promotedproducts"
+                          )
+                        }
+                      />
+                      <span className="toggle-slider"></span>
+                    </label>
+                    <Label htmlFor="promoted-products-toggle">
+                      Promoted Products
+                    </Label>
+                  </div>
+                  <InputTextInstanceId
+                    inputName="promotedProducts"
+                    isDisabled={isPromotedProductsEnabled}
+                    targetedInputRef={(el) =>
+                      (inputRef.current["promotedproducts"] = el)
+                    }
+                  />
+                </div>
+              </Row>
+              <Row>
+                <div className="w-full space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <label className="toggle-switch">
+                      <input
+                        type="checkbox"
+                        id="seo-toggle"
+                        checked={isSEOnabled}
+                        onChange={() =>
+                          handleCheckboxChange(setIsSEOnabled, "seo")
+                        }
+                      />
+                      <span className="toggle-slider"></span>
+                    </label>
+                    <Label htmlFor="seo-toggle">SEO</Label>
+                  </div>
+
+                  <InputTextInstanceId
+                    inputName="seo"
+                    isDisabled={isSEOnabled}
+                    targetedInputRef={(el) => (inputRef.current["seo"] = el)}
+                  />
+                </div>
+
+                <div className="w-full space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <label className="toggle-switch">
+                      <input
+                        type="checkbox"
+                        id="gallery-toggle"
+                        checked={isGalleryEnabled}
+                        onChange={() =>
+                          handleCheckboxChange(setIsGalleryEnabled, "gallery")
+                        }
+                      />
+                      <span className="toggle-slider"></span>
+                    </label>
+                    <Label htmlFor="gallery-toggle">Gallery</Label>
+                  </div>
+
+                  <InputTextInstanceId
+                    inputName="gallery"
+                    isDisabled={isGalleryEnabled}
+                    targetedInputRef={(el) =>
+                      (inputRef.current["gallery"] = el)
+                    }
+                  />
+                </div>
+              </Row>
+
+              {/* <!-- Generate Button --> */}
+              <div className="">
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
-                  <option value="en">English</option>
-                  <option value="hr">Croatian</option>
-                  <option value="cs">Czech</option>
-                  <option value="zh-CN">Chinese (Simplified)</option>
-                  <option value="zh-TW">Chinese (Traditional)</option>
-                  <option value="da">Danish</option>
-                  <option value="nl">Dutch</option>
-                  <option value="fr">French</option>
-                  <option value="fi">Finnish</option>
-                  <option value="de">German</option>
-                  <option value="el">Greek</option>
-                  <option value="hi">Hindi</option>
-                  <option value="hu">Hu</option>
-                  <option value="id">Indonesian</option>
-                  <option value="it">Italian</option>
-                  <option value="ja">Japanese</option>
-                  <option value="ko">Korean</option>
-                  <option value="lt">Lithuanian</option>
-                  <option value="ms">Malay</option>
-                  <option value="no">Norwegian</option>
-                  <option value="pl">Polish</option>
-                  <option value="pt-BR">Portuguese (Brazil)</option>
-                  <option value="pt-PT">Portuguese (Portugal)</option>
-                  <option value="ro">Romanian</option>
-                  <option value="ru">Russian</option>
-                  <option value="sk">Slovak</option>
-                  <option value="sl">Slovenian</option>
-                  <option value="es">Spanish</option>
-                  <option value="sv">Swedish</option>
-                  <option value="th">Thai</option>
-                  <option value="tr">Turkish</option>
-                  <option value="vi">Vietnamese</option>
-                </select>
+                  Generate
+                </button>
               </div>
-            </div>
-
-            {/* <!-- Reviews Toggle + Input --> */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <label className="toggle-switch">
-                  <input
-                    type="checkbox"
-                    id="reviews-toggle"
-                    checked={isReviewsWidgetEnabled}
-                    onChange={() =>
-                      handleCheckboxChange(
-                        setIsReviewsWidgetEnabled,
-                        "reviewswidget"
-                      )
-                    }
-                  />
-                  <span className="toggle-slider"></span>
-                </label>
-                <Label htmlFor="reviews-toggle">Reviews</Label>
-              </div>
-              <InputTextInstanceId
-                inputName="reviews"
-                isDisabled={isReviewsWidgetEnabled}
-                targetedInputRef={(el) =>
-                  (inputRef.current["reviewswidget"] = el)
-                }
-              />
-            </div>
-
-            {/* <!-- Q&A Toggle + Input --> */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <label className="toggle-switch">
-                  <input
-                    type="checkbox"
-                    id="qa-toggle"
-                    checked={isQAWidgetEnabled}
-                    onChange={() =>
-                      handleCheckboxChange(setIsQAWidgetEnabled, "qna")
-                    }
-                  />
-                  <span className="toggle-slider"></span>
-                </label>
-                <Label htmlFor="qa-toggle">Q&A</Label>
-              </div>
-              <InputTextInstanceId
-                inputName="QnA"
-                isDisabled={isQAWidgetEnabled}
-                targetedInputRef={(el) => (inputRef.current["qna"] = el)}
-              />
-            </div>
-
-            {/* <!-- Star Ratings Toggle + Input --> */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <label className="toggle-switch">
-                  <input
-                    type="checkbox"
-                    id="star-ratings-toggle"
-                    checked={isStarRatingWidgetEnabled}
-                    onChange={() =>
-                      handleCheckboxChange(
-                        setIsStarRatingWidgetEnabled,
-                        "starratings"
-                      )
-                    }
-                  />
-                  <span className="toggle-slider"></span>
-                </label>
-                <Label htmlFor="star-ratings-toggle">Star Ratings</Label>
-              </div>
-              <InputTextInstanceId
-                inputName="starRatings"
-                isDisabled={isStarRatingWidgetEnabled}
-                targetedInputRef={(el) =>
-                  (inputRef.current["starratings"] = el)
-                }
-              />
-            </div>
-
-            {/* <!-- Reviews Carousel Toggle + Input --> */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <label className="toggle-switch">
-                  <input
-                    type="checkbox"
-                    id="reviews-carousel-toggle"
-                    checked={isReviewsCarouselEnabled}
-                    onChange={() =>
-                      handleCheckboxChange(
-                        setIsReviewsCarouselEnabled,
-                        "reviewscarousel"
-                      )
-                    }
-                  />
-                  <span className="toggle-slider"></span>
-                </label>
-                <Label htmlFor="reviews-carousel-toggle">
-                  Reviews Carousel
-                </Label>
-              </div>
-              <InputTextInstanceId
-                inputName="reviewsCarousel"
-                isDisabled={isReviewsCarouselEnabled}
-                targetedInputRef={(el) =>
-                  (inputRef.current["reviewscarousel"] = el)
-                }
-              />
-            </div>
-
-            {/* <!-- Reviews Tab Toggle + Input --> */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <label className="toggle-switch">
-                  <input
-                    type="checkbox"
-                    id="reviews-tab-toggle"
-                    checked={isReviewsTabEnabled}
-                    onChange={() =>
-                      handleCheckboxChange(setIsReviewsTabEnabled, "reviewstab")
-                    }
-                  />
-                  <span className="toggle-slider"></span>
-                </label>
-                <Label htmlFor="reviews-tab-toggle">Reviews Tab</Label>
-              </div>
-              <InputTextInstanceId
-                inputName="reviewsTab"
-                isDisabled={isReviewsTabEnabled}
-                targetedInputRef={(el) => (inputRef.current["reviewstab"] = el)}
-              />
-            </div>
-
-            {/* <!-- Promoted Products Toggle + Input --> */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <label className="toggle-switch">
-                  <input
-                    type="checkbox"
-                    id="promoted-products-toggle"
-                    checked={isPromotedProductsEnabled}
-                    onChange={() =>
-                      handleCheckboxChange(
-                        setIsPromotedProductsEnabled,
-                        "promotedproducts"
-                      )
-                    }
-                  />
-                  <span className="toggle-slider"></span>
-                </label>
-                <Label htmlFor="promoted-products-toggle">
-                  Promoted Products
-                </Label>
-              </div>
-              <InputTextInstanceId
-                inputName="promotedProducts"
-                isDisabled={isPromotedProductsEnabled}
-                targetedInputRef={(el) =>
-                  (inputRef.current["promotedproducts"] = el)
-                }
-              />
-            </div>
-
-            {/* <!-- SEO Toggle + Input --> */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <label className="toggle-switch">
-                  <input
-                    type="checkbox"
-                    id="seo-toggle"
-                    checked={isSEOEnabled}
-                    onChange={() =>
-                      handleCheckboxChange(setIsSEOEnabled, "seo")
-                    }
-                  />
-                  <span className="toggle-slider"></span>
-                </label>
-                <Label htmlFor="seo-toggle">SEO</Label>
-              </div>
-
-              <InputTextInstanceId
-                inputName="seo"
-                isDisabled={isSEOEnabled}
-                targetedInputRef={(el) => (inputRef.current["seo"] = el)}
-              />
-            </div>
-
-            {/* <!-- Generate Button --> */}
-            <div className="pt-4">
-              <button
-                type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              >
-                Generate
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
 
-      {/* <!-- Tailwind Design Tokens Reference --> */}
-      {/* <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        {/* <!-- Tailwind Design Tokens Reference --> */}
+        {/* <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <h2 className="text-lg font-semibold text-slate-900 mb-4">
           Tailwind Design Tokens
         </h2>
@@ -364,6 +416,7 @@ export default function Form() {
           </div>
         </div>
       </div> */}
-    </div>
+      </div>
+    </>
   );
 }
