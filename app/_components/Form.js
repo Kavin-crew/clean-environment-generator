@@ -36,13 +36,15 @@ export default function Form() {
   return (
     <>
       <button
-        className="fixed z-2 top-4 right-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        className={`fixed z-1 top-4 right-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+          !isFormVisible ? "block" : "hidden"
+        }`}
         onClick={() => setIsFormVisible((prev) => !prev)}
       >
         View form
       </button>
       <div
-        className={`max-w-2xl mx-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full  bg-white  shadow-lg rounded z-1 ${
+        className={`max-w-2xl mx-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full  bg-white  shadow-lg rounded z-2 ${
           isFormVisible ? "block" : "hidden"
         }`}
       >
@@ -68,7 +70,7 @@ export default function Form() {
           <div className="p-6 pt-0">
             <form id="configForm" name="configForm" className="space-y-6">
               {/* <!-- Appkey Field --> */}
-              <div className="space-y-2">
+              <div className="w-full space-y-6">
                 <Label htmlFor="appkey">Appkey</Label>
                 <InputText inputName="appkey" />
               </div>
