@@ -34,7 +34,7 @@ function App() {
   return (
     <>
       <div className="wrapper">
-        <div class="accordion" id="accordionExample">
+        <div class="accordion rounded-sm overflow-hidden" id="accordionExample">
           <Widget
             instanceid={InstanceId_Widget}
             productid={ProductId}
