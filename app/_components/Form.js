@@ -14,8 +14,9 @@ export default function Form() {
   const [isPromotedProductsEnabled, setIsPromotedProductsEnabled] =
     useState(false);
   const [isSEOEnabled, setIsSEOEnabled] = useState(false);
-  const inputRef = useRef(null);
 
+  // Reference for the input field to clear its value when the checkbox is unchecked
+  const inputRef = useRef(null);
   const handleCheckboxChange = (setterFunction) => {
     setterFunction((prevChecked) => {
       const newChecked = !prevChecked;
@@ -116,7 +117,9 @@ export default function Form() {
                     type="checkbox"
                     id="reviews-toggle"
                     checked={isReviewsWidgetEnabled}
-                    onChange={handleCheckboxChange(setIsReviewsWidgetEnabled)}
+                    onChange={() =>
+                      handleCheckboxChange(setIsReviewsWidgetEnabled)
+                    }
                   />
                   <span className="toggle-slider"></span>
                 </label>
@@ -141,7 +144,7 @@ export default function Form() {
                     type="checkbox"
                     id="qa-toggle"
                     checked={isQAWidgetEnabled}
-                    onChange={() => setIsQAWidgetEnabled((prev) => !prev)}
+                    onChange={() => handleCheckboxChange(setIsQAWidgetEnabled)}
                   />
                   <span className="toggle-slider"></span>
                 </label>
@@ -153,6 +156,7 @@ export default function Form() {
                 name="qa"
                 placeholder="Instance Id"
                 disabled={!isQAWidgetEnabled}
+                ref={inputRef}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
               />
             </div>
