@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Label from "./Label";
 
 export default function Form() {
@@ -14,6 +14,17 @@ export default function Form() {
   const [isPromotedProductsEnabled, setIsPromotedProductsEnabled] =
     useState(false);
   const [isSEOEnabled, setIsSEOEnabled] = useState(false);
+  const inputRef = useRef(null);
+
+  const handleCheckboxChange = (setterFunction) => {
+    setterFunction((prevChecked) => {
+      const newChecked = !prevChecked;
+      if (!newChecked && inputRef.current) {
+        inputRef.current.value = ""; // Clear input when unchecked
+      }
+      return newChecked;
+    });
+  };
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -98,14 +109,14 @@ export default function Form() {
             </div>
 
             {/* <!-- Reviews Toggle + Input --> */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <label className="toggle-switch">
                   <input
                     type="checkbox"
                     id="reviews-toggle"
                     checked={isReviewsWidgetEnabled}
-                    onChange={() => setIsReviewsWidgetEnabled((prev) => !prev)}
+                    onChange={handleCheckboxChange(setIsReviewsWidgetEnabled)}
                   />
                   <span className="toggle-slider"></span>
                 </label>
@@ -117,12 +128,13 @@ export default function Form() {
                 name="reviews"
                 placeholder="Instance Id"
                 disabled={!isReviewsWidgetEnabled}
+                ref={inputRef}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
               />
             </div>
 
             {/* <!-- Q&A Toggle + Input --> */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <label className="toggle-switch">
                   <input
@@ -146,7 +158,7 @@ export default function Form() {
             </div>
 
             {/* <!-- Star Ratings Toggle + Input --> */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <label className="toggle-switch">
                   <input
@@ -172,7 +184,7 @@ export default function Form() {
             </div>
 
             {/* <!-- Reviews Carousel Toggle + Input --> */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <label className="toggle-switch">
                   <input
@@ -200,7 +212,7 @@ export default function Form() {
             </div>
 
             {/* <!-- Reviews Tab Toggle + Input --> */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <label className="toggle-switch">
                   <input
@@ -224,7 +236,7 @@ export default function Form() {
             </div>
 
             {/* <!-- Promoted Products Toggle + Input --> */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <label className="toggle-switch">
                   <input
@@ -252,7 +264,7 @@ export default function Form() {
             </div>
 
             {/* <!-- SEO Toggle + Input --> */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <label className="toggle-switch">
                   <input
@@ -309,7 +321,7 @@ export default function Form() {
           <div className="bg-slate-50 p-3 rounded">
             <div className="font-medium text-slate-700">Spacing</div>
             <div className="text-slate-600 font-mono">
-              space-y-6, space-y-3, space-y-2
+              space-y-6, space-y-4, space-y-2
             </div>
           </div>
           <div className="bg-slate-50 p-3 rounded">
