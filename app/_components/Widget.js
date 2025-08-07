@@ -1,7 +1,7 @@
-import ScriptClipBoard from "../_clipboards/ScriptClip";
-import WidgetClipBoard from "../_clipboards/WidgetClip";
+import ScriptClipBoard from "@/app/_clipboards/ScriptClip";
+import WidgetClipBoard from "@/app/_clipboards/WidgetClip";
 
-function Widget({
+export default function Widget({
   heading,
   instanceid,
   active,
@@ -11,38 +11,41 @@ function Widget({
   clipboardscriptnote,
   clipboardsnippet,
   clipboardsnippetnote,
+  toggle,
 }) {
   if (instanceid === "") {
     return null;
   } else {
     return (
-      <div className="accordion-item">
-        <h2 className="accordion-header p-4 bg-blue-400 text-white ">
-          <button
-            className={
-              active === "true"
-                ? "accordion-button"
-                : "accordion-button collapsed"
-            }
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseOne"
-            aria-expanded="true"
-            aria-controls="collapseOne"
-          >
-            {heading}
-          </button>
-        </h2>
+      <div onClick={() => toggle((prev) => !prev)} className="accordion-item">
         <div
-          id="collapseOne"
-          className={
-            active === "true"
-              ? "accordion-collapse collapse show"
-              : "accordion-collapse collapse"
-          }
-          data-bs-parent="#accordionExample"
+          className={`flex justify-between items-center p-4 border-1  ${
+            !active ? "bg-blue-400 text-white" : "bg-white text-stone-800"
+          }`}
         >
-          <div className="accordion-body">
+          <h2>{heading}</h2>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+
+        <div
+          className={`grid grid-cols-1 grid-rows-[0fr_1fr] transition-all duration-800 ease-in-out overflow-hidden border-1  ${
+            active ? "max-h-0" : "max-h-screen"
+          }`}
+        >
+          <div className="accordion-body bg-white">
             <div
               className="yotpo-widget-instance"
               data-yotpo-instance-id={instanceid}
@@ -79,5 +82,3 @@ function Widget({
     );
   }
 }
-
-export default Widget;

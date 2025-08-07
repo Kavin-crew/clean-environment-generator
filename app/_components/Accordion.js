@@ -1,9 +1,10 @@
-export default function Accordion({ children, heading }) {
-  return (
-    <div className="container mx-auto">
-      <div className="accordion" id="accordionExample">
-        <div className="accordion-item">{children}</div>
-      </div>
+"use client";
+
+export default function Accordion({ children }) {
+  return;
+  <div className="max-w-full mx-auto px-4">
+    <div className="accordion rounded-sm overflow-hidden" id="accordionExample">
+      {children}
     </div>
-  );
+  </div>;
 }

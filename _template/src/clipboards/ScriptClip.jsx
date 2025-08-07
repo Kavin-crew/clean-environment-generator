@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 
 function ScriptClipBoard() {
   const [value, setValue] = useState(`
@@ -29,11 +28,9 @@ function ScriptClipBoard() {
           setCopied(false);
         }}
       />
-      <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
-        <button type="button" className="btn btn-primary">
-          {isCopied ? "Copied!" : "Copy Script"}
-        </button>
-      </CopyToClipboard>
+      <button type="button" className="btn btn-primary">
+        {isCopied ? "Copied!" : "Copy Script"}
+      </button>
     </>
   );
 }

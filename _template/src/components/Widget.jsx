@@ -1,7 +1,7 @@
 import WidgetClipboard from "../clipboards/WidgetClip";
 import ScriptClipBoard from "../clipboards/ScriptClip";
 
-function Widget({
+export default function Widget({
   heading,
   instanceid,
   active,
@@ -16,30 +16,17 @@ function Widget({
     return null;
   } else {
     return (
-      <div className="accordion-item">
-        <h2 className="accordion-header">
-          <button
-            className={
-              active === "true"
-                ? "accordion-button"
-                : "accordion-button collapsed"
-            }
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseOne"
-            aria-expanded="true"
-            aria-controls="collapseOne"
-          >
-            {heading}
-          </button>
+      <div className="accordion-item container mx-auto px-4">
+        <h2
+          className={`accordion-header cursor-pointer ${
+            active ? "" : "collapsed"
+          }`}
+        >
+          {heading}
         </h2>
         <div
           id="collapseOne"
-          className={
-            active === "true"
-              ? "accordion-collapse collapse show"
-              : "accordion-collapse collapse"
-          }
+          className={`accordion-collapse collapse ${active ? "show" : ""}`}
           data-bs-parent="#accordionExample"
         >
           <div className="accordion-body">
@@ -52,7 +39,7 @@ function Widget({
               data-yotpo-image-url="The product image URL"
               data-yotpo-price="Product Price"
               data-yotpo-currency="Product Currency"
-              mode-preview={productid === "" ? "true" : ""}
+              mode-preview={productid ? "true" : ""}
               data-yotpo-description="Product Description"
             ></div>
           </div>
@@ -79,5 +66,3 @@ function Widget({
     );
   }
 }
-
-export default Widget;
