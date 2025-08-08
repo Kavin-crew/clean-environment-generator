@@ -14,13 +14,13 @@ import ReviewsTab from "@/app/_components/ReviewsTab";
 
 //Instance ID
 let InstanceId_Widget = "433901";
-let InstanceId_QA = "";
+let InstanceId_QA = "555238";
 let InstanceId_SEO = "622016";
 let InstanceId_Carousel = "555239";
 let InstanceId_StarRating = "557423";
 let InstanceId_PromotedProd = "622001";
 let InstanceId_UgcGallery = "";
-let InstanceId_ReviewsTab = "";
+let InstanceId_ReviewsTab = "621963";
 
 //Product ID
 let ProductId = "";
@@ -68,8 +68,9 @@ export default function Home() {
           <QA
             instanceid={InstanceId_QA}
             productid={ProductId}
-            active="false"
+            active={isQAWidgetEnabled}
             heading="Q&A"
+            toggle={setIsQAWidgetEnabled}
             clipboardheading={ClipBoardHeading}
             clipboardscript={ScriptClipboard}
             clipboardscriptnote={ScriptClipboardNote}
