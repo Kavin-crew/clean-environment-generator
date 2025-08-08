@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 
 function SEOClipboard(props) {
   const instanceid = props.instanceid;
@@ -32,11 +31,9 @@ function SEOClipboard(props) {
           setCopied(false);
         }}
       />
-      <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
-        <button type="button" className="btn btn-primary">
-          {isCopied ? "Copied!" : "Copy Code"}
-        </button>
-      </CopyToClipboard>
+      <button type="button" className="btn btn-primary">
+        {isCopied ? "Copied!" : "Copy Code"}
+      </button>
     </>
   );
 }

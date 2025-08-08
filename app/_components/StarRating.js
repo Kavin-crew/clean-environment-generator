@@ -1,7 +1,8 @@
+import StarRatingClipboard from "@/app/_clipboards/StarRatingClip";
 import ScriptClipBoard from "@/app/_clipboards/ScriptClip";
-import WidgetClipBoard from "@/app/_clipboards/WidgetClip";
+import CollectionStarRatingClipboard from "@/app/_clipboards/CollectionStarRatingClip";
 
-export default function Widget({
+function StarRating({
   heading,
   instanceid,
   active,
@@ -49,23 +50,34 @@ export default function Widget({
           }`}
         >
           <div className="accordion-body bg-white">
-            <div
-              className="yotpo-widget-instance"
-              data-yotpo-instance-id={instanceid}
-              data-yotpo-product-id={productid}
-              data-yotpo-name="Product Title"
-              data-yotpo-url="The URL of your product page"
-              data-yotpo-image-url="The product image URL"
-              data-yotpo-price="Product Price"
-              data-yotpo-currency="Product Currency"
-              mode-preview={productid === "" ? "true" : ""}
-              data-yotpo-description="Product Description"
-            ></div>
+            <div className="rating-holder">
+              <section>
+                <h1>Product Star Rating</h1>
+                <div
+                  className="yotpo-widget-instance"
+                  data-yotpo-instance-id={instanceid}
+                  data-yotpo-product-id={productid}
+                  data-yotpo-section-id="product"
+                  mode-preview={productid === "" ? "true" : ""}
+                ></div>
+              </section>
+
+              <section>
+                <h1>Collections Star Rating</h1>
+                <div
+                  className="yotpo-widget-instance"
+                  data-yotpo-instance-id={instanceid}
+                  data-yotpo-product-id={productid}
+                  data-yotpo-section-id="collection"
+                  mode-preview={productid === "" ? "true" : ""}
+                ></div>
+              </section>
+            </div>
           </div>
 
           <div className="cliboard-holder">
             <h2>
-              {clipboardheading} {heading} to your store
+              {clipboardheading} {heading} Widget to your store
             </h2>
 
             <div className="clipboard-details">
@@ -77,7 +89,15 @@ export default function Widget({
             <div className="clipboard-details">
               <h3>{clipboardsnippet}</h3>
               <p>{clipboardsnippetnote}</p>
-              <WidgetClipBoard instanceid={instanceid} />
+              <StarRatingClipboard instanceid={instanceid} />
+            </div>
+
+            <div className="clipboard-details">
+              <h3>
+                3. Add the following code snippet to your collection page.
+              </h3>
+              <p>{clipboardsnippetnote}</p>
+              <CollectionStarRatingClipboard instanceid={instanceid} />
             </div>
           </div>
         </div>
@@ -85,3 +105,5 @@ export default function Widget({
     );
   }
 }
+
+export default StarRating;

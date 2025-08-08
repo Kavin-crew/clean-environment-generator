@@ -1,7 +1,7 @@
+import UgcGalleryClipboard from "@/app/_clipboards/UgcGalleryClip";
 import ScriptClipBoard from "@/app/_clipboards/ScriptClip";
-import WidgetClipBoard from "@/app/_clipboards/WidgetClip";
 
-export default function Widget({
+function UgcGallery({
   heading,
   instanceid,
   active,
@@ -11,7 +11,6 @@ export default function Widget({
   clipboardscriptnote,
   clipboardsnippet,
   clipboardsnippetnote,
-  toggle,
 }) {
   if (instanceid === "") {
     return null;
@@ -48,36 +47,30 @@ export default function Widget({
             active ? "max-h-0" : "max-h-screen"
           }`}
         >
-          <div className="accordion-body bg-white">
+          <div className="accordion-body">
             <div
               className="yotpo-widget-instance"
-              data-yotpo-instance-id={instanceid}
-              data-yotpo-product-id={productid}
-              data-yotpo-name="Product Title"
-              data-yotpo-url="The URL of your product page"
-              data-yotpo-image-url="The product image URL"
-              data-yotpo-price="Product Price"
-              data-yotpo-currency="Product Currency"
+              data-yotpo-instance-id={instanceid === "" ? "608405" : instanceid}
+              data-yotpo-product-id={instanceid === "" ? null : productid}
               mode-preview={productid === "" ? "true" : ""}
-              data-yotpo-description="Product Description"
             ></div>
           </div>
 
-          <div className="cliboard-holder">
+          <div class="cliboard-holder">
             <h2>
-              {clipboardheading} {heading} to your store
+              {clipboardheading} {heading} Widget to your store
             </h2>
 
-            <div className="clipboard-details">
+            <div class="clipboard-details">
               <h3>{clipboardscript}</h3>
               <p>{clipboardscriptnote}</p>
               <ScriptClipBoard />
             </div>
 
-            <div className="clipboard-details">
+            <div class="clipboard-details">
               <h3>{clipboardsnippet}</h3>
               <p>{clipboardsnippetnote}</p>
-              <WidgetClipBoard instanceid={instanceid} />
+              <UgcGalleryClipboard instanceid={instanceid} />
             </div>
           </div>
         </div>
@@ -85,3 +78,5 @@ export default function Widget({
     );
   }
 }
+
+export default UgcGallery;

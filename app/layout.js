@@ -1,7 +1,9 @@
-"use client";
-
 import "./globals.css";
 import Script from "next/script";
+
+export const metadata = {
+  title: "Account name - v3 Widgets",
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -10,7 +12,7 @@ export default function RootLayout({ children }) {
         {children}
       </body>
       <Script
-        src="https://cdn-widgetsrepository.yotpo.com/v1/loader/Nam3yagCxxmjMwiZkWnbRKdBOJaJvBrcK2kc3AD8?languageCode=en"
+        src="https://cdn-widgetsrepository.yotpo.com/v1/loader/rj74UZEzEEqYa1gTFXC3BLbr9GzC5SKjKXKupEpg?languageCode=en"
         async
       ></Script>
     </html>

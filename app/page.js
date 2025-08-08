@@ -1,22 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import Form from "./_components/Form";
-import Header from "./_components/Header";
+import Form from "@/app/_components/Form";
+import Header from "@/app/_components/Header";
 import Widget from "@/app/_components/Widget";
-import QA from "@/_template/src/components/QA";
-
-// export const metadata = {
-//   title: "Account name - v3 Widgets",
-// };
+import QA from "@/app/_components/QA";
+import SEO from "@/app/_components/SEO";
+import StarRating from "@/app/_components/StarRating";
+import PromotedProducts from "@/app/_components/PromotedProducts";
+import ReviewsCarousel from "@/app/_components/ReviewsCarousel";
+import UgcGallery from "@/app/_components/UgcGallery";
+import ReviewsTab from "@/app/_components/ReviewsTab";
 
 //Instance ID
-let InstanceId_Widget = "1067827";
+let InstanceId_Widget = "433901";
 let InstanceId_QA = "";
-let InstanceId_SEO = "";
-let InstanceId_Carousel = "";
-let InstanceId_StarRating = "";
-let InstanceId_PromotedProd = "";
+let InstanceId_SEO = "622016";
+let InstanceId_Carousel = "555239";
+let InstanceId_StarRating = "557423";
+let InstanceId_PromotedProd = "622001";
 let InstanceId_UgcGallery = "";
 let InstanceId_ReviewsTab = "";
 
@@ -64,16 +66,84 @@ export default function Home() {
             clipboardsnippetnote={SnippetClipboardNote}
           />
           <QA
-            instanceid={InstanceId_Widget}
+            instanceid={InstanceId_QA}
             productid={ProductId}
-            active={isQAWidgetEnabled}
-            toggle={setIsQAWidgetEnabled}
+            active="false"
             heading="Q&A"
             clipboardheading={ClipBoardHeading}
             clipboardscript={ScriptClipboard}
             clipboardscriptnote={ScriptClipboardNote}
             clipboardsnippet={SnippetClipboard}
             clipboardsnippetnote={SnippetClipboardNote}
+          />
+
+          <SEO
+            instanceid={InstanceId_SEO}
+            productid={ProductId}
+            active={isSEOnabled}
+            toggle={setIsSEOnabled}
+            heading="SEO"
+            clipboardheading={ClipBoardHeading}
+            clipboardscript={ScriptClipboard}
+            clipboardscriptnote={ScriptClipboardNote}
+            clipboardsnippet={SnippetClipboard}
+            clipboardsnippetnote={SnippetClipboardNote}
+          />
+
+          <ReviewsCarousel
+            instanceid={InstanceId_Carousel}
+            productid=""
+            heading="Reviews Carousel"
+            active={isReviewsCarouselEnabled}
+            toggle={setIsReviewsCarouselEnabled}
+            clipboardheading={ClipBoardHeading}
+            clipboardscript={ScriptClipboard}
+            clipboardscriptnote={ScriptClipboardNote}
+            clipboardsnippet={SnippetClipboard}
+            clipboardsnippetnote={SnippetClipboardNote}
+          />
+
+          <StarRating
+            instanceid={InstanceId_StarRating}
+            productid={ProductId}
+            active={isStarRatingWidgetEnabled}
+            toggle={setIsStarRatingWidgetEnabled}
+            heading="Star Rating"
+            clipboardheading={ClipBoardHeading}
+            clipboardscript={ScriptClipboard}
+            clipboardscriptnote={ScriptClipboardNote}
+            clipboardsnippet={SnippetClipboard}
+            clipboardsnippetnote={SnippetClipboardNote}
+          />
+
+          <PromotedProducts
+            instanceid={InstanceId_PromotedProd}
+            productid={ProductId}
+            active={isPromotedProductsEnabled}
+            heading="Promoted Products"
+            toggle={setIsPromotedProductsEnabled}
+            clipboardheading={ClipBoardHeading}
+            clipboardscript={ScriptClipboard}
+            clipboardscriptnote={ScriptClipboardNote}
+            clipboardsnippet={SnippetClipboard}
+            clipboardsnippetnote={SnippetClipboardNote}
+          />
+
+          <UgcGallery
+            instanceid={InstanceId_UgcGallery}
+            productid={ProductId}
+            active="false"
+            heading="UGC Gallery"
+            clipboardheading={ClipBoardHeading}
+            clipboardscript={ScriptClipboard}
+            clipboardscriptnote={ScriptClipboardNote}
+            clipboardsnippet={SnippetClipboard}
+            clipboardsnippetnote={SnippetClipboardNote}
+          />
+
+          <ReviewsTab
+            instanceid={InstanceId_ReviewsTab}
+            productid={ProductId}
           />
         </div>
       </div>

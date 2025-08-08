@@ -1,7 +1,7 @@
+import QAClipboard from "@/app/_clipboards/QAClip";
 import ScriptClipBoard from "@/app/_clipboards/ScriptClip";
-import WidgetClipBoard from "@/app/_clipboards/WidgetClip";
 
-export default function Widget({
+export default function QA({
   heading,
   instanceid,
   active,
@@ -42,7 +42,6 @@ export default function Widget({
             />
           </svg>
         </button>
-
         <div
           className={`grid grid-cols-1 grid-rows-[0fr_1fr] transition-all duration-800 ease-in-out overflow-hidden border-1  ${
             active ? "max-h-0" : "max-h-screen"
@@ -56,8 +55,6 @@ export default function Widget({
               data-yotpo-name="Product Title"
               data-yotpo-url="The URL of your product page"
               data-yotpo-image-url="The product image URL"
-              data-yotpo-price="Product Price"
-              data-yotpo-currency="Product Currency"
               mode-preview={productid === "" ? "true" : ""}
               data-yotpo-description="Product Description"
             ></div>
@@ -77,7 +74,7 @@ export default function Widget({
             <div className="clipboard-details">
               <h3>{clipboardsnippet}</h3>
               <p>{clipboardsnippetnote}</p>
-              <WidgetClipBoard instanceid={instanceid} />
+              <QAClipboard instanceid={instanceid} />
             </div>
           </div>
         </div>

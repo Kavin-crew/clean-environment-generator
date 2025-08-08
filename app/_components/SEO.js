@@ -1,7 +1,7 @@
+import SEOClipboard from "@/app/_clipboards/SEOClip";
 import ScriptClipBoard from "@/app/_clipboards/ScriptClip";
-import WidgetClipBoard from "@/app/_clipboards/WidgetClip";
 
-export default function Widget({
+function SEO({
   heading,
   instanceid,
   active,
@@ -50,22 +50,16 @@ export default function Widget({
         >
           <div className="accordion-body bg-white">
             <div
+              id="seo"
               className="yotpo-widget-instance"
               data-yotpo-instance-id={instanceid}
               data-yotpo-product-id={productid}
-              data-yotpo-name="Product Title"
-              data-yotpo-url="The URL of your product page"
-              data-yotpo-image-url="The product image URL"
-              data-yotpo-price="Product Price"
-              data-yotpo-currency="Product Currency"
-              mode-preview={productid === "" ? "true" : ""}
-              data-yotpo-description="Product Description"
-            ></div>
+            />
           </div>
 
           <div className="cliboard-holder">
             <h2>
-              {clipboardheading} {heading} to your store
+              {clipboardheading} {heading} Widget to your store
             </h2>
 
             <div className="clipboard-details">
@@ -77,7 +71,7 @@ export default function Widget({
             <div className="clipboard-details">
               <h3>{clipboardsnippet}</h3>
               <p>{clipboardsnippetnote}</p>
-              <WidgetClipBoard instanceid={instanceid} />
+              <SEOClipboard instanceid={instanceid} />
             </div>
           </div>
         </div>
@@ -85,3 +79,5 @@ export default function Widget({
     );
   }
 }
+
+export default SEO;

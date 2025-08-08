@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function QAClipBoard(props) {
-  const instanceid = props.instanceid;
+function QAClipBoard({ instanceid }) {
   const [value, setValue] = useState(`
       <div class="yotpo-widget-instance" 
           data-yotpo-instance-id="${instanceid}"

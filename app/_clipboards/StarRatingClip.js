@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 
 function StarRatingClipboard(props) {
   const instanceid = props.instanceid;
@@ -22,21 +21,21 @@ function StarRatingClipboard(props) {
 
   return (
     <>
-        <textarea
-            disabled
-            contentEditable
-            spellCheck={false}
-            onFocus={(event) => event.target.select()}
-            type="text"
-            value={value}
-            onChange={({ target: { value } }) => {
-            setValue(value);
-            setCopied(false);
-            }}
-        />
-        <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
-            <button type="button" className="btn btn-primary">{isCopied ? "Copied!" : "Copy Code"}</button>
-        </CopyToClipboard>
+      <textarea
+        disabled
+        contentEditable
+        spellCheck={false}
+        onFocus={(event) => event.target.select()}
+        type="text"
+        value={value}
+        onChange={({ target: { value } }) => {
+          setValue(value);
+          setCopied(false);
+        }}
+      />
+      <button type="button" className="btn btn-primary">
+        {isCopied ? "Copied!" : "Copy Code"}
+      </button>
     </>
   );
 }
