@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 
 function ScriptClipBoard() {
   const [value, setValue] = useState(`
@@ -17,14 +17,6 @@ function ScriptClipBoard() {
       console.error("Copy failed:", err);
     }
   };
-
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setCopied(false);
-  //   }, 3000);
-
-  //   return () => clearTimeout(timeout);
-  // }, [isCopied]);
 
   return (
     <>

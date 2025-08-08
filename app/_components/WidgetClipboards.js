@@ -1,6 +1,6 @@
 "use client";
 
-export default function Clipboards({ value, setValue, isCopied, setCopied }) {
+export default function WidgetClipboards({ value, setCopied }) {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(value);
@@ -10,5 +10,6 @@ export default function Clipboards({ value, setValue, isCopied, setCopied }) {
       console.error("Copy failed:", err);
     }
   };
+
   return copy;
 }

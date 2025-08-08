@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function WidgetClipBoard({ instanceid }) {
+export default function WidgetClipBoard({ instanceid }) {
   const [value, setValue] = useState(`
     <div class="yotpo-widget-instance" 
       data-yotpo-instance-id="${instanceid}"
@@ -27,14 +27,6 @@ function WidgetClipBoard({ instanceid }) {
     }
   };
 
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setCopied(false);
-  //   }, 3000);
-
-  //   return () => clearTimeout(timeout);
-  // }, [isCopied]);
-
   return (
     <>
       <textarea
@@ -55,5 +47,3 @@ function WidgetClipBoard({ instanceid }) {
     </>
   );
 }
-
-export default WidgetClipBoard;
