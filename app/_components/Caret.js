@@ -7,7 +7,7 @@ export default function Caret({ active }) {
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
-      className={`w-5 h-5 transform transition-transform duration-300 ${
+      className={`w-5 h-5 transform transition-transform duration-600 ${
         active ? "" : "rotate-180"
       }`}
     >

@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import ScriptClipBoard from "@/app/_clipboards/ScriptClip";
 import WidgetClipBoard from "@/app/_clipboards/WidgetClip";
 import Caret from "@/app/_components/Caret";
+import { useWidgetStore } from "@/src/store/widgetStore";
+import { useEffect, useState } from "react";
 
 export default function Widget({
   heading,
-  instanceid,
   active,
-  productid,
   clipboardheading,
   clipboardscript,
   clipboardscriptnote,
@@ -17,7 +17,22 @@ export default function Widget({
   clipboardsnippetnote,
   toggle,
 }) {
-  if (!instanceid) return null;
+  // Get values directly from Zustand
+  const { instanceId_Widget, productId } = useWidgetStore();
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Re-init Yotpo when values change
+  useEffect(() => {
+    if (mounted && window.yotpo) {
+      window.yotpo.initWidgets();
+    }
+  }, [mounted, instanceId_Widget]);
+
+  if (!mounted) return null; // No ID, no widget
 
   return (
     <div className="accordion-item relative border rounded-md overflow-hidden">
@@ -46,14 +61,14 @@ export default function Widget({
           {/* Yotpo Widget */}
           <div
             className="yotpo-widget-instance"
-            data-yotpo-instance-id={instanceid}
-            data-yotpo-product-id={productid}
+            data-yotpo-instance-id={instanceId_Widget}
+            data-yotpo-product-id={productId}
             data-yotpo-name="Product Title"
             data-yotpo-url="The URL of your product page"
             data-yotpo-image-url="The product image URL"
             data-yotpo-price="Product Price"
             data-yotpo-currency="Product Currency"
-            mode-preview={productid === "" ? "true" : ""}
+            mode-preview={productId === "" ? "true" : ""}
             data-yotpo-description="Product Description"
           ></div>
         </div>
@@ -73,7 +88,7 @@ export default function Widget({
           <div className="clipboard-details">
             <h3>{clipboardsnippet}</h3>
             <p>{clipboardsnippetnote}</p>
-            <WidgetClipBoard instanceid={instanceid} />
+            <WidgetClipBoard instanceid={instanceId_Widget} />
           </div>
         </div>
       </motion.div>

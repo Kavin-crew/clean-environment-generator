@@ -56,18 +56,18 @@ function UgcGallery({
             ></div>
           </div>
 
-          <div class="cliboard-holder">
+          <div className="cliboard-holder">
             <h2>
               {clipboardheading} {heading} Widget to your store
             </h2>
 
-            <div class="clipboard-details">
+            <div className="clipboard-details">
               <h3>{clipboardscript}</h3>
               <p>{clipboardscriptnote}</p>
               <ScriptClipBoard />
             </div>
 
-            <div class="clipboard-details">
+            <div className="clipboard-details">
               <h3>{clipboardsnippet}</h3>
               <p>{clipboardsnippetnote}</p>
               <UgcGalleryClipboard instanceid={instanceid} />

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Form from "@/app/_components/Form";
 import Header from "@/app/_components/Header";
 import Widget from "@/app/_components/Widget";
@@ -11,19 +10,21 @@ import PromotedProducts from "@/app/_components/PromotedProducts";
 import ReviewsCarousel from "@/app/_components/ReviewsCarousel";
 import UgcGallery from "@/app/_components/UgcGallery";
 import ReviewsTab from "@/app/_components/ReviewsTab";
+import { useWidgetStore } from "@/src/store/widgetStore";
+import DebugWidgetStore from "@/src/store/debugWidgetStore";
 
 //Instance ID
-let InstanceId_Widget = "433901";
-let InstanceId_QA = "555238";
-let InstanceId_SEO = "622016";
-let InstanceId_Carousel = "555239";
-let InstanceId_StarRating = "557423";
-let InstanceId_PromotedProd = "622001";
-let InstanceId_UgcGallery = "";
-let InstanceId_ReviewsTab = "621963";
+// let InstanceId_Widget = "433901";
+// let InstanceId_QA = "555238";
+// let InstanceId_SEO = "622016";
+// let InstanceId_Carousel = "555239";
+// let InstanceId_StarRating = "557423";
+// let InstanceId_PromotedProd = "622001";
+// let InstanceId_UgcGallery = "";
+// let InstanceId_ReviewsTab = "621963";
 
-//Product ID
-let ProductId = "";
+// //Product ID
+// let ProductId = "";
 
 //Clipboard text here.
 let ClipBoardHeading = "Follow these steps to add this";
@@ -36,27 +37,73 @@ let SnippetClipboardNote =
   "Make sure you replace each data element with the appropriate values of your website and product attributes.";
 
 export default function Home() {
-  const [isReviewsWidgetEnabled, setIsReviewsWidgetEnabled] = useState(false);
-  const [isQAWidgetEnabled, setIsQAWidgetEnabled] = useState(false);
-  const [isStarRatingWidgetEnabled, setIsStarRatingWidgetEnabled] =
-    useState(true);
-  const [isReviewsCarouselEnabled, setIsReviewsCarouselEnabled] =
-    useState(false);
-  const [isReviewsTabEnabled, setIsReviewsTabEnabled] = useState(false);
-  const [isPromotedProductsEnabled, setIsPromotedProductsEnabled] =
-    useState(false);
-  const [isSEOnabled, setIsSEOnabled] = useState(false);
-  const [isGalleryEnabled, setIsGalleryEnabled] = useState(false);
+  // states
+  const isReviewsWidgetEnabled = useWidgetStore(
+    (state) => state.isReviewsWidgetEnabled
+  );
+  const isQAWidgetEnabled = useWidgetStore((state) => state.isQAWidgetEnabled);
+  const isStarRatingWidgetEnabled = useWidgetStore(
+    (state) => state.isStarRatingWidgetEnabled
+  );
+  const isReviewsCarouselEnabled = useWidgetStore(
+    (state) => state.isReviewsCarouselEnabled
+  );
+  const isReviewsTabEnabled = useWidgetStore(
+    (state) => state.isReviewsTabEnabled
+  );
+  const isPromotedProductsEnabled = useWidgetStore(
+    (state) => state.isPromotedProductsEnabled
+  );
+  const isSEOnabled = useWidgetStore((state) => state.isSEOnabled);
+  const isGalleryEnabled = useWidgetStore((state) => state.isGalleryEnabled);
+
+  // setter
+  const setIsReviewsWidgetEnabled = useWidgetStore(
+    (state) => state.setIsReviewsWidgetEnabled
+  );
+  const setIsQAWidgetEnabled = useWidgetStore(
+    (state) => state.setIsQAWidgetEnabled
+  );
+  const setIsStarRatingWidgetEnabled = useWidgetStore(
+    (state) => state.setIsStarRatingWidgetEnabled
+  );
+  const setIsReviewsCarouselEnabled = useWidgetStore(
+    (state) => state.setIsReviewsCarouselEnabled
+  );
+  const setIsReviewsTabEnabled = useWidgetStore(
+    (state) => state.setIsReviewsTabEnabled
+  );
+  const setIsPromotedProductsEnabled = useWidgetStore(
+    (state) => state.setIsPromotedProductsEnabled
+  );
+  const setIsSEOnabled = useWidgetStore((state) => state.setIsSEOnabled);
+  const setIsGalleryEnabled = useWidgetStore(
+    (state) => state.setIsGalleryEnabled
+  );
+
+  const instanceId_Widget = useWidgetStore((state) => state.instanceId_Widget);
+  const productId = useWidgetStore((state) => state.productId);
+  const setInstanceId_Widget = useWidgetStore(
+    (state) => state.setInstanceId_Widget
+  );
+
+  const store = useWidgetStore();
+  const hasHydrated = useWidgetStore.persist?.hasHydrated?.();
+
+  if (!hasHydrated) return null;
+
   return (
     <>
       <Header />
+      <DebugWidgetStore />
       <Form />
       <div className="max-w-full mx-auto px-4">
         <div className="accordion" id="accordionExample">
           <Widget
-            instanceid={InstanceId_Widget}
-            productid={ProductId}
-            active={isReviewsWidgetEnabled}
+            id={`widget-${store.instanceId_Widget}`}
+            instanceid={store.instanceId_Widget}
+            productid={productId}
+            active={!isReviewsWidgetEnabled}
             toggle={setIsReviewsWidgetEnabled}
             heading="Reviews Widget"
             clipboardheading={ClipBoardHeading}
@@ -65,12 +112,25 @@ export default function Home() {
             clipboardsnippet={SnippetClipboard}
             clipboardsnippetnote={SnippetClipboardNote}
           />
-          <QA
+          {/* <QA
             instanceid={InstanceId_QA}
             productid={ProductId}
-            active={isQAWidgetEnabled}
             heading="Q&A"
+            active={!isQAWidgetEnabled}
             toggle={setIsQAWidgetEnabled}
+            clipboardheading={ClipBoardHeading}
+            clipboardscript={ScriptClipboard}
+            clipboardscriptnote={ScriptClipboardNote}
+            clipboardsnippet={SnippetClipboard}
+            clipboardsnippetnote={SnippetClipboardNote}
+          />
+
+          <StarRating
+            instanceid={InstanceId_StarRating}
+            productid={ProductId}
+            active={!isStarRatingWidgetEnabled}
+            toggle={setIsStarRatingWidgetEnabled}
+            heading="Star Rating"
             clipboardheading={ClipBoardHeading}
             clipboardscript={ScriptClipboard}
             clipboardscriptnote={ScriptClipboardNote}
@@ -81,7 +141,7 @@ export default function Home() {
           <SEO
             instanceid={InstanceId_SEO}
             productid={ProductId}
-            active={isSEOnabled}
+            active={!isSEOnabled}
             toggle={setIsSEOnabled}
             heading="SEO"
             clipboardheading={ClipBoardHeading}
@@ -95,21 +155,8 @@ export default function Home() {
             instanceid={InstanceId_Carousel}
             productid=""
             heading="Reviews Carousel"
-            active={isReviewsCarouselEnabled}
+            active={!isReviewsCarouselEnabled}
             toggle={setIsReviewsCarouselEnabled}
-            clipboardheading={ClipBoardHeading}
-            clipboardscript={ScriptClipboard}
-            clipboardscriptnote={ScriptClipboardNote}
-            clipboardsnippet={SnippetClipboard}
-            clipboardsnippetnote={SnippetClipboardNote}
-          />
-
-          <StarRating
-            instanceid={InstanceId_StarRating}
-            productid={ProductId}
-            active={isStarRatingWidgetEnabled}
-            toggle={setIsStarRatingWidgetEnabled}
-            heading="Star Rating"
             clipboardheading={ClipBoardHeading}
             clipboardscript={ScriptClipboard}
             clipboardscriptnote={ScriptClipboardNote}
@@ -120,7 +167,7 @@ export default function Home() {
           <PromotedProducts
             instanceid={InstanceId_PromotedProd}
             productid={ProductId}
-            active={isPromotedProductsEnabled}
+            active={!isPromotedProductsEnabled}
             heading="Promoted Products"
             toggle={setIsPromotedProductsEnabled}
             clipboardheading={ClipBoardHeading}
@@ -145,7 +192,7 @@ export default function Home() {
           <ReviewsTab
             instanceid={InstanceId_ReviewsTab}
             productid={ProductId}
-          />
+          /> */}
         </div>
       </div>
     </>

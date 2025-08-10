@@ -1,0 +1,26 @@
+import { create } from "zustand";
+
+// Define the widget keys and their initial states
+const widgetKeys = [
+  "isReviewsWidgetEnabled",
+  "isQAWidgetEnabled",
+  "isStarRatingWidgetEnabled",
+  "isReviewsCarouselEnabled",
+  "isReviewsTabEnabled",
+  "isPromotedProductsEnabled",
+  "isSEOnabled",
+  "isGalleryEnabled",
+];
+
+// Create the Zustand store dynamically
+export const useWidgetStore = create((set) => {
+  // Initialize the state with all widgets set to false
+  const initialState = widgetKeys.reduce((acc, key) => {
+    acc[key] = false;
+    acc[`set${key.charAt(0).toUpperCase() + key.slice(1)}`] = () =>
+      set((state) => ({ [key]: !state[key] }));
+    return acc;
+  }, {});
+
+  return initialState;
+});

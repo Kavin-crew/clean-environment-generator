@@ -2,22 +2,62 @@
 
 import { useState, useRef } from "react";
 import Label from "@/app/_components/Label";
-import InputText from "./InputText";
-import InputTextInstanceId from "./InputTextInstanceId";
-import Row from "./Row";
+import InputText from "@/app/_components/InputText";
+import InputTextInstanceId from "@/app/_components/InputTextInstanceId";
+import Row from "@/app/_components/Row";
+import { useWidgetStore } from "@/src/store/widgetStore";
 
 export default function Form() {
-  const [isReviewsWidgetEnabled, setIsReviewsWidgetEnabled] = useState(false);
-  const [isQAWidgetEnabled, setIsQAWidgetEnabled] = useState(false);
-  const [isStarRatingWidgetEnabled, setIsStarRatingWidgetEnabled] =
-    useState(true);
-  const [isReviewsCarouselEnabled, setIsReviewsCarouselEnabled] =
-    useState(false);
-  const [isReviewsTabEnabled, setIsReviewsTabEnabled] = useState(false);
-  const [isPromotedProductsEnabled, setIsPromotedProductsEnabled] =
-    useState(false);
-  const [isSEOnabled, setIsSEOnabled] = useState(false);
-  const [isGalleryEnabled, setIsGalleryEnabled] = useState(false);
+  const instanceId_Widget = useWidgetStore((state) => state.instanceId_Widget);
+  const productId = useWidgetStore((state) => state.productId);
+
+  const setInstanceId_Widget = useWidgetStore(
+    (state) => state.setInstanceId_Widget
+  );
+
+  // states
+  const isReviewsWidgetEnabled = useWidgetStore(
+    (state) => state.isReviewsWidgetEnabled
+  );
+  const isQAWidgetEnabled = useWidgetStore((state) => state.isQAWidgetEnabled);
+  const isStarRatingWidgetEnabled = useWidgetStore(
+    (state) => state.isStarRatingWidgetEnabled
+  );
+  const isReviewsCarouselEnabled = useWidgetStore(
+    (state) => state.isReviewsCarouselEnabled
+  );
+  const isReviewsTabEnabled = useWidgetStore(
+    (state) => state.isReviewsTabEnabled
+  );
+  const isPromotedProductsEnabled = useWidgetStore(
+    (state) => state.isPromotedProductsEnabled
+  );
+  const isSEOnabled = useWidgetStore((state) => state.isSEOnabled);
+  const isGalleryEnabled = useWidgetStore((state) => state.isGalleryEnabled);
+
+  // setter
+  const setIsReviewsWidgetEnabled = useWidgetStore(
+    (state) => state.setIsReviewsWidgetEnabled
+  );
+  const setIsQAWidgetEnabled = useWidgetStore(
+    (state) => state.setIsQAWidgetEnabled
+  );
+  const setIsStarRatingWidgetEnabled = useWidgetStore(
+    (state) => state.setIsStarRatingWidgetEnabled
+  );
+  const setIsReviewsCarouselEnabled = useWidgetStore(
+    (state) => state.setIsReviewsCarouselEnabled
+  );
+  const setIsReviewsTabEnabled = useWidgetStore(
+    (state) => state.setIsReviewsTabEnabled
+  );
+  const setIsPromotedProductsEnabled = useWidgetStore(
+    (state) => state.setIsPromotedProductsEnabled
+  );
+  const setIsSEOnabled = useWidgetStore((state) => state.setIsSEOnabled);
+  const setIsGalleryEnabled = useWidgetStore(
+    (state) => state.setIsGalleryEnabled
+  );
 
   const [isFormVisible, setIsFormVisible] = useState(true);
 
@@ -32,6 +72,11 @@ export default function Form() {
       return newChecked;
     });
   };
+
+  const store = useWidgetStore();
+  const hasHydrated = useWidgetStore.persist?.hasHydrated?.();
+
+  if (!hasHydrated) return null;
 
   return (
     <>
@@ -146,16 +191,27 @@ export default function Form() {
                     </label>
                     <Label htmlFor="reviews-toggle">Reviews</Label>
                   </div>
-                  <InputTextInstanceId
+                  <input
+                    type="text"
+                    name={store.instanceId_Widget}
+                    placeholder="Instance Id"
+                    disabled={!isReviewsWidgetEnabled}
+                    value={store.instanceId_Widget}
+                    onChange={(e) => setInstanceId_Widget(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
+                  />
+                  {/* <InputTextInstanceId
                     inputName="reviews"
                     isDisabled={isReviewsWidgetEnabled}
+                    value={instanceId_Widget}
                     targetedInputRef={(el) =>
                       (inputRef.current["reviewswidget"] = el)
                     }
-                  />
+                    onChange={(e) => setInstanceId_Widget(e.target.value)}
+                  /> */}
                 </div>
 
-                <div className="w-full space-y-2">
+                {/* <div className="w-full space-y-2">
                   <div className="flex items-center space-x-2">
                     <label className="toggle-switch">
                       <input
@@ -175,10 +231,10 @@ export default function Form() {
                     isDisabled={isQAWidgetEnabled}
                     targetedInputRef={(el) => (inputRef.current["qna"] = el)}
                   />
-                </div>
+                </div> */}
               </Row>
 
-              <Row>
+              {/* <Row>
                 <div className="w-full space-y-2">
                   <div className="flex items-center space-x-2">
                     <label className="toggle-switch">
@@ -341,7 +397,7 @@ export default function Form() {
                     }
                   />
                 </div>
-              </Row>
+              </Row> */}
 
               {/* <!-- Generate Button --> */}
               <div className="">
