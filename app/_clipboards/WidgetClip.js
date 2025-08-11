@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Button from "@/app/_components/Button";
+import ClipboardTextarea from "../_components/ClipboardTextarea";
 
 export default function WidgetClipBoard({ instanceid }) {
-  const [value, setValue] = useState(`
-    <div class="yotpo-widget-instance" 
+  const [value, setValue] = useState(`<div class="yotpo-widget-instance" 
       data-yotpo-instance-id="${instanceid}"
       data-yotpo-product-id="Product ID" 
       data-yotpo-name="Product Title" 
@@ -13,8 +14,7 @@ export default function WidgetClipBoard({ instanceid }) {
       data-yotpo-price="Product Price" 
       data-yotpo-currency="Product Currency" 
       data-yotpo-description="Product Description">
-    </div>
-    `);
+    </div>`);
   const [isCopied, setCopied] = useState(false);
 
   const copy = async () => {
@@ -29,21 +29,8 @@ export default function WidgetClipBoard({ instanceid }) {
 
   return (
     <>
-      <textarea
-        disabled
-        contentEditable
-        spellCheck={false}
-        onFocus={(event) => event.target.select()}
-        type="text"
-        value={value}
-        onChange={({ target: { value } }) => {
-          setValue(value);
-          setCopied(false);
-        }}
-      />
-      <button onClick={copy} className="btn btn-primary">
-        {isCopied ? "Copied!" : "Copy Code"}
-      </button>
+      <ClipboardTextarea value={value} setCopied={setCopied} />
+      <Button onClick={copy}>{isCopied ? "Copied!" : "Copy Code"}</Button>
     </>
   );
 }

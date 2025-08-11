@@ -1,25 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ScriptClipBoard from "@/app/_clipboards/ScriptClip";
-import WidgetClipBoard from "@/app/_clipboards/WidgetClip";
-import Caret from "@/app/_components/Caret";
 import { useWidgetStore } from "@/src/store/widgetStore";
 import { useEffect, useState } from "react";
+import Caret from "@/app/_components/Caret";
+import Clipboards from "@/app/_components/Clipboards";
 
-export default function ReviewsWidget({
-  heading,
-  active,
-  clipboardheading,
-  clipboardscript,
-  clipboardscriptnote,
-  clipboardsnippet,
-  clipboardsnippetnote,
-}) {
-  // Get values directly from Zustand
-  const { instanceId_Widget, productId, isReviewsWidgetCollapsed } =
-    useWidgetStore();
+export default function ReviewsWidget({ heading }) {
+  // states
+  const instanceIdWidget = useWidgetStore((state) => state.instanceIdWidget);
+  const productId = useWidgetStore((state) => state.productId);
+  const isReviewsWidgetCollapsed = useWidgetStore(
+    (state) => state.isReviewsWidgetCollapsed
+  );
 
+  // setter
   const setIsReviewsWidgetCollapsed = useWidgetStore(
     (state) => state.setIsReviewsWidgetCollapsed
   );
@@ -34,12 +29,12 @@ export default function ReviewsWidget({
     if (mounted && window.yotpo) {
       window.yotpo.initWidgets();
     }
-  }, [mounted, instanceId_Widget]);
+  }, [mounted, instanceIdWidget]);
 
   if (!mounted) return null; // No ID, no widget
 
   return (
-    <div className="accordion-item relative border rounded-md overflow-hidden">
+    <div className="accordion-item relative border rounded-md overflow-hidden bg-[#fff]">
       {/* Accordion Header */}
       <button
         onClick={setIsReviewsWidgetCollapsed}
@@ -67,7 +62,7 @@ export default function ReviewsWidget({
           {/* Yotpo Widget */}
           <div
             className="yotpo-widget-instance"
-            data-yotpo-instance-id={instanceId_Widget}
+            data-yotpo-instance-id={instanceIdWidget}
             data-yotpo-product-id={productId}
             data-yotpo-name="Product Title"
             data-yotpo-url="The URL of your product page"
@@ -79,24 +74,7 @@ export default function ReviewsWidget({
           ></div>
         </div>
 
-        {/* Clipboard Section */}
-        <div className="cliboard-holder p-4 space-y-4">
-          <h2>
-            {clipboardheading} {heading} to your store
-          </h2>
-
-          <div className="clipboard-details">
-            <h3>{clipboardscript}</h3>
-            <p>{clipboardscriptnote}</p>
-            <ScriptClipBoard />
-          </div>
-
-          <div className="clipboard-details">
-            <h3>{clipboardsnippet}</h3>
-            <p>{clipboardsnippetnote}</p>
-            <WidgetClipBoard instanceid={instanceId_Widget} />
-          </div>
-        </div>
+        <Clipboards heading={heading} />
       </motion.div>
     </div>
   );

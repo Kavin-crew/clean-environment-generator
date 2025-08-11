@@ -272,16 +272,6 @@ input:checked + .toggle-slider:before {
   margin: 0 0 0 9px;
 }
 
-.cliboard-holder {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  border: 2px dashed var(--primary-template-background);
-  margin: 0 clamp(10px, 4vw, 50px) clamp(10px, 4vw, 50px);
-  padding: 30px 20px 20px;
-  background: #f6f6ff;
-}
-
 .cliboard-holder .clipboard-details {
   width: clamp(300px, 45%, 600px);
   margin: 0 10px 20px;
@@ -308,15 +298,6 @@ input:checked + .toggle-slider:before {
   font-size: 12px;
 }
 
-.clipboard-details textarea {
-  resize: none;
-  height: 100px;
-  padding: 0 10px;
-  font-size: 12px;
-  text-align: left;
-  margin-bottom: 14px;
-}
-
 .rating-holder {
   display: flex;
   flex-flow: row wrap;
@@ -331,7 +312,6 @@ input:checked + .toggle-slider:before {
   justify-content: center;
   flex-flow: column wrap;
   align-items: center;
-  background-color: var(--secondary-template-background);
   padding: 20px;
   border-radius: 20px;
 }

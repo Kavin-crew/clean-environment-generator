@@ -13,30 +13,28 @@ import ReviewsTab from "@/app/_components/ReviewsTab";
 import { useWidgetStore } from "@/src/store/widgetStore";
 import DebugWidgetStore from "@/src/store/debugWidgetStore";
 
-//Clipboard text here.
-let ClipBoardHeading = "Follow these steps to add this";
-let ScriptClipboard = "1. Add the following to your <head> tag.";
-let ScriptClipboardNote =
-  "If you already have this script, please disregard since using one script will work for all of the Yotpo code snippets";
-let SnippetClipboard =
-  "2. Add the following code snippet to your product page.";
-let SnippetClipboardNote =
-  "Make sure you replace each data element with the appropriate values of your website and product attributes.";
-
 export default function Home() {
   const productId = useWidgetStore((state) => state.productId);
 
   // instanceId states
   const instanceIdWidget = useWidgetStore((state) => state.instanceIdWidget);
-  const {
-    instanceIdQnA,
-    instanceIdSEO,
-    instanceIdCarousel,
-    instanceIdStarRating,
-    instanceIdPromotedProd,
-    instanceIdUgcGallery,
-    instanceIdReviewsTab,
-  } = useWidgetStore();
+  const instanceIdQnA = useWidgetStore((state) => state.instanceIdQnA);
+  const instanceIdSEO = useWidgetStore((state) => state.instanceIdSEO);
+  const instanceIdCarousel = useWidgetStore(
+    (state) => state.instanceIdCarousel
+  );
+  const instanceIdStarRating = useWidgetStore(
+    (state) => state.instanceIdStarRating
+  );
+  const instanceIdPromotedProd = useWidgetStore(
+    (state) => state.instanceIdPromotedProd
+  );
+  const instanceIdUgcGallery = useWidgetStore(
+    (state) => state.instanceIdUgcGallery
+  );
+  const instanceIdReviewsTab = useWidgetStore(
+    (state) => state.instanceIdReviewsTab
+  );
 
   // instanceId Setters
   const setInstanceIdWidget = useWidgetStore(

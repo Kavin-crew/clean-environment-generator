@@ -8,69 +8,188 @@ import Row from "@/app/_components/Row";
 import { useWidgetStore } from "@/src/store/widgetStore";
 
 export default function Form() {
-  const {
-    // widget feature variable
-    appKey,
-    language,
-    instanceIdWidget,
-    instanceIdQnA,
-    instanceIdSEO,
-    instanceIdCarousel,
-    instanceIdStarRating,
-    instanceIdPromotedProd,
-    instanceIdUgcGallery,
-    instanceIdReviewsTab,
+  const appKey = useWidgetStore((state) => state.appKey);
+  const language = useWidgetStore((state) => state.language);
 
-    isReviewsWidgetEnabled,
-    isQAWidgetEnabled,
-    isReviewsCarouselEnabled,
-    isReviewsTabEnabled,
-    isPromotedProductsEnabled,
-    isSEOnabled,
-    isGalleryEnabled,
+  const setAppKey = useWidgetStore((state) => state.setAppKey);
+  const setLanguage = useWidgetStore((state) => state.setLanguage);
 
-    // accordion states
-    isReviewsWidgetCollapsed,
-    isQAWidgetCollapsed,
-    isStarRatingWidgetCollapsed,
-    isReviewsCarouselCollapsed,
-    isReviewsTabCollapsed,
-    isPromotedProductsCollapsed,
-    isSEOCollapsed,
-    isGalleryCollapsed,
+  // instanceId states
+  const instanceIdWidget = useWidgetStore((state) => state.instanceIdWidget);
+  const instanceIdQnA = useWidgetStore((state) => state.instanceIdQnA);
+  const instanceIdSEO = useWidgetStore((state) => state.instanceIdSEO);
+  const instanceIdCarousel = useWidgetStore(
+    (state) => state.instanceIdCarousel
+  );
+  const instanceIdStarRating = useWidgetStore(
+    (state) => state.instanceIdStarRating
+  );
+  const instanceIdPromotedProd = useWidgetStore(
+    (state) => state.instanceIdPromotedProd
+  );
+  const instanceIdUgcGallery = useWidgetStore(
+    (state) => state.instanceIdUgcGallery
+  );
+  const instanceIdReviewsTab = useWidgetStore(
+    (state) => state.instanceIdReviewsTab
+  );
 
-    // widget instanceId setters
-    setAppKey,
-    setLanguage,
-    setInstanceIdWidget,
-    setInstanceIdQnA,
-    setInstanceIdSEO,
-    setInstanceIdCarousel,
-    setInstanceIdStarRating,
-    setInstanceIdPromotedProd,
-    setInstanceIdUgcGallery,
-    setInstanceIdReviewsTab,
+  // instanceId Setters
+  const setInstanceIdWidget = useWidgetStore(
+    (state) => state.setInstanceIdWidget
+  );
 
-    // accordion methods
-    setIsReviewsWidgetCollapsed,
-    setIsQAWidgetCollapsed,
-    setIsStarRatingWidgetCollapsed,
-    setIsPromotedProductsCollapsed,
-    setIsReviewsCarouselCollapsed,
-    setisReviewsTabCollapsed,
-    setIsSEOCollapsed,
-    setIsGalleryCollapsed,
+  // form states
+  const isReviewsWidgetEnabled = useWidgetStore(
+    (state) => state.isReviewsWidgetEnabled
+  );
+  const isQAWidgetEnabled = useWidgetStore((state) => state.isQAWidgetEnabled);
+  const isStarRatingWidgetEnabled = useWidgetStore(
+    (state) => state.isStarRatingWidgetEnabled
+  );
+  const isReviewsCarouselEnabled = useWidgetStore(
+    (state) => state.isReviewsCarouselEnabled
+  );
+  const isReviewsTabEnabled = useWidgetStore(
+    (state) => state.isReviewsTabEnabled
+  );
+  const isPromotedProductsEnabled = useWidgetStore(
+    (state) => state.isPromotedProductsEnabled
+  );
+  const isSEOnabled = useWidgetStore((state) => state.isSEOnabled);
+  const isGalleryEnabled = useWidgetStore((state) => state.isGalleryEnabled);
 
-    // widget feature setters
-    setIsReviewsWidgetEnabled,
-    setIsQAWidgetEnabled,
-    setIsStarRatingWidgetEnabled,
-    setIsReviewsCarouselEnabled,
-    setIsReviewsTabEnabled,
-    setIsPromotedProductsEnabled,
-    setIsSEOnabled,
-    setIsGalleryEnabled,
-  } = useWidgetStore();
+  // accordion states
+  const isReviewsWidgetCollapsed = useWidgetStore(
+    (state) => state.isReviewsWidgetCollapsed
+  );
+  const isQAWidgetCollapsed = useWidgetStore(
+    (state) => state.isQAWidgetCollapsed
+  );
+  const isStarRatingWidgetCollapsed = useWidgetStore(
+    (state) => state.isStarRatingWidgetCollapsed
+  );
+  const isReviewsCarouselCollapsed = useWidgetStore(
+    (state) => state.isReviewsCarouselCollapsed
+  );
+  const isReviewsTabCollapsed = useWidgetStore(
+    (state) => state.isReviewsTabCollapsed
+  );
+  const isPromotedProductsCollapsed = useWidgetStore(
+    (state) => state.isPromotedProductsCollapsed
+  );
+  const isSEOCollapsed = useWidgetStore((state) => state.isSEOCollapsed);
+  const isGalleryCollapsed = useWidgetStore(
+    (state) => state.isGalleryCollapsed
+  );
+  // accordion methods
+  const setIsReviewsWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsReviewsWidgetCollapsed
+  );
+  const setIsQAWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsQAWidgetCollapsed
+  );
+  const setIsStarRatingWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsStarRatingWidgetCollapsed
+  );
+  const setIsPromotedProductsCollapsed = useWidgetStore(
+    (state) => state.setIsPromotedProductsCollapsed
+  );
+  const setIsReviewsCarouselCollapsed = useWidgetStore(
+    (state) => state.setIsReviewsCarouselCollapsed
+  );
+  const setisReviewsTabCollapsed = useWidgetStore(
+    (state) => state.setisReviewsTabCollapsed
+  );
+  const setIsSEOCollapsed = useWidgetStore((state) => state.setIsSEOCollapsed);
+  const setIsGalleryCollapsed = useWidgetStore(
+    (state) => state.setIsGalleryCollapsed
+  );
+
+  // setter
+  const setIsReviewsWidgetEnabled = useWidgetStore(
+    (state) => state.setIsReviewsWidgetEnabled
+  );
+  const setIsQAWidgetEnabled = useWidgetStore(
+    (state) => state.setIsQAWidgetEnabled
+  );
+  const setIsStarRatingWidgetEnabled = useWidgetStore(
+    (state) => state.setIsStarRatingWidgetEnabled
+  );
+  const setIsReviewsCarouselEnabled = useWidgetStore(
+    (state) => state.setIsReviewsCarouselEnabled
+  );
+  const setIsReviewsTabEnabled = useWidgetStore(
+    (state) => state.setIsReviewsTabEnabled
+  );
+  const setIsPromotedProductsEnabled = useWidgetStore(
+    (state) => state.setIsPromotedProductsEnabled
+  );
+  const setIsSEOnabled = useWidgetStore((state) => state.setIsSEOnabled);
+  const setIsGalleryEnabled = useWidgetStore(
+    (state) => state.setIsGalleryEnabled
+  );
+  // const {
+  //   // widget feature variable
+  //   language,
+  //   instanceIdWidget,
+  //   instanceIdQnA,
+  //   instanceIdSEO,
+  //   instanceIdCarousel,
+  //   instanceIdStarRating,
+  //   instanceIdPromotedProd,
+  //   instanceIdUgcGallery,
+  //   instanceIdReviewsTab,
+
+  //   isReviewsWidgetEnabled,
+  //   isQAWidgetEnabled,
+  //   isReviewsCarouselEnabled,
+  //   isReviewsTabEnabled,
+  //   isPromotedProductsEnabled,
+  //   isSEOnabled,
+  //   isGalleryEnabled,
+
+  //   // accordion states
+  //   isReviewsWidgetCollapsed,
+  //   isQAWidgetCollapsed,
+  //   isStarRatingWidgetCollapsed,
+  //   isReviewsCarouselCollapsed,
+  //   isReviewsTabCollapsed,
+  //   isPromotedProductsCollapsed,
+  //   isSEOCollapsed,
+  //   isGalleryCollapsed,
+
+  //   // widget instanceId setters
+  //   setLanguage,
+  //   setInstanceIdWidget,
+  //   setInstanceIdQnA,
+  //   setInstanceIdSEO,
+  //   setInstanceIdCarousel,
+  //   setInstanceIdStarRating,
+  //   setInstanceIdPromotedProd,
+  //   setInstanceIdUgcGallery,
+  //   setInstanceIdReviewsTab,
+
+  //   // accordion methods
+  //   setIsReviewsWidgetCollapsed,
+  //   setIsQAWidgetCollapsed,
+  //   setIsStarRatingWidgetCollapsed,
+  //   setIsPromotedProductsCollapsed,
+  //   setIsReviewsCarouselCollapsed,
+  //   setisReviewsTabCollapsed,
+  //   setIsSEOCollapsed,
+  //   setIsGalleryCollapsed,
+
+  //   // widget feature setters
+  //   setIsReviewsWidgetEnabled,
+  //   setIsQAWidgetEnabled,
+  //   setIsStarRatingWidgetEnabled,
+  //   setIsReviewsCarouselEnabled,
+  //   setIsReviewsTabEnabled,
+  //   setIsPromotedProductsEnabled,
+  //   setIsSEOnabled,
+  //   setIsGalleryEnabled,
+  // } = useWidgetStore();
 
   const [isFormVisible, setIsFormVisible] = useState(true);
 
@@ -115,10 +234,14 @@ export default function Form() {
               {/* <!-- Appkey Field --> */}
               <div className="w-full space-y-6">
                 <Label htmlFor="appkey">Appkey</Label>
-                <InputText
-                  inputName="appkey"
+                <input
+                  type="text"
+                  id="appkey"
+                  name="appkey"
                   value={appKey}
-                  onChange={setAppKey}
+                  onChange={(e) => setAppKey(e.target.value)}
+                  placeholder="appkey"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
 
