@@ -13,19 +13,6 @@ import ReviewsTab from "@/app/_components/ReviewsTab";
 import { useWidgetStore } from "@/src/store/widgetStore";
 import DebugWidgetStore from "@/src/store/debugWidgetStore";
 
-//Instance ID
-// let InstanceId_Widget = "433901";
-// let InstanceId_QA = "555238";
-// let InstanceId_SEO = "622016";
-// let InstanceId_Carousel = "555239";
-// let InstanceId_StarRating = "557423";
-// let InstanceId_PromotedProd = "622001";
-// let InstanceId_UgcGallery = "";
-// let InstanceId_ReviewsTab = "621963";
-
-// //Product ID
-// let ProductId = "";
-
 //Clipboard text here.
 let ClipBoardHeading = "Follow these steps to add this";
 let ScriptClipboard = "1. Add the following to your <head> tag.";

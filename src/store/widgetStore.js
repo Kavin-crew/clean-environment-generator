@@ -13,9 +13,25 @@ export const useWidgetStore = create(
       isSEOnabled: false,
       isGalleryEnabled: false,
 
+      isReviewsWidgetCollapsed: false,
+      isQAWidgetCollapsed: false,
+      isStarRatingWidgetCollapsed: false,
+      isReviewsCarouselCollapsed: false,
+      isReviewsTabCollapsed: false,
+      isPromotedProductsCollapsed: false,
+      isSEOCollapsed: false,
+      isGalleryCollapsed: false,
+
       appKey: "",
       language: "en",
       instanceId_Widget: "",
+      instanceId_QnA: "",
+      instanceId_SEO: "",
+      instanceId_Carousel: "",
+      instanceId_StarRating: "",
+      instanceId_PromotedProd: "",
+      instanceId_UgcGallery: "",
+      instanceId_ReviewsTab: "",
       productId: "",
 
       hasHydrated: false, // <- add this
@@ -36,6 +52,26 @@ export const useWidgetStore = create(
         set({ isGalleryEnabled: !get().isGalleryEnabled }),
       setIsReviewsTabEnabled: () =>
         set({ isReviewsTabEnabled: !get().isReviewsTabEnabled }),
+
+      setIsReviewsWidgetCollapsed: () =>
+        set({ isReviewsWidgetCollapsed: !get().isReviewsWidgetCollapsed }),
+      setIsQAWidgetCollapsed: () =>
+        set({ isQAWidgetCollapsed: !get().isQAWidgetCollapsed }),
+      setIsStarRatingWidgetCollapsed: () =>
+        set({
+          isStarRatingWidgetCollapsed: !get().isStarRatingWidgetCollapsed,
+        }),
+      setIsReviewsCarouselCollapsed: () =>
+        set({ isReviewsCarouselCollapsed: !get().isReviewsCarouselCollapsed }),
+      setIsPromotedProductsCollapsed: () =>
+        set({
+          isPromotedProductsCollapsed: !get().isPromotedProductsCollapsed,
+        }),
+      setisReviewsTabCollapsed: () =>
+        set({ isReviewsTabCollapsed: !get().isReviewsTabCollapsed }),
+      setIsSEOCollapsed: () => set({ isSEOCollapsed: !get().isSEOCollapsed }),
+      setIsGalleryCollapsed: () =>
+        set({ isGalleryCollapsed: !get().isGalleryCollapsed }),
 
       setInstanceId_Widget: (newId) => {
         set(() => ({ instanceId_Widget: newId }));

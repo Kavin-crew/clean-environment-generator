@@ -41,6 +41,53 @@ export default function Form() {
   const isSEOnabled = useWidgetStore((state) => state.isSEOnabled);
   const isGalleryEnabled = useWidgetStore((state) => state.isGalleryEnabled);
 
+  // accordion states
+  const isReviewsWidgetCollapsed = useWidgetStore(
+    (state) => state.isReviewsWidgetCollapsed
+  );
+  const isQAWidgetCollapsed = useWidgetStore(
+    (state) => state.isQAWidgetCollapsed
+  );
+  const isStarRatingWidgetCollapsed = useWidgetStore(
+    (state) => state.isStarRatingWidgetCollapsed
+  );
+  const isReviewsCarouselCollapsed = useWidgetStore(
+    (state) => state.isReviewsCarouselCollapsed
+  );
+  const isReviewsTabCollapsed = useWidgetStore(
+    (state) => state.isReviewsTabCollapsed
+  );
+  const isPromotedProductsCollapsed = useWidgetStore(
+    (state) => state.isPromotedProductsCollapsed
+  );
+  const isSEOCollapsed = useWidgetStore((state) => state.isSEOCollapsed);
+  const isGalleryCollapsed = useWidgetStore(
+    (state) => state.isGalleryCollapsed
+  );
+  // accordion methods
+  const setIsReviewsWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsReviewsWidgetCollapsed
+  );
+  const setIsQAWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsQAWidgetCollapsed
+  );
+  const setIsStarRatingWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsStarRatingWidgetCollapsed
+  );
+  const setIsPromotedProductsCollapsed = useWidgetStore(
+    (state) => state.setIsPromotedProductsCollapsed
+  );
+  const setIsReviewsCarouselCollapsed = useWidgetStore(
+    (state) => state.setIsReviewsCarouselCollapsed
+  );
+  const setisReviewsTabCollapsed = useWidgetStore(
+    (state) => state.setisReviewsTabCollapsed
+  );
+  const setIsSEOCollapsed = useWidgetStore((state) => state.setIsSEOCollapsed);
+  const setIsGalleryCollapsed = useWidgetStore(
+    (state) => state.setIsGalleryCollapsed
+  );
+
   // setter
   const setIsReviewsWidgetEnabled = useWidgetStore(
     (state) => state.setIsReviewsWidgetEnabled
@@ -68,21 +115,9 @@ export default function Form() {
   const [isFormVisible, setIsFormVisible] = useState(true);
 
   // Reference for the input field to clear its value when the checkbox is unchecked
-  const inputRef = useRef({});
-  const handleCheckboxChange = (setterFunction, inputKey) => {
-    setterFunction((prevChecked) => {
-      const newChecked = !prevChecked;
-      if (!newChecked && inputRef.current[inputKey]) {
-        inputRef.current[inputKey].value = ""; // Clear input when unchecked
-      }
-      return newChecked;
-    });
+  const handleCheckboxChange = (setterFn) => {
+    setterFn((prev) => !prev);
   };
-
-  const store = useWidgetStore();
-  const hasHydrated = useWidgetStore.persist?.hasHydrated?.();
-
-  if (!hasHydrated) return null;
 
   return (
     <>
@@ -197,7 +232,7 @@ export default function Form() {
                         onChange={() =>
                           handleCheckboxChange(
                             setIsReviewsWidgetEnabled,
-                            "reviewswidget"
+                            setInstanceId_Widget
                           )
                         }
                       />
