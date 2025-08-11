@@ -87,11 +87,8 @@ export default function Home() {
     (state) => state.setInstanceId_Widget
   );
 
-  const store = useWidgetStore();
-  const hasHydrated = useWidgetStore.persist?.hasHydrated?.();
-
+  const hasHydrated = useWidgetStore((state) => state.hasHydrated);
   if (!hasHydrated) return null;
-
   return (
     <>
       <Header />
@@ -100,8 +97,8 @@ export default function Home() {
       <div className="max-w-full mx-auto px-4">
         <div className="accordion" id="accordionExample">
           <Widget
-            id={`widget-${store.instanceId_Widget}`}
-            instanceid={store.instanceId_Widget}
+            id={`widget-${instanceId_Widget}`}
+            instanceid={instanceId_Widget}
             productid={productId}
             active={!isReviewsWidgetEnabled}
             toggle={setIsReviewsWidgetEnabled}

@@ -16,6 +16,9 @@ export const useWidgetStore = create(
       instanceId_Widget: "",
       productId: "",
 
+      hasHydrated: false, // <- add this
+      setHasHydrated: (state) => set({ hasHydrated: state }), // <- add this
+
       setIsReviewsWidgetEnabled: () =>
         set({ isReviewsWidgetEnabled: !get().isReviewsWidgetEnabled }),
       setIsQAWidgetEnabled: () =>
@@ -53,6 +56,9 @@ export const useWidgetStore = create(
       name: "widget-storage",
       storage: createJSONStorage(() => localStorage),
       skipHydration: false, // important for hydration check
+      onRehydrateStorage: () => (state) => {
+        state.setHasHydrated(true); // <- mark hydrated when it's done
+      },
     }
   )
 );
