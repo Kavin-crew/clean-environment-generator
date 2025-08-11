@@ -7,7 +7,7 @@ import Caret from "@/app/_components/Caret";
 import { useWidgetStore } from "@/src/store/widgetStore";
 import { useEffect, useState } from "react";
 
-export default function Widget({
+export default function ReviewsWidget({
   heading,
   active,
   clipboardheading,
@@ -15,10 +15,14 @@ export default function Widget({
   clipboardscriptnote,
   clipboardsnippet,
   clipboardsnippetnote,
-  toggle,
 }) {
   // Get values directly from Zustand
-  const { instanceId_Widget, productId } = useWidgetStore();
+  const { instanceId_Widget, productId, isReviewsWidgetCollapsed } =
+    useWidgetStore();
+
+  const setIsReviewsWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsReviewsWidgetCollapsed
+  );
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -38,21 +42,23 @@ export default function Widget({
     <div className="accordion-item relative border rounded-md overflow-hidden">
       {/* Accordion Header */}
       <button
-        onClick={() => toggle((prev) => !prev)}
+        onClick={setIsReviewsWidgetCollapsed}
         className={`flex justify-between items-center p-4 w-full border-b ${
-          active ? "bg-white text-stone-800" : "bg-blue-400 text-white"
+          isReviewsWidgetCollapsed
+            ? "bg-white text-stone-800"
+            : "bg-blue-400 text-white"
         }`}
       >
         <h2>{heading}</h2>
-        <Caret active={active} />
+        <Caret active={isReviewsWidgetCollapsed} />
       </button>
 
       {/* Accordion Content (Always Mounted) */}
       <motion.div
         initial={false}
         animate={{
-          height: active ? 0 : "auto",
-          opacity: active ? 0 : 1,
+          height: isReviewsWidgetCollapsed ? 0 : "auto",
+          opacity: isReviewsWidgetCollapsed ? 0 : 1,
         }}
         transition={{ duration: 0.3 }}
         className="overflow-hidden border-t"

@@ -8,109 +8,69 @@ import Row from "@/app/_components/Row";
 import { useWidgetStore } from "@/src/store/widgetStore";
 
 export default function Form() {
-  // widget variable
-  const appKey = useWidgetStore((state) => state.appKey);
-  const language = useWidgetStore((state) => state.language);
-  const instanceId_Widget = useWidgetStore((state) => state.instanceId_Widget);
-  const productId = useWidgetStore((state) => state.productId);
+  const {
+    // widget feature variable
+    appKey,
+    language,
+    instanceIdWidget,
+    instanceIdQnA,
+    instanceIdSEO,
+    instanceIdCarousel,
+    instanceIdStarRating,
+    instanceIdPromotedProd,
+    instanceIdUgcGallery,
+    instanceIdReviewsTab,
 
-  //widget methods
-  const setInstanceId_Widget = useWidgetStore(
-    (state) => state.setInstanceId_Widget
-  );
-  const setAppKey = useWidgetStore((state) => state.setAppKey);
-  const setLanguage = useWidgetStore((state) => state.setLanguage);
+    isReviewsWidgetEnabled,
+    isQAWidgetEnabled,
+    isReviewsCarouselEnabled,
+    isReviewsTabEnabled,
+    isPromotedProductsEnabled,
+    isSEOnabled,
+    isGalleryEnabled,
 
-  // states
-  const isReviewsWidgetEnabled = useWidgetStore(
-    (state) => state.isReviewsWidgetEnabled
-  );
-  const isQAWidgetEnabled = useWidgetStore((state) => state.isQAWidgetEnabled);
-  const isStarRatingWidgetEnabled = useWidgetStore(
-    (state) => state.isStarRatingWidgetEnabled
-  );
-  const isReviewsCarouselEnabled = useWidgetStore(
-    (state) => state.isReviewsCarouselEnabled
-  );
-  const isReviewsTabEnabled = useWidgetStore(
-    (state) => state.isReviewsTabEnabled
-  );
-  const isPromotedProductsEnabled = useWidgetStore(
-    (state) => state.isPromotedProductsEnabled
-  );
-  const isSEOnabled = useWidgetStore((state) => state.isSEOnabled);
-  const isGalleryEnabled = useWidgetStore((state) => state.isGalleryEnabled);
+    // accordion states
+    isReviewsWidgetCollapsed,
+    isQAWidgetCollapsed,
+    isStarRatingWidgetCollapsed,
+    isReviewsCarouselCollapsed,
+    isReviewsTabCollapsed,
+    isPromotedProductsCollapsed,
+    isSEOCollapsed,
+    isGalleryCollapsed,
 
-  // accordion states
-  const isReviewsWidgetCollapsed = useWidgetStore(
-    (state) => state.isReviewsWidgetCollapsed
-  );
-  const isQAWidgetCollapsed = useWidgetStore(
-    (state) => state.isQAWidgetCollapsed
-  );
-  const isStarRatingWidgetCollapsed = useWidgetStore(
-    (state) => state.isStarRatingWidgetCollapsed
-  );
-  const isReviewsCarouselCollapsed = useWidgetStore(
-    (state) => state.isReviewsCarouselCollapsed
-  );
-  const isReviewsTabCollapsed = useWidgetStore(
-    (state) => state.isReviewsTabCollapsed
-  );
-  const isPromotedProductsCollapsed = useWidgetStore(
-    (state) => state.isPromotedProductsCollapsed
-  );
-  const isSEOCollapsed = useWidgetStore((state) => state.isSEOCollapsed);
-  const isGalleryCollapsed = useWidgetStore(
-    (state) => state.isGalleryCollapsed
-  );
-  // accordion methods
-  const setIsReviewsWidgetCollapsed = useWidgetStore(
-    (state) => state.setIsReviewsWidgetCollapsed
-  );
-  const setIsQAWidgetCollapsed = useWidgetStore(
-    (state) => state.setIsQAWidgetCollapsed
-  );
-  const setIsStarRatingWidgetCollapsed = useWidgetStore(
-    (state) => state.setIsStarRatingWidgetCollapsed
-  );
-  const setIsPromotedProductsCollapsed = useWidgetStore(
-    (state) => state.setIsPromotedProductsCollapsed
-  );
-  const setIsReviewsCarouselCollapsed = useWidgetStore(
-    (state) => state.setIsReviewsCarouselCollapsed
-  );
-  const setisReviewsTabCollapsed = useWidgetStore(
-    (state) => state.setisReviewsTabCollapsed
-  );
-  const setIsSEOCollapsed = useWidgetStore((state) => state.setIsSEOCollapsed);
-  const setIsGalleryCollapsed = useWidgetStore(
-    (state) => state.setIsGalleryCollapsed
-  );
+    // widget instanceId setters
+    setAppKey,
+    setLanguage,
+    setInstanceIdWidget,
+    setInstanceIdQnA,
+    setInstanceIdSEO,
+    setInstanceIdCarousel,
+    setInstanceIdStarRating,
+    setInstanceIdPromotedProd,
+    setInstanceIdUgcGallery,
+    setInstanceIdReviewsTab,
 
-  // setter
-  const setIsReviewsWidgetEnabled = useWidgetStore(
-    (state) => state.setIsReviewsWidgetEnabled
-  );
-  const setIsQAWidgetEnabled = useWidgetStore(
-    (state) => state.setIsQAWidgetEnabled
-  );
-  const setIsStarRatingWidgetEnabled = useWidgetStore(
-    (state) => state.setIsStarRatingWidgetEnabled
-  );
-  const setIsReviewsCarouselEnabled = useWidgetStore(
-    (state) => state.setIsReviewsCarouselEnabled
-  );
-  const setIsReviewsTabEnabled = useWidgetStore(
-    (state) => state.setIsReviewsTabEnabled
-  );
-  const setIsPromotedProductsEnabled = useWidgetStore(
-    (state) => state.setIsPromotedProductsEnabled
-  );
-  const setIsSEOnabled = useWidgetStore((state) => state.setIsSEOnabled);
-  const setIsGalleryEnabled = useWidgetStore(
-    (state) => state.setIsGalleryEnabled
-  );
+    // accordion methods
+    setIsReviewsWidgetCollapsed,
+    setIsQAWidgetCollapsed,
+    setIsStarRatingWidgetCollapsed,
+    setIsPromotedProductsCollapsed,
+    setIsReviewsCarouselCollapsed,
+    setisReviewsTabCollapsed,
+    setIsSEOCollapsed,
+    setIsGalleryCollapsed,
+
+    // widget feature setters
+    setIsReviewsWidgetEnabled,
+    setIsQAWidgetEnabled,
+    setIsStarRatingWidgetEnabled,
+    setIsReviewsCarouselEnabled,
+    setIsReviewsTabEnabled,
+    setIsPromotedProductsEnabled,
+    setIsSEOnabled,
+    setIsGalleryEnabled,
+  } = useWidgetStore();
 
   const [isFormVisible, setIsFormVisible] = useState(true);
 
@@ -140,9 +100,7 @@ export default function Form() {
         >
           X
         </button>
-        {/* <!-- Main Form Card --> */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 h-[90dvh] overflow-y-auto">
-          {/* <!-- Card Header --> */}
           <div className="p-6 pb-0">
             <h1 className="text-2xl font-semibold text-slate-900 mb-2">
               Configuration Form
@@ -152,20 +110,15 @@ export default function Form() {
             </p>
           </div>
 
-          {/* <!-- Card Content --> */}
           <div className="p-6 pt-0">
             <form id="configForm" name="configForm" className="space-y-6">
               {/* <!-- Appkey Field --> */}
               <div className="w-full space-y-6">
                 <Label htmlFor="appkey">Appkey</Label>
-                <input
-                  type="text"
-                  id="appkey"
-                  name="appkey"
+                <InputText
+                  inputName="appkey"
                   value={appKey}
-                  onChange={(e) => setAppKey(e.target.value)}
-                  placeholder="appkey"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  onChange={setAppKey}
                 />
               </div>
 
@@ -183,6 +136,8 @@ export default function Form() {
                   <select
                     id="language"
                     name="language"
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="en">English</option>
@@ -230,10 +185,7 @@ export default function Form() {
                         id="reviews-toggle"
                         checked={isReviewsWidgetEnabled}
                         onChange={() =>
-                          handleCheckboxChange(
-                            setIsReviewsWidgetEnabled,
-                            setInstanceId_Widget
-                          )
+                          handleCheckboxChange(setIsReviewsWidgetEnabled)
                         }
                       />
                       <span className="toggle-slider"></span>
@@ -242,21 +194,21 @@ export default function Form() {
                   </div>
                   <input
                     type="text"
-                    name={instanceId_Widget}
+                    name={instanceIdWidget}
                     placeholder="Instance Id"
                     disabled={!isReviewsWidgetEnabled}
-                    value={instanceId_Widget}
-                    onChange={(e) => setInstanceId_Widget(e.target.value)}
+                    value={instanceIdWidget}
+                    onChange={(e) => setInstanceIdWidget(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
                   />
                   {/* <InputTextInstanceId
                     inputName="reviews"
                     isDisabled={isReviewsWidgetEnabled}
-                    value={instanceId_Widget}
+                    value={instanceIdWidget}
                     targetedInputRef={(el) =>
                       (inputRef.current["reviewswidget"] = el)
                     }
-                    onChange={(e) => setInstanceId_Widget(e.target.value)}
+                    onChange={(e) => setInstanceIdWidget(e.target.value)}
                   /> */}
                 </div>
 

@@ -24,14 +24,14 @@ export const useWidgetStore = create(
 
       appKey: "",
       language: "en",
-      instanceId_Widget: "",
-      instanceId_QnA: "",
-      instanceId_SEO: "",
-      instanceId_Carousel: "",
-      instanceId_StarRating: "",
-      instanceId_PromotedProd: "",
-      instanceId_UgcGallery: "",
-      instanceId_ReviewsTab: "",
+      instanceIdWidget: "",
+      instanceIdQnA: "",
+      instanceIdSEO: "",
+      instanceIdCarousel: "",
+      instanceIdStarRating: "",
+      instanceIdPromotedProd: "",
+      instanceIdUgcGallery: "",
+      instanceIdReviewsTab: "",
       productId: "",
 
       hasHydrated: false, // <- add this
@@ -73,10 +73,73 @@ export const useWidgetStore = create(
       setIsGalleryCollapsed: () =>
         set({ isGalleryCollapsed: !get().isGalleryCollapsed }),
 
-      setInstanceId_Widget: (newId) => {
-        set(() => ({ instanceId_Widget: newId }));
+      setInstanceIdWidget: (newId) => {
+        set(() => ({ instanceIdWidget: newId }));
         if (typeof window !== "undefined") {
-          localStorage.setItem("instanceId_Widget", newId);
+          localStorage.setItem("instanceIdWidget", newId);
+          if (window.yotpo?.initWidgets) {
+            window.yotpo.initWidgets();
+          }
+        }
+      },
+      setInstanceIdQnA: (newId) => {
+        set(() => ({ instanceIdQnA: newId }));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("instanceIdQnA", newId);
+          if (window.yotpo?.initWidgets) {
+            window.yotpo.initWidgets();
+          }
+        }
+      },
+      setInstanceIdSEO: (newId) => {
+        set(() => ({ instanceIdSEO: newId }));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("instanceIdSEO", newId);
+          if (window.yotpo?.initWidgets) {
+            window.yotpo.initWidgets();
+          }
+        }
+      },
+      setInstanceIdCarousel: (newId) => {
+        set(() => ({ instanceIdWidget: newId }));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("instanceIdWidget", newId);
+          if (window.yotpo?.initWidgets) {
+            window.yotpo.initWidgets();
+          }
+        }
+      },
+      setInstanceIdStarRating: (newId) => {
+        set(() => ({ instanceIdStarRating: newId }));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("instanceIdStarRating", newId);
+          if (window.yotpo?.initWidgets) {
+            window.yotpo.initWidgets();
+          }
+        }
+      },
+      setInstanceIdPromotedProd: (newId) => {
+        set(() => ({ instanceIdPromotedProd: newId }));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("instanceIdPromotedProd", newId);
+          if (window.yotpo?.initWidgets) {
+            window.yotpo.initWidgets();
+          }
+        }
+      },
+      setInstanceIdUgcGallery: (newId) => {
+        set(() => ({ instanceIdUgcGallery: newId }));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("instanceIdUgcGallery", newId);
+          if (window.yotpo?.initWidgets) {
+            window.yotpo.initWidgets();
+          }
+        }
+      },
+      setInstanceIdReviewsTab: (newId) => {
+        set(() => ({ instanceIdReviewsTab: newId }));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("instanceIdReviewsTab", newId);
           if (window.yotpo?.initWidgets) {
             window.yotpo.initWidgets();
           }

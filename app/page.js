@@ -2,7 +2,7 @@
 
 import Form from "@/app/_components/Form";
 import Header from "@/app/_components/Header";
-import Widget from "@/app/_components/Widget";
+import ReviewsWidget from "@/app/_components/ReviewsWidget";
 import QA from "@/app/_components/QA";
 import SEO from "@/app/_components/SEO";
 import StarRating from "@/app/_components/StarRating";
@@ -24,7 +24,26 @@ let SnippetClipboardNote =
   "Make sure you replace each data element with the appropriate values of your website and product attributes.";
 
 export default function Home() {
-  // states
+  const productId = useWidgetStore((state) => state.productId);
+
+  // instanceId states
+  const instanceIdWidget = useWidgetStore((state) => state.instanceIdWidget);
+  const {
+    instanceIdQnA,
+    instanceIdSEO,
+    instanceIdCarousel,
+    instanceIdStarRating,
+    instanceIdPromotedProd,
+    instanceIdUgcGallery,
+    instanceIdReviewsTab,
+  } = useWidgetStore();
+
+  // instanceId Setters
+  const setInstanceIdWidget = useWidgetStore(
+    (state) => state.setInstanceIdWidget
+  );
+
+  // form states
   const isReviewsWidgetEnabled = useWidgetStore(
     (state) => state.isReviewsWidgetEnabled
   );
@@ -43,6 +62,53 @@ export default function Home() {
   );
   const isSEOnabled = useWidgetStore((state) => state.isSEOnabled);
   const isGalleryEnabled = useWidgetStore((state) => state.isGalleryEnabled);
+
+  // accordion states
+  const isReviewsWidgetCollapsed = useWidgetStore(
+    (state) => state.isReviewsWidgetCollapsed
+  );
+  const isQAWidgetCollapsed = useWidgetStore(
+    (state) => state.isQAWidgetCollapsed
+  );
+  const isStarRatingWidgetCollapsed = useWidgetStore(
+    (state) => state.isStarRatingWidgetCollapsed
+  );
+  const isReviewsCarouselCollapsed = useWidgetStore(
+    (state) => state.isReviewsCarouselCollapsed
+  );
+  const isReviewsTabCollapsed = useWidgetStore(
+    (state) => state.isReviewsTabCollapsed
+  );
+  const isPromotedProductsCollapsed = useWidgetStore(
+    (state) => state.isPromotedProductsCollapsed
+  );
+  const isSEOCollapsed = useWidgetStore((state) => state.isSEOCollapsed);
+  const isGalleryCollapsed = useWidgetStore(
+    (state) => state.isGalleryCollapsed
+  );
+  // accordion methods
+  const setIsReviewsWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsReviewsWidgetCollapsed
+  );
+  const setIsQAWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsQAWidgetCollapsed
+  );
+  const setIsStarRatingWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsStarRatingWidgetCollapsed
+  );
+  const setIsPromotedProductsCollapsed = useWidgetStore(
+    (state) => state.setIsPromotedProductsCollapsed
+  );
+  const setIsReviewsCarouselCollapsed = useWidgetStore(
+    (state) => state.setIsReviewsCarouselCollapsed
+  );
+  const setisReviewsTabCollapsed = useWidgetStore(
+    (state) => state.setisReviewsTabCollapsed
+  );
+  const setIsSEOCollapsed = useWidgetStore((state) => state.setIsSEOCollapsed);
+  const setIsGalleryCollapsed = useWidgetStore(
+    (state) => state.setIsGalleryCollapsed
+  );
 
   // setter
   const setIsReviewsWidgetEnabled = useWidgetStore(
@@ -68,12 +134,6 @@ export default function Home() {
     (state) => state.setIsGalleryEnabled
   );
 
-  const instanceId_Widget = useWidgetStore((state) => state.instanceId_Widget);
-  const productId = useWidgetStore((state) => state.productId);
-  const setInstanceId_Widget = useWidgetStore(
-    (state) => state.setInstanceId_Widget
-  );
-
   const hasHydrated = useWidgetStore((state) => state.hasHydrated);
   if (!hasHydrated) return null;
   return (
@@ -83,100 +143,87 @@ export default function Home() {
       <Form />
       <div className="max-w-full mx-auto px-4">
         <div className="accordion" id="accordionExample">
-          <Widget
-            id={`widget-${instanceId_Widget}`}
-            instanceid={instanceId_Widget}
-            productid={productId}
-            active={!isReviewsWidgetEnabled}
-            toggle={setIsReviewsWidgetEnabled}
-            heading="Reviews Widget"
-            clipboardheading={ClipBoardHeading}
-            clipboardscript={ScriptClipboard}
-            clipboardscriptnote={ScriptClipboardNote}
-            clipboardsnippet={SnippetClipboard}
-            clipboardsnippetnote={SnippetClipboardNote}
-          />
-          {/* <QA
-            instanceid={InstanceId_QA}
-            productid={ProductId}
-            heading="Q&A"
-            active={!isQAWidgetEnabled}
-            toggle={setIsQAWidgetEnabled}
-            clipboardheading={ClipBoardHeading}
-            clipboardscript={ScriptClipboard}
-            clipboardscriptnote={ScriptClipboardNote}
-            clipboardsnippet={SnippetClipboard}
-            clipboardsnippetnote={SnippetClipboardNote}
-          />
+          {isReviewsWidgetEnabled && (
+            <ReviewsWidget
+              id={`widget-${instanceIdWidget}-${isReviewsWidgetEnabled}`}
+              instanceid={instanceIdWidget}
+              productid={productId}
+              active={!isReviewsWidgetCollapsed}
+              toggle={setIsReviewsWidgetCollapsed}
+              heading="Reviews Widget"
+            />
+          )}
 
-          <StarRating
-            instanceid={InstanceId_StarRating}
-            productid={ProductId}
-            active={!isStarRatingWidgetEnabled}
-            toggle={setIsStarRatingWidgetEnabled}
-            heading="Star Rating"
-            clipboardheading={ClipBoardHeading}
-            clipboardscript={ScriptClipboard}
-            clipboardscriptnote={ScriptClipboardNote}
-            clipboardsnippet={SnippetClipboard}
-            clipboardsnippetnote={SnippetClipboardNote}
-          />
+          {isQAWidgetEnabled && (
+            <QA
+              id={`widget-${instanceIdQnA}-${isQAWidgetEnabled}`}
+              instanceid={instanceIdQnA}
+              productid={productId}
+              heading="Q&A"
+              active={!isQAWidgetCollapsed}
+              toggle={setIsQAWidgetCollapsed}
+            />
+          )}
 
-          <SEO
-            instanceid={InstanceId_SEO}
-            productid={ProductId}
-            active={!isSEOnabled}
-            toggle={setIsSEOnabled}
-            heading="SEO"
-            clipboardheading={ClipBoardHeading}
-            clipboardscript={ScriptClipboard}
-            clipboardscriptnote={ScriptClipboardNote}
-            clipboardsnippet={SnippetClipboard}
-            clipboardsnippetnote={SnippetClipboardNote}
-          />
+          {isStarRatingWidgetEnabled && (
+            <StarRating
+              id={`widget-${instanceIdStarRating}-${isStarRatingWidgetEnabled}`}
+              instanceid={instanceIdStarRating}
+              productid={productId}
+              active={!isStarRatingWidgetCollapsed}
+              toggle={setIsStarRatingWidgetCollapsed}
+              heading="Star Rating"
+            />
+          )}
 
-          <ReviewsCarousel
-            instanceid={InstanceId_Carousel}
-            productid=""
-            heading="Reviews Carousel"
-            active={!isReviewsCarouselEnabled}
-            toggle={setIsReviewsCarouselEnabled}
-            clipboardheading={ClipBoardHeading}
-            clipboardscript={ScriptClipboard}
-            clipboardscriptnote={ScriptClipboardNote}
-            clipboardsnippet={SnippetClipboard}
-            clipboardsnippetnote={SnippetClipboardNote}
-          />
+          {isSEOnabled && (
+            <SEO
+              id={`widget-${instanceIdSEO}-${isSEOnabled}`}
+              instanceid={instanceIdSEO}
+              productid={productId}
+              active={!isSEOCollapsed}
+              toggle={setIsSEOCollapsed}
+              heading="SEO"
+            />
+          )}
 
-          <PromotedProducts
-            instanceid={InstanceId_PromotedProd}
-            productid={ProductId}
-            active={!isPromotedProductsEnabled}
-            heading="Promoted Products"
-            toggle={setIsPromotedProductsEnabled}
-            clipboardheading={ClipBoardHeading}
-            clipboardscript={ScriptClipboard}
-            clipboardscriptnote={ScriptClipboardNote}
-            clipboardsnippet={SnippetClipboard}
-            clipboardsnippetnote={SnippetClipboardNote}
-          />
+          {isReviewsCarouselEnabled && (
+            <ReviewsCarousel
+              id={`widget-${instanceIdCarousel}-${isReviewsCarouselEnabled}`}
+              instanceid={instanceIdCarousel}
+              productid=""
+              active={!isReviewsCarouselCollapsed}
+              toggle={setIsReviewsCarouselCollapsed}
+              heading="Reviews Carousel"
+            />
+          )}
 
-          <UgcGallery
-            instanceid={InstanceId_UgcGallery}
-            productid={ProductId}
-            active="false"
-            heading="UGC Gallery"
-            clipboardheading={ClipBoardHeading}
-            clipboardscript={ScriptClipboard}
-            clipboardscriptnote={ScriptClipboardNote}
-            clipboardsnippet={SnippetClipboard}
-            clipboardsnippetnote={SnippetClipboardNote}
-          />
+          {isPromotedProductsEnabled && (
+            <PromotedProducts
+              instanceid={instanceIdPromotedProd}
+              productid={productId}
+              active={!isPromotedProductsCollapsed}
+              toggle={setIsPromotedProductsCollapsed}
+              heading="Promoted Products"
+            />
+          )}
 
-          <ReviewsTab
-            instanceid={InstanceId_ReviewsTab}
-            productid={ProductId}
-          /> */}
+          {isGalleryEnabled && (
+            <UgcGallery
+              instanceid={instanceIdUgcGallery}
+              productid={productId}
+              active={!isGalleryCollapsed}
+              toggle={setIsGalleryCollapsed}
+              heading="UGC Gallery"
+            />
+          )}
+
+          {isReviewsTabEnabled && (
+            <ReviewsTab
+              instanceid={instanceIdReviewsTab}
+              productid={productId}
+            />
+          )}
         </div>
       </div>
     </>
