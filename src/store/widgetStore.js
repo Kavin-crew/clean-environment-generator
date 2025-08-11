@@ -13,6 +13,8 @@ export const useWidgetStore = create(
       isSEOnabled: false,
       isGalleryEnabled: false,
 
+      appKey: "",
+      language: "en",
       instanceId_Widget: "",
       productId: "",
 
@@ -49,6 +51,19 @@ export const useWidgetStore = create(
         set(() => ({ productId: newId }));
         if (typeof window !== "undefined") {
           localStorage.setItem("productId", newId);
+        }
+      },
+
+      setAppKey: (newAppKey) => {
+        set(() => ({ appKey: newAppKey }));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("appKey", newAppKey);
+        }
+      },
+      setLanguage: (newLanguage) => {
+        set(() => ({ language: newLanguage }));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("language", newLanguage);
         }
       },
     }),

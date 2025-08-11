@@ -1,18 +1,5 @@
 import { create } from "zustand";
 
-// //Instance ID
-// let InstanceId_Widget = "433901";
-// let InstanceId_QA = "555238";
-// let InstanceId_SEO = "622016";
-// let InstanceId_Carousel = "555239";
-// let InstanceId_StarRating = "557423";
-// let InstanceId_PromotedProd = "622001";
-// let InstanceId_UgcGallery = "";
-// let InstanceId_ReviewsTab = "621963";
-
-// //Product ID
-// let ProductId = "";
-
 // Define the widget keys and their initial states
 export const widgetKeys = [
   "isReviewsWidgetEnabled",

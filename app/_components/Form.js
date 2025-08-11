@@ -8,12 +8,18 @@ import Row from "@/app/_components/Row";
 import { useWidgetStore } from "@/src/store/widgetStore";
 
 export default function Form() {
+  // widget variable
+  const appKey = useWidgetStore((state) => state.appKey);
+  const language = useWidgetStore((state) => state.language);
   const instanceId_Widget = useWidgetStore((state) => state.instanceId_Widget);
   const productId = useWidgetStore((state) => state.productId);
 
+  //widget methods
   const setInstanceId_Widget = useWidgetStore(
     (state) => state.setInstanceId_Widget
   );
+  const setAppKey = useWidgetStore((state) => state.setAppKey);
+  const setLanguage = useWidgetStore((state) => state.setLanguage);
 
   // states
   const isReviewsWidgetEnabled = useWidgetStore(
@@ -117,7 +123,15 @@ export default function Form() {
               {/* <!-- Appkey Field --> */}
               <div className="w-full space-y-6">
                 <Label htmlFor="appkey">Appkey</Label>
-                <InputText inputName="appkey" />
+                <input
+                  type="text"
+                  id="appkey"
+                  name="appkey"
+                  value={appKey}
+                  onChange={(e) => setAppKey(e.target.value)}
+                  placeholder="appkey"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
               </div>
 
               <Row>
@@ -193,10 +207,10 @@ export default function Form() {
                   </div>
                   <input
                     type="text"
-                    name={store.instanceId_Widget}
+                    name={instanceId_Widget}
                     placeholder="Instance Id"
                     disabled={!isReviewsWidgetEnabled}
-                    value={store.instanceId_Widget}
+                    value={instanceId_Widget}
                     onChange={(e) => setInstanceId_Widget(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
                   />

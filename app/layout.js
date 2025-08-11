@@ -1,9 +1,7 @@
-import "./globals.css";
-import Script from "next/script";
+"use client";
 
-export const metadata = {
-  title: "Account name - v3 Widgets",
-};
+import YotpoScriptLoader from "./_components/YotpoScriptLoader";
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
@@ -11,10 +9,7 @@ export default function RootLayout({ children }) {
       <body className="bg-stone-100 relative overflow-y-scroll">
         {children}
       </body>
-      <Script
-        src="https://cdn-widgetsrepository.yotpo.com/v1/loader/rj74UZEzEEqYa1gTFXC3BLbr9GzC5SKjKXKupEpg?languageCode=en"
-        async
-      ></Script>
+      <YotpoScriptLoader />
     </html>
   );
 }
