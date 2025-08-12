@@ -1,22 +1,21 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { useWidgetStore } from "@/src/store/widgetStore";
 import Label from "@/app/_components/Label";
 import InputText from "@/app/_components/InputText";
 import InputTextInstanceId from "@/app/_components/InputTextInstanceId";
 import Row from "@/app/_components/Row";
-import { useWidgetStore } from "@/src/store/widgetStore";
+import LanguageSelect from "@/app/_components/LanguageSelect";
+import AppkeyInput from "./inputs/AppkeyInput";
+import Checkbox from "@/app/_components/Checkbox";
+import ReviewsWidgetInput from "@/app/_components/inputs/ReviewsWidgetInput";
+import { handleClientScriptLoad } from "next/script";
+import QnAWidgetInput from "./inputs/QnAWidgetInput";
 
 export default function Form() {
-  const appKey = useWidgetStore((state) => state.appKey);
-  const language = useWidgetStore((state) => state.language);
-
-  const setAppKey = useWidgetStore((state) => state.setAppKey);
-  const setLanguage = useWidgetStore((state) => state.setLanguage);
-
   // instanceId states
-  const instanceIdWidget = useWidgetStore((state) => state.instanceIdWidget);
-  const instanceIdQnA = useWidgetStore((state) => state.instanceIdQnA);
+
   const instanceIdSEO = useWidgetStore((state) => state.instanceIdSEO);
   const instanceIdCarousel = useWidgetStore(
     (state) => state.instanceIdCarousel
@@ -35,15 +34,9 @@ export default function Form() {
   );
 
   // instanceId Setters
-  const setInstanceIdWidget = useWidgetStore(
-    (state) => state.setInstanceIdWidget
-  );
 
   // form states
-  const isReviewsWidgetEnabled = useWidgetStore(
-    (state) => state.isReviewsWidgetEnabled
-  );
-  const isQAWidgetEnabled = useWidgetStore((state) => state.isQAWidgetEnabled);
+
   const isStarRatingWidgetEnabled = useWidgetStore(
     (state) => state.isStarRatingWidgetEnabled
   );
@@ -107,12 +100,7 @@ export default function Form() {
   );
 
   // setter
-  const setIsReviewsWidgetEnabled = useWidgetStore(
-    (state) => state.setIsReviewsWidgetEnabled
-  );
-  const setIsQAWidgetEnabled = useWidgetStore(
-    (state) => state.setIsQAWidgetEnabled
-  );
+
   const setIsStarRatingWidgetEnabled = useWidgetStore(
     (state) => state.setIsStarRatingWidgetEnabled
   );
@@ -129,67 +117,6 @@ export default function Form() {
   const setIsGalleryEnabled = useWidgetStore(
     (state) => state.setIsGalleryEnabled
   );
-  // const {
-  //   // widget feature variable
-  //   language,
-  //   instanceIdWidget,
-  //   instanceIdQnA,
-  //   instanceIdSEO,
-  //   instanceIdCarousel,
-  //   instanceIdStarRating,
-  //   instanceIdPromotedProd,
-  //   instanceIdUgcGallery,
-  //   instanceIdReviewsTab,
-
-  //   isReviewsWidgetEnabled,
-  //   isQAWidgetEnabled,
-  //   isReviewsCarouselEnabled,
-  //   isReviewsTabEnabled,
-  //   isPromotedProductsEnabled,
-  //   isSEOnabled,
-  //   isGalleryEnabled,
-
-  //   // accordion states
-  //   isReviewsWidgetCollapsed,
-  //   isQAWidgetCollapsed,
-  //   isStarRatingWidgetCollapsed,
-  //   isReviewsCarouselCollapsed,
-  //   isReviewsTabCollapsed,
-  //   isPromotedProductsCollapsed,
-  //   isSEOCollapsed,
-  //   isGalleryCollapsed,
-
-  //   // widget instanceId setters
-  //   setLanguage,
-  //   setInstanceIdWidget,
-  //   setInstanceIdQnA,
-  //   setInstanceIdSEO,
-  //   setInstanceIdCarousel,
-  //   setInstanceIdStarRating,
-  //   setInstanceIdPromotedProd,
-  //   setInstanceIdUgcGallery,
-  //   setInstanceIdReviewsTab,
-
-  //   // accordion methods
-  //   setIsReviewsWidgetCollapsed,
-  //   setIsQAWidgetCollapsed,
-  //   setIsStarRatingWidgetCollapsed,
-  //   setIsPromotedProductsCollapsed,
-  //   setIsReviewsCarouselCollapsed,
-  //   setisReviewsTabCollapsed,
-  //   setIsSEOCollapsed,
-  //   setIsGalleryCollapsed,
-
-  //   // widget feature setters
-  //   setIsReviewsWidgetEnabled,
-  //   setIsQAWidgetEnabled,
-  //   setIsStarRatingWidgetEnabled,
-  //   setIsReviewsCarouselEnabled,
-  //   setIsReviewsTabEnabled,
-  //   setIsPromotedProductsEnabled,
-  //   setIsSEOnabled,
-  //   setIsGalleryEnabled,
-  // } = useWidgetStore();
 
   const [isFormVisible, setIsFormVisible] = useState(true);
 
@@ -234,15 +161,7 @@ export default function Form() {
               {/* <!-- Appkey Field --> */}
               <div className="w-full space-y-6">
                 <Label htmlFor="appkey">Appkey</Label>
-                <input
-                  type="text"
-                  id="appkey"
-                  name="appkey"
-                  value={appKey}
-                  onChange={(e) => setAppKey(e.target.value)}
-                  placeholder="appkey"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
+                <AppkeyInput />
               </div>
 
               <Row>
@@ -256,106 +175,16 @@ export default function Form() {
 
                 <div className="w-full space-y-6">
                   <Label htmlFor="language">Language</Label>
-                  <select
-                    id="language"
-                    name="language"
-                    value={language}
-                    onChange={(e) => setLanguage(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    <option value="en">English</option>
-                    <option value="hr">Croatian</option>
-                    <option value="cs">Czech</option>
-                    <option value="zh-CN">Chinese (Simplified)</option>
-                    <option value="zh-TW">Chinese (Traditional)</option>
-                    <option value="da">Danish</option>
-                    <option value="nl">Dutch</option>
-                    <option value="fr">French</option>
-                    <option value="fi">Finnish</option>
-                    <option value="de">German</option>
-                    <option value="el">Greek</option>
-                    <option value="hi">Hindi</option>
-                    <option value="hu">Hu</option>
-                    <option value="id">Indonesian</option>
-                    <option value="it">Italian</option>
-                    <option value="ja">Japanese</option>
-                    <option value="ko">Korean</option>
-                    <option value="lt">Lithuanian</option>
-                    <option value="ms">Malay</option>
-                    <option value="no">Norwegian</option>
-                    <option value="pl">Polish</option>
-                    <option value="pt-BR">Portuguese (Brazil)</option>
-                    <option value="pt-PT">Portuguese (Portugal)</option>
-                    <option value="ro">Romanian</option>
-                    <option value="ru">Russian</option>
-                    <option value="sk">Slovak</option>
-                    <option value="sl">Slovenian</option>
-                    <option value="es">Spanish</option>
-                    <option value="sv">Swedish</option>
-                    <option value="th">Thai</option>
-                    <option value="tr">Turkish</option>
-                    <option value="vi">Vietnamese</option>
-                  </select>
+                  <LanguageSelect />
                 </div>
               </Row>
 
               <Row>
-                <div className="w-full space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <label className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        id="reviews-toggle"
-                        checked={isReviewsWidgetEnabled}
-                        onChange={() =>
-                          handleCheckboxChange(setIsReviewsWidgetEnabled)
-                        }
-                      />
-                      <span className="toggle-slider"></span>
-                    </label>
-                    <Label htmlFor="reviews-toggle">Reviews</Label>
-                  </div>
-                  <input
-                    type="text"
-                    name={instanceIdWidget}
-                    placeholder="Instance Id"
-                    disabled={!isReviewsWidgetEnabled}
-                    value={instanceIdWidget}
-                    onChange={(e) => setInstanceIdWidget(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
-                  />
-                  {/* <InputTextInstanceId
-                    inputName="reviews"
-                    isDisabled={isReviewsWidgetEnabled}
-                    value={instanceIdWidget}
-                    targetedInputRef={(el) =>
-                      (inputRef.current["reviewswidget"] = el)
-                    }
-                    onChange={(e) => setInstanceIdWidget(e.target.value)}
-                  /> */}
-                </div>
+                <ReviewsWidgetInput
+                  handleCheckboxChange={handleCheckboxChange}
+                />
 
-                {/* <div className="w-full space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <label className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        id="qa-toggle"
-                        checked={isQAWidgetEnabled}
-                        onChange={() =>
-                          handleCheckboxChange(setIsQAWidgetEnabled, "qna")
-                        }
-                      />
-                      <span className="toggle-slider"></span>
-                    </label>
-                    <Label htmlFor="qa-toggle">Q&A</Label>
-                  </div>
-                  <InputTextInstanceId
-                    inputName="QnA"
-                    isDisabled={isQAWidgetEnabled}
-                    targetedInputRef={(el) => (inputRef.current["qna"] = el)}
-                  />
-                </div> */}
+                <QnAWidgetInput handleCheckboxChange={handleCheckboxChange} />
               </Row>
 
               {/* <Row>

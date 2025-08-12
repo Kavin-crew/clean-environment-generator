@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Button from "@/app/_components/Button";
-import ClipboardTextarea from "../_components/ClipboardTextarea";
+import ClipboardTextarea from "@/app/_components/ClipboardTextarea";
 
 export default function WidgetClipBoard({ instanceid }) {
   const [value, setValue] = useState(`<div class="yotpo-widget-instance" 

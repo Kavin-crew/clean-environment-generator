@@ -1,84 +1,76 @@
-import QAClipboard from "@/app/_clipboards/QAClip";
-import ScriptClipBoard from "@/app/_clipboards/ScriptClip";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useWidgetStore } from "@/src/store/widgetStore";
+import Caret from "@/app/_components/Caret";
+import Clipboards from "@/app/_components/Clipboards";
 
-export default function QA({
-  heading,
-  instanceid,
-  active,
-  productid,
-  clipboardheading,
-  clipboardscript,
-  clipboardscriptnote,
-  clipboardsnippet,
-  clipboardsnippetnote,
-  toggle,
-}) {
-  if (instanceid === "") {
-    return null;
-  } else {
-    return (
-      <div className="accordion-item">
-        <button
-          onClick={() => toggle((prev) => !prev)}
-          className={`flex justify-between items-center p-4 border-1 w-full  ${
-            !active ? "bg-blue-400 text-white" : "bg-white text-stone-800"
-          }`}
-        >
-          <h2>{heading}</h2>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className={`w-5 h-5 transform transition-transform duration-800 ${
-              active ? "rotate-180" : ""
-            }`}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </button>
-        <div
-          className={`grid grid-cols-1 grid-rows-[0fr_1fr] transition-all duration-800 ease-in-out overflow-hidden border-1  ${
-            active ? "max-h-0" : "max-h-screen"
-          }`}
-        >
-          <div className="accordion-body bg-white">
-            <div
-              className="yotpo-widget-instance"
-              data-yotpo-instance-id={instanceid}
-              data-yotpo-product-id={productid}
-              data-yotpo-name="Product Title"
-              data-yotpo-url="The URL of your product page"
-              data-yotpo-image-url="The product image URL"
-              mode-preview={productid === "" ? "true" : ""}
-              data-yotpo-description="Product Description"
-            ></div>
-          </div>
+export default function QA({ heading }) {
+  const instanceIdQnA = useWidgetStore((state) => state.instanceIdQnA);
+  const productId = useWidgetStore((state) => state.productId);
+  const isQAWidgetCollapsed = useWidgetStore(
+    (state) => state.isQAWidgetCollapsed
+  );
+  const setIsQAWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsQAWidgetCollapsed
+  );
 
-          <div className="cliboard-holder">
-            <h2>
-              {clipboardheading} {heading} to your store
-            </h2>
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-            <div className="clipboard-details">
-              <h3>{clipboardscript}</h3>
-              <p>{clipboardscriptnote}</p>
-              <ScriptClipBoard />
-            </div>
+  // Re-init Yotpo when values change
+  useEffect(() => {
+    if (mounted && window.yotpo) {
+      window.yotpo.initWidgets();
+    }
+  }, [mounted, instanceIdQnA]);
 
-            <div className="clipboard-details">
-              <h3>{clipboardsnippet}</h3>
-              <p>{clipboardsnippetnote}</p>
-              <QAClipboard instanceid={instanceid} />
-            </div>
-          </div>
+  if (!mounted) return null; // No ID, no widget
+
+  return (
+    <div className="accordion-item relative border rounded-md overflow-hidden bg-[#fff]">
+      {/* Accordion Header */}
+      <button
+        onClick={setIsQAWidgetCollapsed}
+        className={`flex justify-between items-center p-4 w-full border-b ${
+          isQAWidgetCollapsed
+            ? "bg-white text-stone-800"
+            : "bg-blue-400 text-white"
+        }`}
+      >
+        <h2>{heading}</h2>
+        <Caret active={isQAWidgetCollapsed} />
+      </button>
+
+      {/* Accordion Content (Always Mounted) */}
+      <motion.div
+        initial={false}
+        animate={{
+          height: isQAWidgetCollapsed ? 0 : "auto",
+          opacity: isQAWidgetCollapsed ? 0 : 1,
+        }}
+        transition={{ duration: 0.3 }}
+        className="overflow-hidden border-t"
+      >
+        <div className="accordion-body bg-white">
+          {/* Yotpo Widget */}
+          <div
+            className="yotpo-widget-instance"
+            data-yotpo-instance-id={instanceIdQnA}
+            data-yotpo-product-id={productId}
+            data-yotpo-name="Product Title"
+            data-yotpo-url="The URL of your product page"
+            data-yotpo-image-url="The product image URL"
+            data-yotpo-price="Product Price"
+            data-yotpo-currency="Product Currency"
+            mode-preview={productId === "" ? "true" : ""}
+            data-yotpo-description="Product Description"
+          ></div>
         </div>
-      </div>
-    );
-  }
+
+        <Clipboards heading={heading} />
+      </motion.div>
+    </div>
+  );
 }

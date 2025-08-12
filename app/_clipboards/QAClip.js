@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
+import Button from "@/app/_components/Button";
+import ClipboardTextarea from "@/app/_components/ClipboardTextarea";
 
-function QAClipBoard({ instanceid }) {
+export default function QAClipBoard({ instanceid }) {
   const [value, setValue] = useState(`
       <div class="yotpo-widget-instance" 
           data-yotpo-instance-id="${instanceid}"
@@ -13,33 +15,20 @@ function QAClipBoard({ instanceid }) {
       `);
   const [isCopied, setCopied] = useState(false);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setCopied(false);
-    }, 3000);
-
-    return () => clearTimeout(timeout);
-  }, [isCopied]);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Copy failed:", err);
+    }
+  };
 
   return (
     <>
-      <textarea
-        disabled
-        contentEditable
-        spellCheck={false}
-        onFocus={(event) => event.target.select()}
-        type="text"
-        value={value}
-        onChange={({ target: { value } }) => {
-          setValue(value);
-          setCopied(false);
-        }}
-      />
-      <button type="button" className="btn btn-primary">
-        {isCopied ? "Copied!" : "Copy Code"}
-      </button>
+      <ClipboardTextarea value={value} setCopied={setCopied} />
+      <Button onClick={copy}>{isCopied ? "Copied!" : "Copy Code"}</Button>
     </>
   );
 }
-
-export default QAClipBoard;

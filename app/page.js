@@ -198,6 +198,7 @@ export default function Home() {
 
           {isPromotedProductsEnabled && (
             <PromotedProducts
+              id={`widget-${instanceIdPromotedProd}-${isPromotedProductsEnabled}`}
               instanceid={instanceIdPromotedProd}
               productid={productId}
               active={!isPromotedProductsCollapsed}
@@ -208,6 +209,7 @@ export default function Home() {
 
           {isGalleryEnabled && (
             <UgcGallery
+              id={`widget-${instanceIdUgcGallery}-${isGalleryEnabled}`}
               instanceid={instanceIdUgcGallery}
               productid={productId}
               active={!isGalleryCollapsed}
