@@ -1,109 +1,91 @@
-import StarRatingClipboard from "@/app/_clipboards/StarRatingClip";
-import ScriptClipBoard from "@/app/_clipboards/ScriptClip";
-import CollectionStarRatingClipboard from "@/app/_clipboards/CollectionStarRatingClip";
+import { motion } from "framer-motion";
+import { useWidgetStore } from "@/src/store/widgetStore";
+import { useEffect, useState } from "react";
+import Caret from "@/app/_components/Caret";
+import Clipboards from "@/app/_components/Clipboards";
 
-function StarRating({
-  heading,
-  instanceid,
-  active,
-  productid,
-  clipboardheading,
-  clipboardscript,
-  clipboardscriptnote,
-  clipboardsnippet,
-  clipboardsnippetnote,
-  toggle,
-}) {
-  if (instanceid === "") {
-    return null;
-  } else {
-    return (
-      <div className="accordion-item">
-        <button
-          onClick={() => toggle((prev) => !prev)}
-          className={`flex justify-between items-center p-4 border-1 w-full  ${
-            !active ? "bg-blue-400 text-white" : "bg-white text-stone-800"
-          }`}
-        >
-          <h2>{heading}</h2>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className={`w-5 h-5 transform transition-transform duration-800 ${
-              active ? "rotate-180" : ""
-            }`}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </button>
+export default function StarRating({ heading }) {
+  const instanceIdStarRating = useWidgetStore(
+    (state) => state.instanceIdStarRating
+  );
+  const productId = useWidgetStore((state) => state.productId);
+  const setIsStarRatingWidgetCollapsed = useWidgetStore(
+    (state) => state.setIsStarRatingWidgetCollapsed
+  );
+  const setInstanceIdStarRating = useWidgetStore(
+    (state) => state.setInstanceIdStarRating
+  );
+  const isStarRatingWidgetCollapsed = useWidgetStore(
+    (state) => state.isStarRatingWidgetCollapsed
+  );
 
-        <div
-          className={`grid grid-cols-1 grid-rows-[0fr_1fr] transition-all duration-800 ease-in-out overflow-hidden border-1  ${
-            active ? "max-h-0" : "max-h-screen"
-          }`}
-        >
-          <div className="accordion-body bg-white">
-            <div className="rating-holder">
-              <section>
-                <h1>Product Star Rating</h1>
-                <div
-                  className="yotpo-widget-instance"
-                  data-yotpo-instance-id={instanceid}
-                  data-yotpo-product-id={productid}
-                  data-yotpo-section-id="product"
-                  mode-preview={productid === "" ? "true" : ""}
-                ></div>
-              </section>
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-              <section>
-                <h1>Collections Star Rating</h1>
-                <div
-                  className="yotpo-widget-instance"
-                  data-yotpo-instance-id={instanceid}
-                  data-yotpo-product-id={productid}
-                  data-yotpo-section-id="collection"
-                  mode-preview={productid === "" ? "true" : ""}
-                ></div>
-              </section>
-            </div>
-          </div>
+  // Re-init Yotpo when values change
+  useEffect(() => {
+    if (mounted && window.yotpo) {
+      window.yotpo.initWidgets();
+    }
+  }, [mounted, instanceIdStarRating]);
 
-          <div className="cliboard-holder">
-            <h2>
-              {clipboardheading} {heading} Widget to your store
-            </h2>
+  if (!mounted) return null; // No ID, no widget
+  return (
+    <div className="accordion-item relative border rounded-md overflow-hidden bg-[#fff]">
+      {/* Accordion Header */}
+      <button
+        onClick={setIsStarRatingWidgetCollapsed}
+        className={`flex justify-between items-center p-4 w-full border-b ${
+          isStarRatingWidgetCollapsed
+            ? "bg-white text-stone-800"
+            : "bg-blue-400 text-white"
+        }`}
+      >
+        <h2>{heading}</h2>
+        <Caret active={isStarRatingWidgetCollapsed} />
+      </button>
 
-            <div className="clipboard-details">
-              <h3>{clipboardscript}</h3>
-              <p>{clipboardscriptnote}</p>
-              <ScriptClipBoard />
-            </div>
+      {/* Accordion Content (Always Mounted) */}
+      <motion.div
+        initial={false}
+        animate={{
+          height: isStarRatingWidgetCollapsed ? 0 : "auto",
+          opacity: isStarRatingWidgetCollapsed ? 0 : 1,
+        }}
+        transition={{ duration: 0.3 }}
+        className="overflow-hidden border-t"
+      >
+        <div className="accordion-body bg-white">
+          {/* Yotpo Widget */}
+          <div className="rating-holder">
+            <section>
+              <h1>Product Star Rating</h1>
+              <div
+                className="yotpo-widget-instance"
+                data-yotpo-instance-id={instanceIdStarRating}
+                data-yotpo-product-id={productId}
+                data-yotpo-section-id="product"
+                mode-preview={productId === "" ? "true" : ""}
+              ></div>
+            </section>
 
-            <div className="clipboard-details">
-              <h3>{clipboardsnippet}</h3>
-              <p>{clipboardsnippetnote}</p>
-              <StarRatingClipboard instanceid={instanceid} />
-            </div>
-
-            <div className="clipboard-details">
-              <h3>
-                3. Add the following code snippet to your collection page.
-              </h3>
-              <p>{clipboardsnippetnote}</p>
-              <CollectionStarRatingClipboard instanceid={instanceid} />
-            </div>
+            <section>
+              <h1>Collections Star Rating</h1>
+              <div
+                className="yotpo-widget-instance"
+                data-yotpo-instance-id={instanceIdStarRating}
+                data-yotpo-product-id={productId}
+                data-yotpo-section-id="collection"
+                mode-preview={productId === "" ? "true" : ""}
+              ></div>
+            </section>
           </div>
         </div>
-      </div>
-    );
-  }
-}
 
-export default StarRating;
+        <Clipboards heading={heading} />
+      </motion.div>
+    </div>
+  );
+}

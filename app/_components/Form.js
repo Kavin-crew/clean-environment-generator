@@ -8,10 +8,11 @@ import InputTextInstanceId from "@/app/_components/InputTextInstanceId";
 import Row from "@/app/_components/Row";
 import LanguageSelect from "@/app/_components/LanguageSelect";
 import AppkeyInput from "./inputs/AppkeyInput";
-import Checkbox from "@/app/_components/Checkbox";
 import ReviewsWidgetInput from "@/app/_components/inputs/ReviewsWidgetInput";
 import { handleClientScriptLoad } from "next/script";
 import QnAWidgetInput from "./inputs/QnAWidgetInput";
+import StarRating from "./StarRating";
+import StarRatingsInput from "./inputs/StarRatingsInput";
 
 export default function Form() {
   // instanceId states
@@ -20,9 +21,7 @@ export default function Form() {
   const instanceIdCarousel = useWidgetStore(
     (state) => state.instanceIdCarousel
   );
-  const instanceIdStarRating = useWidgetStore(
-    (state) => state.instanceIdStarRating
-  );
+
   const instanceIdPromotedProd = useWidgetStore(
     (state) => state.instanceIdPromotedProd
   );
@@ -37,9 +36,6 @@ export default function Form() {
 
   // form states
 
-  const isStarRatingWidgetEnabled = useWidgetStore(
-    (state) => state.isStarRatingWidgetEnabled
-  );
   const isReviewsCarouselEnabled = useWidgetStore(
     (state) => state.isReviewsCarouselEnabled
   );
@@ -53,15 +49,7 @@ export default function Form() {
   const isGalleryEnabled = useWidgetStore((state) => state.isGalleryEnabled);
 
   // accordion states
-  const isReviewsWidgetCollapsed = useWidgetStore(
-    (state) => state.isReviewsWidgetCollapsed
-  );
-  const isQAWidgetCollapsed = useWidgetStore(
-    (state) => state.isQAWidgetCollapsed
-  );
-  const isStarRatingWidgetCollapsed = useWidgetStore(
-    (state) => state.isStarRatingWidgetCollapsed
-  );
+
   const isReviewsCarouselCollapsed = useWidgetStore(
     (state) => state.isReviewsCarouselCollapsed
   );
@@ -76,15 +64,7 @@ export default function Form() {
     (state) => state.isGalleryCollapsed
   );
   // accordion methods
-  const setIsReviewsWidgetCollapsed = useWidgetStore(
-    (state) => state.setIsReviewsWidgetCollapsed
-  );
-  const setIsQAWidgetCollapsed = useWidgetStore(
-    (state) => state.setIsQAWidgetCollapsed
-  );
-  const setIsStarRatingWidgetCollapsed = useWidgetStore(
-    (state) => state.setIsStarRatingWidgetCollapsed
-  );
+
   const setIsPromotedProductsCollapsed = useWidgetStore(
     (state) => state.setIsPromotedProductsCollapsed
   );
@@ -101,9 +81,6 @@ export default function Form() {
 
   // setter
 
-  const setIsStarRatingWidgetEnabled = useWidgetStore(
-    (state) => state.setIsStarRatingWidgetEnabled
-  );
   const setIsReviewsCarouselEnabled = useWidgetStore(
     (state) => state.setIsReviewsCarouselEnabled
   );
@@ -187,35 +164,10 @@ export default function Form() {
                 <QnAWidgetInput handleCheckboxChange={handleCheckboxChange} />
               </Row>
 
-              {/* <Row>
-                <div className="w-full space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <label className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        id="star-ratings-toggle"
-                        checked={isStarRatingWidgetEnabled}
-                        onChange={() =>
-                          handleCheckboxChange(
-                            setIsStarRatingWidgetEnabled,
-                            "starratings"
-                          )
-                        }
-                      />
-                      <span className="toggle-slider"></span>
-                    </label>
-                    <Label htmlFor="star-ratings-toggle">Star Ratings</Label>
-                  </div>
-                  <InputTextInstanceId
-                    inputName="starRatings"
-                    isDisabled={isStarRatingWidgetEnabled}
-                    targetedInputRef={(el) =>
-                      (inputRef.current["starratings"] = el)
-                    }
-                  />
-                </div>
+              <Row>
+                <StarRatingsInput handleCheckboxChange={handleCheckboxChange} />
 
-                <div className="w-full space-y-2">
+                {/* <div className="w-full space-y-2">
                   <div className="flex items-center space-x-2">
                     <label className="toggle-switch">
                       <input
@@ -242,11 +194,11 @@ export default function Form() {
                       (inputRef.current["reviewscarousel"] = el)
                     }
                   />
-                </div>
+                </div> */}
               </Row>
 
               <Row>
-                <div className="w-full space-y-2">
+                {/* <div className="w-full space-y-2">
                   <div className="flex items-center space-x-2">
                     <label className="toggle-switch">
                       <input
@@ -271,9 +223,9 @@ export default function Form() {
                       (inputRef.current["reviewstab"] = el)
                     }
                   />
-                </div>
+                </div> */}
 
-                <div className="w-full space-y-2">
+                {/* <div className="w-full space-y-2">
                   <div className="flex items-center space-x-2">
                     <label className="toggle-switch">
                       <input
@@ -300,10 +252,10 @@ export default function Form() {
                       (inputRef.current["promotedproducts"] = el)
                     }
                   />
-                </div>
+                </div> */}
               </Row>
               <Row>
-                <div className="w-full space-y-2">
+                {/* <div className="w-full space-y-2">
                   <div className="flex items-center space-x-2">
                     <label className="toggle-switch">
                       <input
@@ -324,9 +276,9 @@ export default function Form() {
                     isDisabled={isSEOnabled}
                     targetedInputRef={(el) => (inputRef.current["seo"] = el)}
                   />
-                </div>
+                </div> */}
 
-                <div className="w-full space-y-2">
+                {/* <div className="w-full space-y-2">
                   <div className="flex items-center space-x-2">
                     <label className="toggle-switch">
                       <input
@@ -349,8 +301,8 @@ export default function Form() {
                       (inputRef.current["gallery"] = el)
                     }
                   />
-                </div>
-              </Row> */}
+                </div> */}
+              </Row>
 
               {/* <!-- Generate Button --> */}
               <div className="">
