@@ -9,10 +9,10 @@ import Row from "@/app/_components/Row";
 import LanguageSelect from "@/app/_components/LanguageSelect";
 import AppkeyInput from "./inputs/AppkeyInput";
 import ReviewsWidgetInput from "@/app/_components/inputs/ReviewsWidgetInput";
-import { handleClientScriptLoad } from "next/script";
-import QnAWidgetInput from "./inputs/QnAWidgetInput";
-import StarRating from "./StarRating";
-import StarRatingsInput from "./inputs/StarRatingsInput";
+import QnAWidgetInput from "@/app/_components/inputs/QnAWidgetInput";
+import StarRating from "@/app/_components/StarRating";
+import StarRatingsInput from "@/app/_components/inputs/StarRatingsInput";
+import ReviewsCarouselInput from "@/app/_components/inputs/ReviewsCarouselInput";
 
 export default function Form() {
   // instanceId states
@@ -167,6 +167,9 @@ export default function Form() {
               <Row>
                 <StarRatingsInput handleCheckboxChange={handleCheckboxChange} />
 
+                <ReviewsCarouselInput
+                  handleCheckboxChange={handleCheckboxChange}
+                />
                 {/* <div className="w-full space-y-2">
                   <div className="flex items-center space-x-2">
                     <label className="toggle-switch">

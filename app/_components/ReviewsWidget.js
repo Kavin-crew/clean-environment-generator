@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { useWidgetStore } from "@/src/store/widgetStore";
 import { useEffect, useState } from "react";

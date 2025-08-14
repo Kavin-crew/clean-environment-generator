@@ -9,6 +9,10 @@ export default function Clipboards({ heading }) {
   const instanceIdStarRating = useWidgetStore(
     (state) => state.instanceIdStarRating
   );
+  const instanceIdCarousel = useWidgetStore(
+    (state) => state.instanceIdCarousel
+  );
+
   return (
     <div className="cliboard-holder p-4 space-y-4 flex flex-wrap justify-center border-2 border-dashed border-[#04194c] mx-[clamp(10px,4vw,50px)] my-[clamp(10px,4vw,50px)] pt-[30px] px-[20px] pb-[20px] bg-[#f6f6ff]">
       <h2>{`Follow these steps to add this ${heading} to your store`}</h2>
@@ -34,6 +38,9 @@ export default function Clipboards({ heading }) {
         {heading === "Q&A" && <WidgetClipBoard instanceid={instanceIdQnA} />}
         {heading === "Star Rating" && (
           <WidgetClipBoard instanceid={instanceIdStarRating} />
+        )}
+        {heading === "Reviews Carousel" && (
+          <WidgetClipBoard instanceid={instanceIdCarousel} />
         )}
       </div>
 

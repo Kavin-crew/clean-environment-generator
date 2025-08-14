@@ -101,9 +101,9 @@ export const useWidgetStore = create(
         }
       },
       setInstanceIdCarousel: (newId) => {
-        set(() => ({ instanceIdWidget: newId }));
+        set(() => ({ instanceIdCarousel: newId }));
         if (typeof window !== "undefined") {
-          localStorage.setItem("instanceIdWidget", newId);
+          localStorage.setItem("instanceIdCarousel", newId);
           if (window.yotpo?.initWidgets) {
             window.yotpo.initWidgets();
           }

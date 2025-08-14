@@ -144,10 +144,6 @@ export default function Home() {
           {isReviewsWidgetEnabled && (
             <ReviewsWidget
               id={`widget-${instanceIdWidget}-${isReviewsWidgetEnabled}`}
-              instanceid={instanceIdWidget}
-              productid={productId}
-              active={!isReviewsWidgetCollapsed}
-              toggle={setIsReviewsWidgetCollapsed}
               heading="Reviews Widget"
             />
           )}
@@ -155,43 +151,24 @@ export default function Home() {
           {isQAWidgetEnabled && (
             <QA
               id={`widget-${instanceIdQnA}-${isQAWidgetEnabled}`}
-              instanceid={instanceIdQnA}
-              productid={productId}
               heading="Q&A"
-              active={!isQAWidgetCollapsed}
-              toggle={setIsQAWidgetCollapsed}
             />
           )}
 
           {isStarRatingWidgetEnabled && (
             <StarRating
               id={`widget-${instanceIdStarRating}-${isStarRatingWidgetEnabled}`}
-              instanceid={instanceIdStarRating}
-              productid={productId}
-              active={!isStarRatingWidgetCollapsed}
-              toggle={setIsStarRatingWidgetCollapsed}
               heading="Star Rating"
             />
           )}
 
           {isSEOnabled && (
-            <SEO
-              id={`widget-${instanceIdSEO}-${isSEOnabled}`}
-              instanceid={instanceIdSEO}
-              productid={productId}
-              active={!isSEOCollapsed}
-              toggle={setIsSEOCollapsed}
-              heading="SEO"
-            />
+            <SEO id={`widget-${instanceIdSEO}-${isSEOnabled}`} heading="SEO" />
           )}
 
           {isReviewsCarouselEnabled && (
             <ReviewsCarousel
               id={`widget-${instanceIdCarousel}-${isReviewsCarouselEnabled}`}
-              instanceid={instanceIdCarousel}
-              productid=""
-              active={!isReviewsCarouselCollapsed}
-              toggle={setIsReviewsCarouselCollapsed}
               heading="Reviews Carousel"
             />
           )}
@@ -199,10 +176,6 @@ export default function Home() {
           {isPromotedProductsEnabled && (
             <PromotedProducts
               id={`widget-${instanceIdPromotedProd}-${isPromotedProductsEnabled}`}
-              instanceid={instanceIdPromotedProd}
-              productid={productId}
-              active={!isPromotedProductsCollapsed}
-              toggle={setIsPromotedProductsCollapsed}
               heading="Promoted Products"
             />
           )}
@@ -210,20 +183,11 @@ export default function Home() {
           {isGalleryEnabled && (
             <UgcGallery
               id={`widget-${instanceIdUgcGallery}-${isGalleryEnabled}`}
-              instanceid={instanceIdUgcGallery}
-              productid={productId}
-              active={!isGalleryCollapsed}
-              toggle={setIsGalleryCollapsed}
               heading="UGC Gallery"
             />
           )}
 
-          {isReviewsTabEnabled && (
-            <ReviewsTab
-              instanceid={instanceIdReviewsTab}
-              productid={productId}
-            />
-          )}
+          {isReviewsTabEnabled && <ReviewsTab />}
         </div>
       </div>
     </>
