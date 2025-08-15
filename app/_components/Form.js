@@ -8,93 +8,17 @@ import InputTextInstanceId from "@/app/_components/InputTextInstanceId";
 import Row from "@/app/_components/Row";
 import LanguageSelect from "@/app/_components/LanguageSelect";
 import AppkeyInput from "./inputs/AppkeyInput";
+
 import ReviewsWidgetInput from "@/app/_components/inputs/ReviewsWidgetInput";
 import QnAWidgetInput from "@/app/_components/inputs/QnAWidgetInput";
-import StarRating from "@/app/_components/StarRating";
 import StarRatingsInput from "@/app/_components/inputs/StarRatingsInput";
 import ReviewsCarouselInput from "@/app/_components/inputs/ReviewsCarouselInput";
+import ReviewsTabInput from "@/app/_components/inputs/ReviewsTabInput";
+import PromotedProdInput from "@/app/_components/inputs/PromotedProdInput";
+import SEOInput from "@/app/_components/inputs/SEOInput";
+import UgcGalleryInput from "@/app/_components/inputs/UgcGalleryInput";
 
 export default function Form() {
-  // instanceId states
-
-  const instanceIdSEO = useWidgetStore((state) => state.instanceIdSEO);
-  const instanceIdCarousel = useWidgetStore(
-    (state) => state.instanceIdCarousel
-  );
-
-  const instanceIdPromotedProd = useWidgetStore(
-    (state) => state.instanceIdPromotedProd
-  );
-  const instanceIdUgcGallery = useWidgetStore(
-    (state) => state.instanceIdUgcGallery
-  );
-  const instanceIdReviewsTab = useWidgetStore(
-    (state) => state.instanceIdReviewsTab
-  );
-
-  // instanceId Setters
-
-  // form states
-
-  const isReviewsCarouselEnabled = useWidgetStore(
-    (state) => state.isReviewsCarouselEnabled
-  );
-  const isReviewsTabEnabled = useWidgetStore(
-    (state) => state.isReviewsTabEnabled
-  );
-  const isPromotedProductsEnabled = useWidgetStore(
-    (state) => state.isPromotedProductsEnabled
-  );
-  const isSEOnabled = useWidgetStore((state) => state.isSEOnabled);
-  const isGalleryEnabled = useWidgetStore((state) => state.isGalleryEnabled);
-
-  // accordion states
-
-  const isReviewsCarouselCollapsed = useWidgetStore(
-    (state) => state.isReviewsCarouselCollapsed
-  );
-  const isReviewsTabCollapsed = useWidgetStore(
-    (state) => state.isReviewsTabCollapsed
-  );
-  const isPromotedProductsCollapsed = useWidgetStore(
-    (state) => state.isPromotedProductsCollapsed
-  );
-  const isSEOCollapsed = useWidgetStore((state) => state.isSEOCollapsed);
-  const isGalleryCollapsed = useWidgetStore(
-    (state) => state.isGalleryCollapsed
-  );
-  // accordion methods
-
-  const setIsPromotedProductsCollapsed = useWidgetStore(
-    (state) => state.setIsPromotedProductsCollapsed
-  );
-  const setIsReviewsCarouselCollapsed = useWidgetStore(
-    (state) => state.setIsReviewsCarouselCollapsed
-  );
-  const setisReviewsTabCollapsed = useWidgetStore(
-    (state) => state.setisReviewsTabCollapsed
-  );
-  const setIsSEOCollapsed = useWidgetStore((state) => state.setIsSEOCollapsed);
-  const setIsGalleryCollapsed = useWidgetStore(
-    (state) => state.setIsGalleryCollapsed
-  );
-
-  // setter
-
-  const setIsReviewsCarouselEnabled = useWidgetStore(
-    (state) => state.setIsReviewsCarouselEnabled
-  );
-  const setIsReviewsTabEnabled = useWidgetStore(
-    (state) => state.setIsReviewsTabEnabled
-  );
-  const setIsPromotedProductsEnabled = useWidgetStore(
-    (state) => state.setIsPromotedProductsEnabled
-  );
-  const setIsSEOnabled = useWidgetStore((state) => state.setIsSEOnabled);
-  const setIsGalleryEnabled = useWidgetStore(
-    (state) => state.setIsGalleryEnabled
-  );
-
   const [isFormVisible, setIsFormVisible] = useState(true);
 
   // Reference for the input field to clear its value when the checkbox is unchecked
@@ -170,141 +94,19 @@ export default function Form() {
                 <ReviewsCarouselInput
                   handleCheckboxChange={handleCheckboxChange}
                 />
-                {/* <div className="w-full space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <label className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        id="reviews-carousel-toggle"
-                        checked={isReviewsCarouselEnabled}
-                        onChange={() =>
-                          handleCheckboxChange(
-                            setIsReviewsCarouselEnabled,
-                            "reviewscarousel"
-                          )
-                        }
-                      />
-                      <span className="toggle-slider"></span>
-                    </label>
-                    <Label htmlFor="reviews-carousel-toggle">
-                      Reviews Carousel
-                    </Label>
-                  </div>
-                  <InputTextInstanceId
-                    inputName="reviewsCarousel"
-                    isDisabled={isReviewsCarouselEnabled}
-                    targetedInputRef={(el) =>
-                      (inputRef.current["reviewscarousel"] = el)
-                    }
-                  />
-                </div> */}
               </Row>
 
               <Row>
-                {/* <div className="w-full space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <label className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        id="reviews-tab-toggle"
-                        checked={isReviewsTabEnabled}
-                        onChange={() =>
-                          handleCheckboxChange(
-                            setIsReviewsTabEnabled,
-                            "reviewstab"
-                          )
-                        }
-                      />
-                      <span className="toggle-slider"></span>
-                    </label>
-                    <Label htmlFor="reviews-tab-toggle">Reviews Tab</Label>
-                  </div>
-                  <InputTextInstanceId
-                    inputName="reviewsTab"
-                    isDisabled={isReviewsTabEnabled}
-                    targetedInputRef={(el) =>
-                      (inputRef.current["reviewstab"] = el)
-                    }
-                  />
-                </div> */}
+                <ReviewsTabInput handleCheckboxChange={handleCheckboxChange} />
 
-                {/* <div className="w-full space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <label className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        id="promoted-products-toggle"
-                        checked={isPromotedProductsEnabled}
-                        onChange={() =>
-                          handleCheckboxChange(
-                            setIsPromotedProductsEnabled,
-                            "promotedproducts"
-                          )
-                        }
-                      />
-                      <span className="toggle-slider"></span>
-                    </label>
-                    <Label htmlFor="promoted-products-toggle">
-                      Promoted Products
-                    </Label>
-                  </div>
-                  <InputTextInstanceId
-                    inputName="promotedProducts"
-                    isDisabled={isPromotedProductsEnabled}
-                    targetedInputRef={(el) =>
-                      (inputRef.current["promotedproducts"] = el)
-                    }
-                  />
-                </div> */}
+                <PromotedProdInput
+                  handleCheckboxChange={handleCheckboxChange}
+                />
               </Row>
               <Row>
-                {/* <div className="w-full space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <label className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        id="seo-toggle"
-                        checked={isSEOnabled}
-                        onChange={() =>
-                          handleCheckboxChange(setIsSEOnabled, "seo")
-                        }
-                      />
-                      <span className="toggle-slider"></span>
-                    </label>
-                    <Label htmlFor="seo-toggle">SEO</Label>
-                  </div>
+                <SEOInput handleCheckboxChange={handleCheckboxChange} />
 
-                  <InputTextInstanceId
-                    inputName="seo"
-                    isDisabled={isSEOnabled}
-                    targetedInputRef={(el) => (inputRef.current["seo"] = el)}
-                  />
-                </div> */}
-
-                {/* <div className="w-full space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <label className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        id="gallery-toggle"
-                        checked={isGalleryEnabled}
-                        onChange={() =>
-                          handleCheckboxChange(setIsGalleryEnabled, "gallery")
-                        }
-                      />
-                      <span className="toggle-slider"></span>
-                    </label>
-                    <Label htmlFor="gallery-toggle">Gallery</Label>
-                  </div>
-
-                  <InputTextInstanceId
-                    inputName="gallery"
-                    isDisabled={isGalleryEnabled}
-                    targetedInputRef={(el) =>
-                      (inputRef.current["gallery"] = el)
-                    }
-                  />
-                </div> */}
+                <UgcGalleryInput handleCheckboxChange={handleCheckboxChange} />
               </Row>
 
               {/* <!-- Generate Button --> */}

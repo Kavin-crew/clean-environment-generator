@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { useWidgetStore } from "@/src/store/widgetStore";
 import { useEffect, useState } from "react";
 import Caret from "@/app/_components/Caret";
-import Clipboards from "@/app/_components/Clipboards";
+import Clipboards from "@/app/_components/clipboards/Clipboards";
 
 export default function ReviewsWidget({ heading }) {
   // states
-  const instanceIdWidget = useWidgetStore((state) => state.instanceIdWidget);
   const productId = useWidgetStore((state) => state.productId);
+  const instanceIdWidget = useWidgetStore((state) => state.instanceIdWidget);
   const isReviewsWidgetCollapsed = useWidgetStore(
     (state) => state.isReviewsWidgetCollapsed
   );

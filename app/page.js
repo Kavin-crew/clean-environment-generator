@@ -1,16 +1,16 @@
 "use client";
 
+import { useWidgetStore } from "@/src/store/widgetStore";
 import Form from "@/app/_components/Form";
 import Header from "@/app/_components/Header";
-import ReviewsWidget from "@/app/_components/ReviewsWidget";
-import QA from "@/app/_components/QA";
-import SEO from "@/app/_components/SEO";
-import StarRating from "@/app/_components/StarRating";
-import PromotedProducts from "@/app/_components/PromotedProducts";
-import ReviewsCarousel from "@/app/_components/ReviewsCarousel";
-import UgcGallery from "@/app/_components/UgcGallery";
-import ReviewsTab from "@/app/_components/ReviewsTab";
-import { useWidgetStore } from "@/src/store/widgetStore";
+import ReviewsWidget from "@/app/_components/widgets/ReviewsWidget";
+import QA from "@/app/_components/widgets/QA";
+import SEO from "@/app/_components/widgets/SEO";
+import StarRating from "@/app/_components/widgets/StarRating";
+import PromotedProducts from "@/app/_components/widgets/PromotedProducts";
+import ReviewsCarousel from "@/app/_components/widgets/ReviewsCarousel";
+import UgcGallery from "@/app/_components/widgets/UgcGallery";
+import ReviewsTab from "@/app/_components/widgets/ReviewsTab";
 import DebugWidgetStore from "@/src/store/debugWidgetStore";
 
 export default function Home() {

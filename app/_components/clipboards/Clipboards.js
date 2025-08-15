@@ -12,6 +12,12 @@ export default function Clipboards({ heading }) {
   const instanceIdCarousel = useWidgetStore(
     (state) => state.instanceIdCarousel
   );
+  const instanceIdPromotedProd = useWidgetStore(
+    (state) => state.instanceIdPromotedProd
+  );
+  const instanceIdUgcGallery = useWidgetStore(
+    (state) => state.instanceIdUgcGallery
+  );
 
   return (
     <div className="cliboard-holder p-4 space-y-4 flex flex-wrap justify-center border-2 border-dashed border-[#04194c] mx-[clamp(10px,4vw,50px)] my-[clamp(10px,4vw,50px)] pt-[30px] px-[20px] pb-[20px] bg-[#f6f6ff]">
@@ -41,6 +47,12 @@ export default function Clipboards({ heading }) {
         )}
         {heading === "Reviews Carousel" && (
           <WidgetClipBoard instanceid={instanceIdCarousel} />
+        )}
+        {heading === "Promoted Products" && (
+          <WidgetClipBoard instanceid={instanceIdPromotedProd} />
+        )}
+        {heading === "UGC Gallery" && (
+          <WidgetClipBoard instanceid={instanceIdUgcGallery} />
         )}
       </div>
 

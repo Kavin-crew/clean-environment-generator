@@ -1,19 +1,20 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import { useWidgetStore } from "@/src/store/widgetStore";
+import { useEffect, useState } from "react";
 import Caret from "@/app/_components/Caret";
-import Clipboards from "@/app/_components/Clipboards";
+import Clipboards from "@/app/_components/clipboards/Clipboards";
 
-export default function QA({ heading }) {
-  const instanceIdQnA = useWidgetStore((state) => state.instanceIdQnA);
+export default function UgcGallery({ heading }) {
   const productId = useWidgetStore((state) => state.productId);
-  const isQAWidgetCollapsed = useWidgetStore(
-    (state) => state.isQAWidgetCollapsed
+  const instanceIdUgcGallery = useWidgetStore(
+    (state) => state.instanceIdUgcGallery
   );
-  const setIsQAWidgetCollapsed = useWidgetStore(
-    (state) => state.setIsQAWidgetCollapsed
+  const isGalleryCollapsed = useWidgetStore(
+    (state) => state.isGalleryCollapsed
   );
-
+  const setIsGalleryCollapsed = useWidgetStore(
+    (state) => state.setIsGalleryCollapsed
+  );
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -24,7 +25,7 @@ export default function QA({ heading }) {
     if (mounted && window.yotpo) {
       window.yotpo.initWidgets();
     }
-  }, [mounted, instanceIdQnA]);
+  }, [mounted, instanceIdUgcGallery]);
 
   if (!mounted) return null; // No ID, no widget
 
@@ -32,23 +33,23 @@ export default function QA({ heading }) {
     <div className="accordion-item relative border rounded-md overflow-hidden bg-[#fff]">
       {/* Accordion Header */}
       <button
-        onClick={setIsQAWidgetCollapsed}
+        onClick={setIsGalleryCollapsed}
         className={`flex justify-between items-center p-4 w-full border-b ${
-          isQAWidgetCollapsed
+          isGalleryCollapsed
             ? "bg-white text-stone-800"
             : "bg-blue-400 text-white"
         }`}
       >
         <h2>{heading}</h2>
-        <Caret active={isQAWidgetCollapsed} />
+        <Caret active={isGalleryCollapsed} />
       </button>
 
       {/* Accordion Content (Always Mounted) */}
       <motion.div
         initial={false}
         animate={{
-          height: isQAWidgetCollapsed ? 0 : "auto",
-          opacity: isQAWidgetCollapsed ? 0 : 1,
+          height: isGalleryCollapsed ? 0 : "auto",
+          opacity: isGalleryCollapsed ? 0 : 1,
         }}
         transition={{ duration: 0.3 }}
         className="overflow-hidden border-t"
@@ -57,7 +58,7 @@ export default function QA({ heading }) {
           {/* Yotpo Widget */}
           <div
             className="yotpo-widget-instance"
-            data-yotpo-instance-id={instanceIdQnA}
+            data-yotpo-instance-id={instanceIdUgcGallery}
             data-yotpo-product-id={productId}
             data-yotpo-name="Product Title"
             data-yotpo-url="The URL of your product page"
