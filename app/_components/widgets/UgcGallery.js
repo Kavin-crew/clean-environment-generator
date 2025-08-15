@@ -6,6 +6,7 @@ import Clipboards from "@/app/_components/clipboards/Clipboards";
 
 export default function UgcGallery({ heading }) {
   const productId = useWidgetStore((state) => state.productId);
+  const appKey = useWidgetStore((state) => state.appKey);
   const instanceIdUgcGallery = useWidgetStore(
     (state) => state.instanceIdUgcGallery
   );
@@ -70,7 +71,7 @@ export default function UgcGallery({ heading }) {
           ></div>
         </div>
 
-        <Clipboards heading={heading} />
+        {appKey && instanceIdUgcGallery && <Clipboards heading={heading} />}
       </motion.div>
     </div>
   );

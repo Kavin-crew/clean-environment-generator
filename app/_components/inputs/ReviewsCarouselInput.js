@@ -20,7 +20,7 @@ export default function ReviewsCarouselInput({ handleCheckboxChange }) {
         <label className="toggle-switch">
           <input
             type="checkbox"
-            id="reviews-toggle"
+            id="reviews-toggle-reviews-carousel-checkbox"
             checked={isReviewsCarouselEnabled}
             onChange={() => {
               handleCheckboxChange(setIsReviewsCarouselEnabled);
@@ -29,10 +29,13 @@ export default function ReviewsCarouselInput({ handleCheckboxChange }) {
           />
           <span className="toggle-slider"></span>
         </label>
-        <Label htmlFor="reviews-toggle">Reviews Carousel</Label>
+        <Label htmlFor="reviews-toggle-reviews-carousel-checkbox">
+          Reviews Carousel
+        </Label>
       </div>
       <input
         type="text"
+        id="reviews-toggle-reviews-carousel-input"
         name={instanceIdCarousel}
         placeholder="Reviews Carousel Instance Id"
         disabled={!isReviewsCarouselEnabled}

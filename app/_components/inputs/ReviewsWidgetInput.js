@@ -20,7 +20,7 @@ export default function ReviewsWidgetInput({ handleCheckboxChange }) {
         <label className="toggle-switch">
           <input
             type="checkbox"
-            id="reviews-toggle"
+            id="reviews-toggle-reviews-widget-checkbox"
             checked={isReviewsWidgetEnabled}
             onChange={() => {
               handleCheckboxChange(setIsReviewsWidgetEnabled);
@@ -29,10 +29,11 @@ export default function ReviewsWidgetInput({ handleCheckboxChange }) {
           />
           <span className="toggle-slider"></span>
         </label>
-        <Label htmlFor="reviews-toggle">Reviews</Label>
+        <Label htmlFor="reviews-toggle-reviews-widget-checkbox">Reviews</Label>
       </div>
       <input
         type="text"
+        id="reviews-toggle-reviews-widget-input"
         name={instanceIdWidget}
         placeholder="Reviews Instance Id"
         disabled={!isReviewsWidgetEnabled}

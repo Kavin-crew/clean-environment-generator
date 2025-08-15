@@ -7,6 +7,7 @@ import Clipboards from "@/app/_components/clipboards/Clipboards";
 export default function ReviewsWidget({ heading }) {
   // states
   const productId = useWidgetStore((state) => state.productId);
+  const appKey = useWidgetStore((state) => state.appKey);
   const instanceIdWidget = useWidgetStore((state) => state.instanceIdWidget);
   const isReviewsWidgetCollapsed = useWidgetStore(
     (state) => state.isReviewsWidgetCollapsed
@@ -72,7 +73,7 @@ export default function ReviewsWidget({ heading }) {
           ></div>
         </div>
 
-        <Clipboards heading={heading} />
+        {appKey && instanceIdWidget && <Clipboards heading={heading} />}
       </motion.div>
     </div>
   );

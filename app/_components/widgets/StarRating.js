@@ -5,10 +5,11 @@ import Caret from "@/app/_components/Caret";
 import Clipboards from "@/app/_components/clipboards/Clipboards";
 
 export default function StarRating({ heading }) {
+  const productId = useWidgetStore((state) => state.productId);
+  const appKey = useWidgetStore((state) => state.appKey);
   const instanceIdStarRating = useWidgetStore(
     (state) => state.instanceIdStarRating
   );
-  const productId = useWidgetStore((state) => state.productId);
   const setIsStarRatingWidgetCollapsed = useWidgetStore(
     (state) => state.setIsStarRatingWidgetCollapsed
   );
@@ -84,7 +85,7 @@ export default function StarRating({ heading }) {
           </div>
         </div>
 
-        <Clipboards heading={heading} />
+        {appKey && instanceIdStarRating && <Clipboards heading={heading} />}
       </motion.div>
     </div>
   );

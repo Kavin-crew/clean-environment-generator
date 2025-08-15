@@ -23,6 +23,7 @@ export const useWidgetStore = create(
       isGalleryCollapsed: false,
 
       appKey: "",
+      title: "",
       language: "en",
       instanceIdWidget: "",
       instanceIdQnA: "",
@@ -163,6 +164,12 @@ export const useWidgetStore = create(
         set(() => ({ language: newLanguage }));
         if (typeof window !== "undefined") {
           localStorage.setItem("language", newLanguage);
+        }
+      },
+      setTitle: (newTitle) => {
+        set(() => ({ title: newTitle }));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("title", newTitle);
         }
       },
     }),

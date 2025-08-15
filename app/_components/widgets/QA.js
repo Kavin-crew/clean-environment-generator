@@ -5,8 +5,9 @@ import Caret from "@/app/_components/Caret";
 import Clipboards from "@/app/_components/clipboards/Clipboards";
 
 export default function QA({ heading }) {
-  const instanceIdQnA = useWidgetStore((state) => state.instanceIdQnA);
   const productId = useWidgetStore((state) => state.productId);
+  const appKey = useWidgetStore((state) => state.appKey);
+  const instanceIdQnA = useWidgetStore((state) => state.instanceIdQnA);
   const isQAWidgetCollapsed = useWidgetStore(
     (state) => state.isQAWidgetCollapsed
   );
@@ -69,7 +70,7 @@ export default function QA({ heading }) {
           ></div>
         </div>
 
-        <Clipboards heading={heading} />
+        {appKey && instanceIdQnA && <Clipboards heading={heading} />}
       </motion.div>
     </div>
   );

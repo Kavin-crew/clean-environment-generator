@@ -21,7 +21,7 @@ export default function ReviewsTabInput({ handleCheckboxChange }) {
         <label className="toggle-switch">
           <input
             type="checkbox"
-            id="reviews-toggle"
+            id="reviews-toggle-reviews-tab-checkbox"
             checked={isReviewsTabEnabled}
             onChange={() => {
               handleCheckboxChange(setIsReviewsTabEnabled);
@@ -30,10 +30,11 @@ export default function ReviewsTabInput({ handleCheckboxChange }) {
           />
           <span className="toggle-slider"></span>
         </label>
-        <Label htmlFor="reviews-toggle">Reviews Tab</Label>
+        <Label htmlFor="reviews-toggle-reviews-tab-checkbox">Reviews Tab</Label>
       </div>
       <input
         type="text"
+        id="reviews-toggle-reviews-tab-input"
         name={instanceIdReviewsTab}
         placeholder="Reviews Tab Instance Id"
         disabled={!isReviewsTabEnabled}

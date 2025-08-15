@@ -6,6 +6,7 @@ import Clipboards from "@/app/_components/clipboards/Clipboards";
 
 export default function ReviewsCarousel({ heading }) {
   const productId = useWidgetStore((state) => state.productId);
+  const appKey = useWidgetStore((state) => state.appKey);
   const instanceIdCarousel = useWidgetStore(
     (state) => state.instanceIdCarousel
   );
@@ -72,7 +73,7 @@ export default function ReviewsCarousel({ heading }) {
           ></div>
         </div>
 
-        <Clipboards heading={heading} />
+        {appKey && instanceIdCarousel && <Clipboards heading={heading} />}
       </motion.div>
     </div>
   );

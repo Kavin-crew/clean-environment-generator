@@ -1,6 +1,6 @@
 "use client";
 
-import YotpoScriptLoader from "./_components/YotpoScriptLoader";
+import YotpoScriptLoader from "@/app/_components/YotpoScriptLoader";
 import "./globals.css";
 
 export default function RootLayout({ children }) {

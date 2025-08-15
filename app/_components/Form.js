@@ -1,10 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useWidgetStore } from "@/src/store/widgetStore";
+import { useEffect, useState } from "react";
 import Label from "@/app/_components/Label";
-import InputText from "@/app/_components/InputText";
-import InputTextInstanceId from "@/app/_components/InputTextInstanceId";
 import Row from "@/app/_components/Row";
 import LanguageSelect from "@/app/_components/LanguageSelect";
 import AppkeyInput from "./inputs/AppkeyInput";
@@ -17,6 +14,8 @@ import ReviewsTabInput from "@/app/_components/inputs/ReviewsTabInput";
 import PromotedProdInput from "@/app/_components/inputs/PromotedProdInput";
 import SEOInput from "@/app/_components/inputs/SEOInput";
 import UgcGalleryInput from "@/app/_components/inputs/UgcGalleryInput";
+import TitleInput from "@/app/_components/inputs/TitleInput";
+import PageTitle from "./PageTitle";
 
 export default function Form() {
   const [isFormVisible, setIsFormVisible] = useState(true);
@@ -28,6 +27,7 @@ export default function Form() {
 
   return (
     <>
+      <PageTitle />
       <button
         className={`fixed z-[9999] top-4 right-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
           !isFormVisible ? "block" : "hidden"
@@ -68,10 +68,7 @@ export default function Form() {
               <Row>
                 <div className="w-full space-y-6">
                   <Label htmlFor="title">Title</Label>
-                  <InputText
-                    inputName="title"
-                    placeholder="Account name - v3"
-                  />
+                  <TitleInput />
                 </div>
 
                 <div className="w-full space-y-6">
@@ -121,69 +118,6 @@ export default function Form() {
             </form>
           </div>
         </div>
-
-        {/* <!-- Tailwind Design Tokens Reference --> */}
-        {/* <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-slate-900 mb-4">
-          Tailwind Design Tokens
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-          <div className="bg-slate-50 p-3 rounded">
-            <div className="font-medium text-slate-700">Layout</div>
-            <div className="text-slate-600 font-mono">
-              max-w-2xl, mx-auto, p-6
-            </div>
-          </div>
-          <div className="bg-slate-50 p-3 rounded">
-            <div className="font-medium text-slate-700">Card</div>
-            <div className="text-slate-600 font-mono">
-              bg-white, rounded-lg, shadow-sm
-            </div>
-          </div>
-          <div className="bg-slate-50 p-3 rounded">
-            <div className="font-medium text-slate-700">Spacing</div>
-            <div className="text-slate-600 font-mono">
-              space-y-6, space-y-4, space-y-2
-            </div>
-          </div>
-          <div className="bg-slate-50 p-3 rounded">
-            <div className="font-medium text-slate-700">Typography</div>
-            <div className="text-slate-600 font-mono">
-              text-2xl, text-sm, font-semibold
-            </div>
-          </div>
-          <div className="bg-slate-50 p-3 rounded">
-            <div className="font-medium text-slate-700">Colors</div>
-            <div className="text-slate-600 font-mono">
-              slate-900, slate-500, blue-600
-            </div>
-          </div>
-          <div className="bg-slate-50 p-3 rounded">
-            <div className="font-medium text-slate-700">htmlForm Elements</div>
-            <div className="text-slate-600 font-mono">
-              px-3, py-2, border, rounded-md
-            </div>
-          </div>
-          <div className="bg-slate-50 p-3 rounded">
-            <div className="font-medium text-slate-700">Focus States</div>
-            <div className="text-slate-600 font-mono">
-              focus:ring-2, focus:ring-blue-500
-            </div>
-          </div>
-          <div className="bg-slate-50 p-3 rounded">
-            <div className="font-medium text-slate-700">Disabled States</div>
-            <div className="text-slate-600 font-mono">
-              disabled:bg-gray-50, disabled:text-gray-500
-            </div>
-          </div>
-          <div className="bg-slate-50 p-3 rounded">
-            <div className="font-medium text-slate-700">Button</div>
-            <div className="text-slate-600 font-mono">
-              bg-blue-600, hover:bg-blue-700, py-3
-            </div>
-          </div>
-        </div>
-      </div> */}
       </div>
     </>
   );

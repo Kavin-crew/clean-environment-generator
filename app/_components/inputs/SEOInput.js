@@ -12,7 +12,7 @@ export default function SEOInput({ handleCheckboxChange }) {
         <label className="toggle-switch">
           <input
             type="checkbox"
-            id="reviews-toggle"
+            id="reviews-toggle-seo-checkbox"
             checked={isSEOnabled}
             onChange={() => {
               handleCheckboxChange(setIsSEOnabled);
@@ -21,10 +21,11 @@ export default function SEOInput({ handleCheckboxChange }) {
           />
           <span className="toggle-slider"></span>
         </label>
-        <Label htmlFor="reviews-toggle">SEO</Label>
+        <Label htmlFor="reviews-toggle-seo-checkbox">SEO</Label>
       </div>
       <input
         type="text"
+        id="reviews-toggle-seo-input"
         name={instanceIdSEO}
         placeholder="SEO Instance Id"
         disabled={!setIsSEOnabled}

@@ -22,7 +22,7 @@ export default function StarRatingsInput({ handleCheckboxChange }) {
         <label className="toggle-switch">
           <input
             type="checkbox"
-            id="reviews-toggle"
+            id="reviews-toggle-star-ratings-checkbox"
             checked={isStarRatingWidgetEnabled}
             onChange={() => {
               handleCheckboxChange(setIsStarRatingWidgetEnabled);
@@ -31,10 +31,13 @@ export default function StarRatingsInput({ handleCheckboxChange }) {
           />
           <span className="toggle-slider"></span>
         </label>
-        <Label htmlFor="reviews-toggle">Star Ratings</Label>
+        <Label htmlFor="reviews-toggle-star-ratings-checkbox">
+          Star Ratings
+        </Label>
       </div>
       <input
         type="text"
+        id="reviews-toggle-star-ratings-input"
         name={instanceIdStarRating}
         placeholder="Star Ratings Id"
         disabled={!isStarRatingWidgetEnabled}

@@ -16,7 +16,7 @@ export default function QnAWidgetInput({ handleCheckboxChange }) {
         <label className="toggle-switch">
           <input
             type="checkbox"
-            id="reviews-toggle"
+            id="reviews-toggle-qna-checkbox"
             checked={isQAWidgetEnabled}
             onChange={() => {
               handleCheckboxChange(setIsQAWidgetEnabled);
@@ -25,10 +25,11 @@ export default function QnAWidgetInput({ handleCheckboxChange }) {
           />
           <span className="toggle-slider"></span>
         </label>
-        <Label htmlFor="reviews-toggle">Q&A</Label>
+        <Label htmlFor="reviews-toggle-qna-checkbox">Q&A</Label>
       </div>
       <input
         type="text"
+        id="reviews-toggle-qna-input"
         name={instanceIdQnA}
         placeholder="Q&A Instance Id"
         disabled={!isQAWidgetEnabled}

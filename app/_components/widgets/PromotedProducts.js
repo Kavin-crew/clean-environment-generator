@@ -5,6 +5,7 @@ import Clipboards from "@/app/_components/clipboards/Clipboards";
 
 export default function PromotedProducts({ heading }) {
   const productId = useWidgetStore((state) => state.productId);
+  const appKey = useWidgetStore((state) => state.appKey);
   const instanceIdPromotedProd = useWidgetStore(
     (state) => state.instanceIdPromotedProd
   );
@@ -55,7 +56,7 @@ export default function PromotedProducts({ heading }) {
           ></div>
         </div>
 
-        <Clipboards heading={heading} />
+        {appKey && instanceIdPromotedProd && <Clipboards heading={heading} />}
       </motion.div>
     </div>
   );

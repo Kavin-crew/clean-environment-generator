@@ -6,6 +6,7 @@ import Clipboards from "@/app/_components/clipboards/Clipboards";
 
 export default function SEO({ heading }) {
   const productId = useWidgetStore((state) => state.productId);
+  const appKey = useWidgetStore((state) => state.appKey);
   const instanceIdSEO = useWidgetStore((state) => state.instanceIdSEO);
   const isSEOCollapsed = useWidgetStore((state) => state.isSEOCollapsed);
   const setIsSEOCollapsed = useWidgetStore((state) => state.setIsSEOCollapsed);
@@ -62,7 +63,7 @@ export default function SEO({ heading }) {
           ></div>
         </div>
 
-        <Clipboards heading={heading} />
+        {appKey && instanceIdSEO && <Clipboards heading={heading} />}
       </motion.div>
     </div>
   );

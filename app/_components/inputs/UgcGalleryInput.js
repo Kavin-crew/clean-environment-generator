@@ -18,7 +18,7 @@ export default function UgcGalleryInput({ handleCheckboxChange }) {
         <label className="toggle-switch">
           <input
             type="checkbox"
-            id="reviews-toggle"
+            id="reviews-toggle-gallery-checkbox"
             checked={isGalleryEnabled}
             onChange={() => {
               handleCheckboxChange(setIsGalleryEnabled);
@@ -27,10 +27,11 @@ export default function UgcGalleryInput({ handleCheckboxChange }) {
           />
           <span className="toggle-slider"></span>
         </label>
-        <Label htmlFor="reviews-toggle">Reviews Gallery</Label>
+        <Label htmlFor="reviews-toggle-gallery-checkbox">Reviews Gallery</Label>
       </div>
       <input
         type="text"
+        id="reviews-toggle-gallery-input"
         name={instanceIdUgcGallery}
         placeholder="Gallery Instance Id"
         disabled={!isGalleryEnabled}

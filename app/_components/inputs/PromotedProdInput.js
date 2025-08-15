@@ -20,7 +20,7 @@ export default function PromotedProdInput({ handleCheckboxChange }) {
         <label className="toggle-switch">
           <input
             type="checkbox"
-            id="reviews-toggle"
+            id="reviews-toggle-promoted-prod-checkbox"
             checked={isPromotedProductsEnabled}
             onChange={() => {
               handleCheckboxChange(setIsPromotedProductsEnabled);
@@ -29,10 +29,13 @@ export default function PromotedProdInput({ handleCheckboxChange }) {
           />
           <span className="toggle-slider"></span>
         </label>
-        <Label htmlFor="reviews-toggle">Promoted Products</Label>
+        <Label htmlFor="reviews-toggle-promoted-prod-checkbox">
+          Promoted Products
+        </Label>
       </div>
       <input
         type="text"
+        id="reviews-toggle-promoted-prod-input"
         name={instanceIdPromotedProd}
         placeholder="Promoted Products Instance Id"
         disabled={!isPromotedProductsEnabled}
