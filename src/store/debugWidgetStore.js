@@ -1,4 +1,3 @@
-import React from "react";
 import { useWidgetStore } from "@/src/store/widgetStore";
 
 export default function DebugWidgetStore() {

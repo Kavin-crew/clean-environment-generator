@@ -1,10 +1,25 @@
 import { useWidgetStore } from "@/src/store/widgetStore";
+import { useEffect } from "react";
 
 export default function TitleInput() {
   const title = useWidgetStore((state) => state.title);
   const setTitle = useWidgetStore((state) => state.setTitle);
+
+  useEffect(() => {
+    if (!title) return;
+
+    const timer = setTimeout(() => {
+      if (!title.endsWith(" - v3")) {
+        setTitle(title + " - v3");
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [title, setTitle]);
+
   return (
     <input
+      required
       type="text"
       id="title"
       name="title"

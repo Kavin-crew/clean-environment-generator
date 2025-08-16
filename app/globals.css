@@ -170,3 +170,95 @@ input:checked + .toggle-slider:before {
 }
 
 /* checkbox in the form */
+
+.widget-holder .widget-title {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.widget-holder .widget-title h4 {
+  margin: 0;
+}
+
+.yotpo-display-l .yotpo-base-layout {
+  width: 100% !important;
+}
+
+#star-rating .yotpo-reviews-star-ratings-widget {
+  justify-content: center !important;
+}
+
+#yotpo-vugc-preview-mode-layout,
+.yotpo-reviews-carousel-preview-mode-layout,
+.yotpo-pp-preview-mode-layout {
+  height: auto !important;
+}
+
+.footer-template {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #d9d9df;
+}
+
+.footer-template .footer-logo {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.footer-logo img {
+  width: 35px;
+}
+
+.footer-logo h2 {
+  font-size: 18px;
+  margin: 0 0 0 9px;
+}
+
+.cliboard-holder h2 {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 23px;
+}
+
+.clipboard-details h3 {
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.clipboard-details p {
+  font-size: 12px;
+}
+
+.rating-holder {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.rating-holder section {
+  width: clamp(300px, 45%, 600px);
+  margin: 0 10px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  align-items: center;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.rating-holder section h1 {
+  font-size: 20px;
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.yotpo-widget-clear .yotpo-reviews-tab-layout-preview {
+  height: auto;
+}

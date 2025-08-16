@@ -23,7 +23,7 @@ export default function Clipboards({ heading }) {
     <div className="cliboard-holder p-4 space-y-4 flex flex-wrap justify-center border-2 border-dashed border-[#04194c] mx-[clamp(10px,4vw,50px)] my-[clamp(10px,4vw,50px)] pt-[30px] px-[20px] pb-[20px] bg-[#f6f6ff]">
       <h2>{`Follow these steps to add this ${heading} to your store`}</h2>
 
-      <div className="clipboard-details">
+      <div className="clipboard-details flex flex-col flex-wrap w-[clamp(300px,45%,600px)] mx-[10px] mb-[20px]">
         <h3>{`1. Add the following to your <head> tag.`}</h3>
         <p>
           If you already have this script, please disregard since using one
@@ -32,7 +32,7 @@ export default function Clipboards({ heading }) {
         <ScriptClipBoard />
       </div>
 
-      <div className="clipboard-details">
+      <div className="clipboard-details flex flex-col flex-wrap w-[clamp(300px,45%,600px)] mx-[10px] mb-[20px]">
         <h3>2. Add the following code snippet to your product page.</h3>
         <p>
           Make sure you replace each data element with the appropriate values of
@@ -57,7 +57,7 @@ export default function Clipboards({ heading }) {
       </div>
 
       {heading === "Star Rating" && (
-        <div className="clipboard-details">
+        <div className="clipboard-details flex flex-col flex-wrap w-[clamp(300px,45%,600px)] mx-[10px] mb-[20px]">
           <h3>3. Add the following code snippet to your collection page.</h3>
           <p>
             Make sure you replace each data element with the appropriate values

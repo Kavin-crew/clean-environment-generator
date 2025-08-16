@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import Label from "@/app/_components/Label";
 import Row from "@/app/_components/Row";
 import LanguageSelect from "@/app/_components/LanguageSelect";
-import AppkeyInput from "./inputs/AppkeyInput";
+import PageTitle from "@/app/_components/PageTitle";
 
+import AppkeyInput from "./inputs/AppkeyInput";
 import ReviewsWidgetInput from "@/app/_components/inputs/ReviewsWidgetInput";
 import QnAWidgetInput from "@/app/_components/inputs/QnAWidgetInput";
 import StarRatingsInput from "@/app/_components/inputs/StarRatingsInput";
@@ -15,7 +17,7 @@ import PromotedProdInput from "@/app/_components/inputs/PromotedProdInput";
 import SEOInput from "@/app/_components/inputs/SEOInput";
 import UgcGalleryInput from "@/app/_components/inputs/UgcGalleryInput";
 import TitleInput from "@/app/_components/inputs/TitleInput";
-import PageTitle from "./PageTitle";
+import ProductIdInput from "@/app/_components/inputs/ProductIdInput";
 
 export default function Form() {
   const [isFormVisible, setIsFormVisible] = useState(true);
@@ -37,7 +39,7 @@ export default function Form() {
         View form
       </button>
       <div
-        className={` max-w-2xl mx-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full  bg-white  shadow-lg rounded z-[9999] ${
+        className={` max-w-2xl mx-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full  shadow-lg rounded z-[9999] overflow-hidden ${
           isFormVisible ? "block" : "hidden"
         }`}
       >
@@ -47,7 +49,7 @@ export default function Form() {
         >
           X
         </button>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 h-[90dvh] overflow-y-auto">
+        <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 h-[90dvh] overflow-y-auto">
           <div className="p-6 pb-0">
             <h1 className="text-2xl font-semibold text-slate-900 mb-2">
               Configuration Form
@@ -60,10 +62,17 @@ export default function Form() {
           <div className="p-6 pt-0">
             <form id="configForm" name="configForm" className="space-y-6">
               {/* <!-- Appkey Field --> */}
-              <div className="w-full space-y-6">
-                <Label htmlFor="appkey">Appkey</Label>
-                <AppkeyInput />
-              </div>
+              <Row>
+                <div className="w-full space-y-6">
+                  <Label htmlFor="appkey">Appkey</Label>
+                  <AppkeyInput />
+                </div>
+
+                <div className="w-full space-y-6">
+                  <Label htmlFor="language">Language</Label>
+                  <LanguageSelect />
+                </div>
+              </Row>
 
               <Row>
                 <div className="w-full space-y-6">
@@ -72,8 +81,8 @@ export default function Form() {
                 </div>
 
                 <div className="w-full space-y-6">
-                  <Label htmlFor="language">Language</Label>
-                  <LanguageSelect />
+                  <Label htmlFor="appkey">Product Id</Label>
+                  <ProductIdInput />
                 </div>
               </Row>
 
@@ -107,7 +116,7 @@ export default function Form() {
               </Row>
 
               {/* <!-- Generate Button --> */}
-              <div className="">
+              <div>
                 <button
                   type="submit"
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"

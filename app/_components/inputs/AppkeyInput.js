@@ -5,6 +5,7 @@ export default function AppkeyInput() {
   const setAppKey = useWidgetStore((state) => state.setAppKey);
   return (
     <input
+      required
       type="text"
       id="appkey"
       name="appkey"
