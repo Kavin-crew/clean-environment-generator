@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { customizationStore } from "@/src/store/customizationStore";
 
 import Label from "@/app/_components/Label";
 import Row from "@/app/_components/Row";
@@ -20,7 +21,8 @@ import TitleInput from "@/app/_components/inputs/TitleInput";
 import ProductIdInput from "@/app/_components/inputs/ProductIdInput";
 
 export default function Form() {
-  const [isFormVisible, setIsFormVisible] = useState(true);
+  const isFormOpen = customizationStore((state) => state.isFormOpen);
+  const setIsFormOpen = customizationStore((state) => state.setIsFormOpen);
 
   // Reference for the input field to clear its value when the checkbox is unchecked
   const handleCheckboxChange = (setterFn) => {
@@ -30,24 +32,16 @@ export default function Form() {
   return (
     <>
       <PageTitle />
-      <button
-        className={`fixed z-[9999] top-4 right-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-          !isFormVisible ? "block" : "hidden"
-        }`}
-        onClick={() => setIsFormVisible((prev) => !prev)}
-      >
-        View form
-      </button>
       <div
         className={` max-w-2xl mx-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full  shadow-lg rounded z-[9999] overflow-hidden ${
-          isFormVisible ? "block" : "hidden"
+          isFormOpen ? "block" : "hidden"
         }`}
       >
         <button
-          className="fixed z-2 top-4 right-4 bg-stone-600 hover:bg-stone-900 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2"
-          onClick={() => setIsFormVisible((prev) => !prev)}
+          className="fixed z-2 top-4 right-4 bg-stone-600 hover:bg-stone-900 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2 cursor-pointer"
+          onClick={() => setIsFormOpen()}
         >
-          X
+          <XMarkIcon className="h-6 w-6 text-white" />
         </button>
         <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 h-[90dvh] overflow-y-auto">
           <div className="p-6 pb-0">

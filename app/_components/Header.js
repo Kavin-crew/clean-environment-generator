@@ -1,8 +1,9 @@
 import Image from "next/image";
+import { useState } from "react";
 import { customizationStore } from "@/src/store/customizationStore";
 import Row from "@/app/_components/Row";
 import Label from "@/app/_components/Label";
-import { useState } from "react";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const DEFAULT_LOGO_URL =
   "https://cdn.pixabay.com/photo/2015/12/22/04/00/photo-1103594_1280.png";
@@ -20,7 +21,7 @@ export default function Header() {
   );
   const hasHydrated = customizationStore((state) => state.hasHydrated);
 
-  const [isImageSettingsHidden, setIsImageSettingsHidden] = useState(false);
+  const [isImageSettingsHidden, setIsImageSettingsHidden] = useState(true);
 
   const handleEmptyInput = (e, setter) => {
     const inputValue = e.target.value;
@@ -41,12 +42,7 @@ export default function Header() {
 
   const handleLogoUrlChange = (e) => {
     const inputValue = e.target.value.trim();
-
-    if (inputValue === "") {
-      setLogoImageUrl(DEFAULT_LOGO_URL);
-    } else {
-      setLogoImageUrl(inputValue);
-    }
+    setLogoImageUrl(inputValue === "" ? DEFAULT_LOGO_URL : inputValue);
   };
 
   if (!hasHydrated) return null;
@@ -56,13 +52,17 @@ export default function Header() {
       className={`logo flex justify-center items-center  relative w-[${logoImageWidth}px] h-auto min-h-28 mt-5 mb-5 mx-auto`}
     >
       <button
-        className="absolute  bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-1 px-2 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+        className="absolute top-3/4  bg-stone-600 hover:bg-stone-900 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2 cursor-pointer"
         onClick={() => setIsImageSettingsHidden((prev) => !prev)}
       >
-        {isImageSettingsHidden ? "Show Settings" : "Hide Settings"}
+        {isImageSettingsHidden ? (
+          <EyeIcon className="h-6 w-6 text-white" />
+        ) : (
+          <EyeSlashIcon className="h-6 w-6 text-white" />
+        )}
       </button>
       <div
-        className={`absolute top-full block space-y-2 justify-between gap-x-5  translate-y-[-20px] ${
+        className={`absolute  block space-y-2 justify-between gap-x-5  translate-y-[-20px] ${
           isImageSettingsHidden ? "hidden" : "block"
         }`}
       >

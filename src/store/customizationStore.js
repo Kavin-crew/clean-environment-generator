@@ -5,7 +5,7 @@ export const customizationStore = create(
     (set, get) => ({
       logoImageUrl:
         "https://cdn.pixabay.com/photo/2015/12/22/04/00/photo-1103594_1280.png",
-      bodyBackgroundColor: "#fff",
+      bodyBackgroundColor: "#f5f5f4",
       logoImageWidth: 150,
       logoImageHeight: 150,
 
@@ -14,13 +14,54 @@ export const customizationStore = create(
       qaWidgetBackgroundColor: "#fff",
       starRatingsWidgetBackgroundColor: "#fff",
       reviewsCarouselWidgetBackgroundColor: "#fff",
-      reviewsTabWidgetBackgroundColor: "#fff",
       promotedProductsWidgetBackgroundColor: "#fff",
       seoWidgetBackgroundColor: "#fff",
       reviewsGalleryWidgetBackgroundColor: "#fff",
 
+      isBodyColorPickerOpen: false,
+      isReviewsWidgetColorPickerOpen: false,
+      isQAColorPickerOpen: false,
+      isStarRatingsColorPickerOpen: false,
+      isReviewsCarouselColorPickerOpen: false,
+      isPromotedProdColorPickerOpen: false,
+      isSEOColorPickerOpen: false,
+      isUGCGalleryColorPickerOpen: false,
+
+      isFormOpen: true,
+
       hasHydrated: false,
       setHasHydrated: (state) => set({ hasHydrated: state }),
+      setIsFormOpen: () => set({ isFormOpen: !get().isFormOpen }),
+      setIsBodyColorPickerOpen: () =>
+        set({ isBodyColorPickerOpen: !get().isBodyColorPickerOpen }),
+      setIsReviewsWidgetColorPickerOpen: () =>
+        set({
+          isReviewsWidgetColorPickerOpen: !get().isReviewsWidgetColorPickerOpen,
+        }),
+      setIsQAColorPickerOpen: () =>
+        set({ isQAColorPickerOpen: !get().isQAColorPickerOpen }),
+      setIsStarRatingsColorPickerOpen: () =>
+        set({
+          isStarRatingsColorPickerOpen: !get().isStarRatingsColorPickerOpen,
+        }),
+      setIsReviewsCarouselColorPickerOpen: () =>
+        set({
+          isReviewsCarouselColorPickerOpen:
+            !get().isReviewsCarouselColorPickerOpen,
+        }),
+      setIsPromotedProdColorPickerOpen: () =>
+        set({
+          isPromotedProdColorPickerOpen: !get().isPromotedProdColorPickerOpen,
+        }),
+      setIsSEOColorPickerOpen: () =>
+        set({ isSEOColorPickerOpen: !get().isSEOColorPickerOpen }),
+      setIsUGCGalleryColorPickerOpen: () =>
+        set({
+          isUGCGalleryColorPickerOpen: !get().isUGCGalleryColorPickerOpen,
+        }),
+      setBodyBackgroundColor: (newColor) => {
+        set(() => ({ bodyBackgroundColor: newColor }));
+      },
 
       setOverAllWidgetBackgroundColor: (newColor) => {
         set(() => ({ overAllWidgetBackgroundColor: newColor }));
@@ -55,12 +96,6 @@ export const customizationStore = create(
           );
         }
       },
-      setReviewsTabWidgetBackgroundColor: (newColor) => {
-        set(() => ({ reviewsTabWidgetBackgroundColor: newColor }));
-        if (typeof window !== "undefined") {
-          localStorage.setItem("reviewsTabWidgetBackgroundColor", newColor);
-        }
-      },
       setPromotedProductsWidgetBackgroundColor: (newColor) => {
         set(() => ({ promotedProductsWidgetBackgroundColor: newColor }));
         if (typeof window !== "undefined") {
@@ -87,12 +122,6 @@ export const customizationStore = create(
         set(() => ({ logoImageUrl: newUrl }));
         if (typeof window !== "undefined") {
           localStorage.setItem("logoImageUrl", newUrl);
-        }
-      },
-      setBodyBackgroundColor: (newColor) => {
-        set(() => ({ bodyBackgroundColor: newColor }));
-        if (typeof window !== "undefined") {
-          localStorage.setItem("bodyBackgroundColor", newColor);
         }
       },
       setLogoImageWidth: (newWidth) => {

@@ -30,7 +30,9 @@ export default function WidgetClipBoard({ instanceid }) {
   return (
     <>
       <ClipboardTextarea value={value} setCopied={setCopied} />
-      <Button onClick={copy}>{isCopied ? "Copied!" : "Copy Code"}</Button>
+      <Button type="primary" onClick={copy}>
+        {isCopied ? "Copied!" : "Copy Code"}
+      </Button>
     </>
   );
 }
