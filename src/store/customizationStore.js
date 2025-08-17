@@ -7,7 +7,7 @@ export const customizationStore = create(
         "https://cdn.pixabay.com/photo/2015/12/22/04/00/photo-1103594_1280.png",
       bodyBackgroundColor: "#fff",
       logoImageWidth: 150,
-      logoImageHeight: "auto",
+      logoImageHeight: 150,
 
       overAllWidgetBackgroundColor: "#fff",
       reviewsWidgetBackgroundColor: "#fff",
