@@ -2,7 +2,7 @@
 
 import { useWidgetStore } from "@/src/store/widgetStore";
 import { customizationStore } from "@/src/store/customizationStore";
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import { PencilIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 import DebugWidgetStore from "@/src/store/debugWidgetStore";
 import Form from "@/app/_components/Form";
@@ -72,10 +72,10 @@ export default function Home() {
       )}
       <button
         onClick={() => setIsBodyColorPickerOpen()}
-        className="bg-stone-600 hover:bg-stone-900 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2 cursor-pointer"
+        className="absolute top-0 left-4 z-[9999] bg-stone-600 hover:bg-stone-900 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2 cursor-pointer"
       >
         {!isBodyColorPickerOpen ? (
-          <EyeIcon className="h-6 w-6 text-white" />
+          <PencilIcon className="h-6 w-6 text-white" />
         ) : (
           <EyeSlashIcon className="h-6 w-6 text-white" />
         )}
