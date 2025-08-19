@@ -18,7 +18,8 @@ import ReviewsTab from "@/app/_components/widgets/ReviewsTab";
 import Instructions from "@/app/_components/Instructions";
 import FormOverlay from "@/app/_components/FormOverlay";
 import Button from "@/app/_components/Button";
-import ColorPicker from "./_components/ColorPicker";
+import ColorPicker from "@/app/_components/ColorPicker";
+import Footer from "@/app/_components/Footer";
 
 export default function Home() {
   // form states
@@ -63,59 +64,64 @@ export default function Home() {
   if (!hasHydrated) return null;
   return (
     <>
-      {isBodyColorPickerOpen && (
-        <ColorPicker
-          location="left-4 top-16"
-          color={bodyBackgroundColor}
-          setColor={setBodyBackgroundColor}
-        />
-      )}
-      <button
-        onClick={() => setIsBodyColorPickerOpen()}
-        className="absolute top-0 left-4 z-[9999] bg-stone-600 hover:bg-stone-900 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2 cursor-pointer"
-      >
-        {!isBodyColorPickerOpen ? (
-          <PencilIcon className="h-6 w-6 text-white" />
-        ) : (
-          <EyeSlashIcon className="h-6 w-6 text-white" />
-        )}
-      </button>
       <Header />
-      <Button type="secondary" onClick={() => setIsFormOpen()}>
-        View form
-      </Button>
-      {isFormOpen && (
-        <>
-          <FormOverlay />
-          <Form />
-        </>
-      )}
-      <div className="max-w-full mx-auto px-4">
-        <div className="accordion" id="accordionExample">
-          {isReviewsWidgetEnabled && <ReviewsWidget heading="Reviews Widget" />}
-
-          {isQAWidgetEnabled && <QA heading="Q&A" />}
-
-          {isStarRatingWidgetEnabled && <StarRating heading="Star Rating" />}
-
-          {isSEOnabled && <SEO heading="SEO" />}
-
-          {isReviewsCarouselEnabled && (
-            <ReviewsCarousel heading="Reviews Carousel" />
+      <main style={{ minHeight: "75vh" }}>
+        {isBodyColorPickerOpen && (
+          <ColorPicker
+            location="left-4 top-16"
+            color={bodyBackgroundColor}
+            setColor={setBodyBackgroundColor}
+          />
+        )}
+        <button
+          onClick={() => setIsBodyColorPickerOpen()}
+          className="absolute top-4 left-4 z-[9999] bg-stone-600 hover:bg-stone-900 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2 cursor-pointer"
+        >
+          {!isBodyColorPickerOpen ? (
+            <PencilIcon className="h-6 w-6 text-white" />
+          ) : (
+            <EyeSlashIcon className="h-6 w-6 text-white" />
           )}
+        </button>
+        <Button type="secondary" onClick={() => setIsFormOpen()}>
+          View form
+        </Button>
+        {isFormOpen && (
+          <>
+            <FormOverlay />
+            <Form />
+          </>
+        )}
+        <div className="max-w-full mx-auto px-4">
+          <div className="accordion" id="accordionExample">
+            {isReviewsWidgetEnabled && (
+              <ReviewsWidget heading="Reviews Widget" />
+            )}
 
-          {isPromotedProductsEnabled && (
-            <PromotedProducts heading="Promoted Products" />
-          )}
+            {isQAWidgetEnabled && <QA heading="Q&A" />}
 
-          {isGalleryEnabled && <UgcGallery heading="UGC Gallery" />}
+            {isStarRatingWidgetEnabled && <StarRating heading="Star Rating" />}
 
-          {isReviewsTabEnabled && <ReviewsTab />}
+            {isSEOnabled && <SEO heading="SEO" />}
 
-          <Instructions />
+            {isReviewsCarouselEnabled && (
+              <ReviewsCarousel heading="Reviews Carousel" />
+            )}
+
+            {isPromotedProductsEnabled && (
+              <PromotedProducts heading="Promoted Products" />
+            )}
+
+            {isGalleryEnabled && <UgcGallery heading="UGC Gallery" />}
+
+            {isReviewsTabEnabled && <ReviewsTab />}
+
+            <Instructions />
+          </div>
         </div>
-      </div>
-      <DebugWidgetStore />
+        <DebugWidgetStore />
+      </main>
+      <Footer />
     </>
   );
 }

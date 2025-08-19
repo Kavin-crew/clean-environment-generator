@@ -50,7 +50,8 @@ export default function Header() {
 
   return (
     <header
-      className={`logo flex flex-col-reverse justify-center items-center gap-2 relative w-[${logoImageWidth}px]  min-h-28 mt-5 mb-5 mx-auto`}
+      style={{ minHeight: "15vh" }}
+      className={`logo flex flex-col-reverse justify-center items-center gap-2 relative w-[${logoImageWidth}px] pb-5 pt-3.5 mx-auto`}
     >
       <button
         className={`${
