@@ -38,7 +38,7 @@ export default function Form() {
         }`}
       >
         <button
-          className="fixed z-2 top-4 right-4 bg-stone-600 hover:bg-stone-900 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2 cursor-pointer"
+          className="absolute z-2 top-4 right-4 bg-stone-600 hover:bg-stone-900 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2 cursor-pointer"
           onClick={() => setIsFormOpen()}
         >
           <XMarkIcon className="h-6 w-6 text-white" />
