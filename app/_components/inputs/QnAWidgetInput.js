@@ -30,7 +30,7 @@ export default function QnAWidgetInput({ handleCheckboxChange }) {
       <input
         type="text"
         id="reviews-toggle-qna-input"
-        name={instanceIdQnA}
+        name="QA"
         placeholder="Q&A Instance Id"
         disabled={!isQAWidgetEnabled}
         value={instanceIdQnA}

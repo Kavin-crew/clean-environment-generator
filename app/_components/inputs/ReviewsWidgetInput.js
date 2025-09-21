@@ -34,7 +34,7 @@ export default function ReviewsWidgetInput({ handleCheckboxChange }) {
       <input
         type="text"
         id="reviews-toggle-reviews-widget-input"
-        name={instanceIdWidget}
+        name="reviews_widget"
         placeholder="Reviews Instance Id"
         disabled={!isReviewsWidgetEnabled}
         value={instanceIdWidget}

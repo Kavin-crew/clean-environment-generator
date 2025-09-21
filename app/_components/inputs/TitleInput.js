@@ -12,7 +12,7 @@ export default function TitleInput() {
       if (!title.endsWith(" - v3")) {
         setTitle(title + " - v3");
       }
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [title, setTitle]);

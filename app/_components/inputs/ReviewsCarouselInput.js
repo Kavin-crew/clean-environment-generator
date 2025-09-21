@@ -36,7 +36,7 @@ export default function ReviewsCarouselInput({ handleCheckboxChange }) {
       <input
         type="text"
         id="reviews-toggle-reviews-carousel-input"
-        name={instanceIdCarousel}
+        name="reviews_carousel"
         placeholder="Reviews Carousel Instance Id"
         disabled={!isReviewsCarouselEnabled}
         value={instanceIdCarousel}

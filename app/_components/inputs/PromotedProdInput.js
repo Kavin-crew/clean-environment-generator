@@ -36,7 +36,7 @@ export default function PromotedProdInput({ handleCheckboxChange }) {
       <input
         type="text"
         id="reviews-toggle-promoted-prod-input"
-        name={instanceIdPromotedProd}
+        name="promoted_product"
         placeholder="Promoted Products Instance Id"
         disabled={!isPromotedProductsEnabled}
         value={instanceIdPromotedProd}

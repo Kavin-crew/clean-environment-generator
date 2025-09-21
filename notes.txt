@@ -17,3 +17,6 @@ const share = useRouter();
 <div onClick={copylink} className="shareicon" >
     <p> Copy to CLipboar </p>
 </div>
+
+//sample url
+http://localhost:3000/?appkey=rj74UZEzEEqYa1gTFXC3BLbr9GzC5SKjKXKupEpg&language=fr&title=sample+-+v3&productId=0&reviews-widget=433901&QA=555238&star-ratings=557423&reviews-carousel=555239&reviews-tab=621963&promoted-product=622001&SEO=622016

@@ -32,7 +32,7 @@ export default function UgcGalleryInput({ handleCheckboxChange }) {
       <input
         type="text"
         id="reviews-toggle-gallery-input"
-        name={instanceIdUgcGallery}
+        name="ugc_gallery"
         placeholder="Gallery Instance Id"
         disabled={!isGalleryEnabled}
         value={instanceIdUgcGallery}

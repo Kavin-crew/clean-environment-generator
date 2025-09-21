@@ -38,7 +38,7 @@ export default function StarRatingsInput({ handleCheckboxChange }) {
       <input
         type="text"
         id="reviews-toggle-star-ratings-input"
-        name={instanceIdStarRating}
+        name="star_ratings"
         placeholder="Star Ratings Id"
         disabled={!isStarRatingWidgetEnabled}
         value={instanceIdStarRating}

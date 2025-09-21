@@ -35,7 +35,7 @@ export default function ReviewsTabInput({ handleCheckboxChange }) {
       <input
         type="text"
         id="reviews-toggle-reviews-tab-input"
-        name={instanceIdReviewsTab}
+        name="reviews_tab"
         placeholder="Reviews Tab Instance Id"
         disabled={!isReviewsTabEnabled}
         value={instanceIdReviewsTab}

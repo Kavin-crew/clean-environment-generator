@@ -75,7 +75,7 @@ export default function Form() {
                 </div>
 
                 <div className="w-full space-y-6">
-                  <Label htmlFor="appkey">Product Id</Label>
+                  <Label htmlFor="productId">Product Id</Label>
                   <ProductIdInput />
                 </div>
               </Row>
