@@ -24,20 +24,20 @@ import Footer from "@/app/_components/Footer";
 export default function Home() {
   // form states
   const isReviewsWidgetEnabled = useWidgetStore(
-    (state) => state.isReviewsWidgetEnabled
+    (state) => state.isReviewsWidgetEnabled,
   );
   const isQAWidgetEnabled = useWidgetStore((state) => state.isQAWidgetEnabled);
   const isStarRatingWidgetEnabled = useWidgetStore(
-    (state) => state.isStarRatingWidgetEnabled
+    (state) => state.isStarRatingWidgetEnabled,
   );
   const isReviewsCarouselEnabled = useWidgetStore(
-    (state) => state.isReviewsCarouselEnabled
+    (state) => state.isReviewsCarouselEnabled,
   );
   const isReviewsTabEnabled = useWidgetStore(
-    (state) => state.isReviewsTabEnabled
+    (state) => state.isReviewsTabEnabled,
   );
   const isPromotedProductsEnabled = useWidgetStore(
-    (state) => state.isPromotedProductsEnabled
+    (state) => state.isPromotedProductsEnabled,
   );
   const isSEOnabled = useWidgetStore((state) => state.isSEOnabled);
   const isGalleryEnabled = useWidgetStore((state) => state.isGalleryEnabled);
@@ -47,18 +47,18 @@ export default function Home() {
   const setIsFormOpen = customizationStore((state) => state.setIsFormOpen);
 
   const bodyBackgroundColor = customizationStore(
-    (state) => state.bodyBackgroundColor
+    (state) => state.bodyBackgroundColor,
   );
 
   const setBodyBackgroundColor = customizationStore(
-    (state) => state.setBodyBackgroundColor
+    (state) => state.setBodyBackgroundColor,
   );
 
   const isBodyColorPickerOpen = customizationStore(
-    (state) => state.isBodyColorPickerOpen
+    (state) => state.isBodyColorPickerOpen,
   );
   const setIsBodyColorPickerOpen = customizationStore(
-    (state) => state.setIsBodyColorPickerOpen
+    (state) => state.setIsBodyColorPickerOpen,
   );
 
   if (!hasHydrated) return null;
@@ -119,7 +119,6 @@ export default function Home() {
             <Instructions />
           </div>
         </div>
-        // <DebugWidgetStore />
       </main>
       <Footer />
     </>
