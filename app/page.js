@@ -119,7 +119,7 @@ export default function Home() {
             <Instructions />
           </div>
         </div>
-        <DebugWidgetStore />
+        // <DebugWidgetStore />
       </main>
       <Footer />
     </>
